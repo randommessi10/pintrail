@@ -1,23 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Trash2 } from "lucide-react";
-import {
-  mockItineraries,
-  mockItineraryDestinations,
-  destinations,
-} from "../../data/travelData";
 import "../../styles/ItineraryPage.css";
-
-// Utility: Get destinations for a given itineraryId
-function getDestinationsForItinerary(itineraryId) {
-  // Find destinationIds linked to this itineraryId
-  const destIds = mockItineraryDestinations
-    .filter((rel) => rel.itineraryId === itineraryId)
-    .map((rel) => rel.destinationId);
-
-  // Map to actual destination objects
-  return destinations.filter((dest) => destIds.includes(dest.id));
-}
 
 // ----- ItineraryCard -----
 function ItineraryCard({ itinerary, onDelete }) {
@@ -36,10 +20,8 @@ function ItineraryCard({ itinerary, onDelete }) {
       <div className="itinerary-info">
         <h3 className="itinerary-name">{itinerary.name}</h3>
         <p className="itinerary-count">
-          {itinerary.destinations?.length ?? 0}{" "}
-          {(itinerary.destinations?.length ?? 0) === 1
-            ? "destination"
-            : "destinations"}
+        {itinerary.destinations?.length ?? 0} {" "}
+        {(itinerary.destinations?.length ?? 0) === 1 ? "destination" : "destinations"}
         </p>
         <div className="itinerary-buttons">
           <Link to={`/itinerary/${itinerary.id}`} className="btn view">
@@ -75,46 +57,92 @@ function ItineraryGrid({ itineraries, onDelete }) {
 
 // ----- ItineraryPage -----
 export default function ItineraryPage() {
-  // Compose itineraries with destinations on initial load
-  const composeItinerariesWithDestinations = () => {
-    return mockItineraries.map((itinerary) => {
-      const linkedDestinations = getDestinationsForItinerary(itinerary.id);
-      return { ...itinerary, destinations: linkedDestinations };
-    });
-  };
-
-  const [itineraries, setItineraries] = useState(
-    composeItinerariesWithDestinations()
-  );
+  const [itineraries, setItineraries] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [newName, setNewName] = useState("");
 
-  const handleCreate = () => {
-    if (!newName.trim()) return;
-    const newId = (
-      Math.max(...itineraries.map((it) => parseInt(it.id, 10)), 0) + 1
-    ).toString();
-    const newItinerary = {
-      id: newId,
-      name: newName.trim(),
-      destinations: [],
-    };
-    console.log("new itinerary:", newItinerary);
-    setItineraries((prev) => [newItinerary, ...prev]);
-    setNewName("");
-    setShowModal(false);
-  };
+  useEffect(() => {
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
 
-  const handleDelete = (id) => {
-    console.log("deleted itinerary:", id);
-    alert("Itinerary successfully deleted");
-    setItineraries((prev) => prev.filter((itinerary) => itinerary.id !== id));
+    fetch("http://localhost:3000/itineraries/fetch", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched itineraries:");
+        setItineraries(data);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch itineraries", err);
+      });
+  }, []);
+
+  const handleCreate = async () => {
+    if (!newName.trim()) return;
+  
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
+  
+    try {
+      const response = await fetch("http://localhost:3000/itineraries/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ name: newName.trim() }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        console.error("Error creating itinerary:", data.message);
+        return;
+      }
+  
+      // ✅ only push what backend returns (with DB-assigned `id`)
+      setItineraries((prev) => [data, ...prev]);
+      setNewName("");
+      setShowModal(false);
+    } catch (err) {
+      console.error("Error creating itinerary:", err);
+    }
   };
+  
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
+  
+    const confirmed = window.confirm("Are you sure you want to delete this itinerary?");
+    if (!confirmed) return;
+  
+    try {
+      const res = await fetch(`http://localhost:3000/itineraries/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      if (res.ok) {
+        alert("Itinerary successfully deleted");
+        setItineraries((prev) => prev.filter((itinerary) => itinerary.id !== id));
+      } else {
+        const err = await res.json();
+        alert(err.message || "Failed to delete itinerary");
+      }
+    } catch (err) {
+      console.error("Error deleting itinerary:", err);
+      alert("Something went wrong");
+    }
+  };
+  
 
   return (
     <div className="itinerary-page">
-      {/* Header is handled globally in App.jsx now */}
-
       <main className="itinerary-main">
         <h1 className="itinerary-title">My Itineraries</h1>
         <p className="itinerary-description">

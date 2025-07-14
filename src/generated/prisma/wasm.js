@@ -122,37 +122,36 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.DestinationsScalarFieldEnum = {
   id: 'id',
-  title: 'title',
+  name: 'name',
   description: 'description',
-  location: 'location',
   image: 'image',
   category: 'category',
-  created_by_id: 'created_by_id'
+  latitude: 'latitude',
+  longitude: 'longitude'
 };
 
 exports.Prisma.ItinerariesScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  user_id: 'user_id'
+  name: 'name',
+  userid: 'userid'
 };
 
 exports.Prisma.Itinerary_destinationsScalarFieldEnum = {
-  id: 'id',
-  itinerary_id: 'itinerary_id',
-  destination_id: 'destination_id'
+  itineraryid: 'itineraryid',
+  destinationid: 'destinationid'
 };
 
 exports.Prisma.Saved_destinationsScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  destination_id: 'destination_id'
+  userid: 'userid',
+  destinationid: 'destinationid'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  password_hash: 'password_hash'
+  password: 'password',
+  hashed: 'hashed'
 };
 
 exports.Prisma.SortOrder = {

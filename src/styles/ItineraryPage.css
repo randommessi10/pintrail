@@ -181,3 +181,7 @@
   /* Removed: flex: 1 */
 }
 
+.btn.map {
+  opacity: 0;
+  pointer-events: none;
+}

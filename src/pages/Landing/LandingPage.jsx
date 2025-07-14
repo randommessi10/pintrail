@@ -4,6 +4,7 @@ import CountUp from "../../components/CountUp";
 import "../../styles/LandingPage.css";
 
 export default function LandingPage() {
+  const user = JSON.parse(localStorage.getItem("pintrail-user"));
   return (
     <div className="landing-container">
       {/* === Hero Section === */}
@@ -22,7 +23,7 @@ export default function LandingPage() {
               <ArrowRight className="btn-icon" />
             </Link>
           </div>
-          <div className="auth-buttons">
+          {!user ?<div className="auth-buttons">
             <Link to="/login" className="ghost-btn">
               <LogIn className="ghost-icon" />
               Sign In
@@ -31,7 +32,7 @@ export default function LandingPage() {
               <UserPlus className="ghost-icon" />
               Create Account
             </Link>
-          </div>
+          </div> : null}
         </div>
       </section>
 

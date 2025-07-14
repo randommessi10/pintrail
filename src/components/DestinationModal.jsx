@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   X,
   HeartIcon,
@@ -14,7 +14,8 @@ import {
   Library,
 } from "lucide-react";
 import "../styles/DestinationModal.css";
-import { mockItineraries } from "../data/travelData"; // import itineraries
+import axios from "axios";
+
 
 const categories = {
   all: { name: "All", color: "#ef4444", Icon: MapPin },
@@ -31,36 +32,118 @@ export default function DestinationModal({
   destination,
   onClose,
   isSaved = false,
-  onRemoveFromSaved,
 }) {
   const category = categories[destination.category];
   const [saved, setSaved] = useState(isSaved);
   const [showItineraryModal, setShowItineraryModal] = useState(false);
-  const [selectedItineraryId, setSelectedItineraryId] = useState(mockItineraries[0]?.id || "");
+  const [selectedItineraryId, setSelectedItineraryId] = useState("");
 
-  const handleRemoveFromSaved = () => {
-    if (onRemoveFromSaved) {
-      onRemoveFromSaved(destination.id);
+  const [itineraries, setItineraries] = useState([]);
+  
+  useEffect(() => {
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
+  
+    // Fetch itineraries from the new endpoint
+    axios
+      .get("http://localhost:3000/itineraries/options", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setItineraries(response.data); // Set the fetched itineraries
+        if (response.data.length > 0) {
+          setSelectedItineraryId(response.data[0].id); // Default to first itinerary if available
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching itineraries:", error);
+      });
+  }, []);  
+
+  const handleRemoveFromSaved = async () => {
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
+  
+    try {
+      // Send the save request to the backend
+      const response = await axios.post('/saved/unsaving', {
+        destinationId: destination.id,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      // Check if the request was successful
+      if (response.status === 200) {
+        console.log(" unsaved:", destination.id);
+        setSaved(false); // Set state after successful save
+      }
+    } catch (error) {
+      console.error("Error unsaving destination:", error);
     }
-    console.log("removed:", destination.id);
-    setSaved(false);
   };
 
-  const handleSave = () => {
-    console.log("saved:", destination.id);
-    setSaved(true);
+  const handleSave = async () => {
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
+  
+    try {
+      // Send the save request to the backend
+      const response = await axios.post('/saved/saving', {
+        destinationId: destination.id,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      // Check if the request was successful
+      if (response.status === 200) {
+        console.log("saved:", destination.id);
+        setSaved(true); // Set state after successful save
+      }
+    } catch (error) {
+      console.error("Error saving destination:", error);
+    }
   };
-
+  
+  
   const handleAddToItineraryClick = () => {
     setShowItineraryModal(true);
   };
 
-  const handleAddToItineraryConfirm = () => {
-    console.log("added to itinerary:", selectedItineraryId, destination.id);
-    alert("Destination successfully added");
-    setShowItineraryModal(false);
+  const handleAddToItineraryConfirm = async () => {
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
+  
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/itineraries/add",
+        {
+          itineraryId: selectedItineraryId,
+          destinationId: destination.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+  
+      if (response.status === 200) {
+        console.log("added to itinerary:", selectedItineraryId, destination.id);
+        alert("Destination successfully added");
+        setShowItineraryModal(false);
+      }
+    } catch (error) {
+      console.error("Error adding to itinerary:", error);
+      alert("Failed to add destination to itinerary");
+    }
   };
-
+  
   return (
     <div className="dm-overlay">
       <div className="dm-modal">
@@ -177,7 +260,7 @@ export default function DestinationModal({
               value={selectedItineraryId}
               onChange={(e) => setSelectedItineraryId(e.target.value)}
             >
-              {mockItineraries.map((itinerary) => (
+              {itineraries.map((itinerary) => (
                 <option key={itinerary.id} value={itinerary.id}>
                   {itinerary.name}
                 </option>

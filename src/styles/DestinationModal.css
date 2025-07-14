@@ -1,4 +1,4 @@
-/* Overlay & backdrop */
+/* ===== Overlay ===== */
 .dm-overlay {
   position: fixed;
   inset: 0;
@@ -12,7 +12,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* Modal container */
+/* ===== Modal Container ===== */
 .dm-modal {
   background-color: white;
   border-radius: 1.5rem;
@@ -26,16 +26,16 @@
 
 @keyframes dm-scale-in {
   from {
-      opacity: 0;
-      transform: scale(0.95);
+    opacity: 0;
+    transform: scale(0.95);
   }
   to {
-      opacity: 1;
-      transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-/* Modal layout */
+/* ===== Modal Layout ===== */
 .dm-container {
   display: flex;
   flex-direction: column;
@@ -44,11 +44,11 @@
 
 @media (min-width: 1024px) {
   .dm-container {
-      flex-direction: row;
+    flex-direction: row;
   }
 }
 
-/* Image Section */
+/* ===== Image Section ===== */
 .dm-image-section {
   position: relative;
   flex-shrink: 0;
@@ -56,22 +56,18 @@
   height: 16rem;
   overflow: hidden;
 }
-
 @media (min-width: 1024px) {
   .dm-image-section {
-      width: 50%;
-      height: auto;
+    width: 50%;
+    height: auto;
   }
 }
-
 .dm-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
-/* Close button */
 .dm-close-btn {
   position: absolute;
   top: 1rem;
@@ -82,34 +78,28 @@
   border-radius: 9999px;
   box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
   cursor: pointer;
-  transition: all 0.2s ease;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
 }
-
 .dm-close-btn:hover {
   background-color: white;
   transform: scale(1.1);
 }
-
-/* Icon size and color */
 .dm-icon {
   width: 1.25rem;
   height: 1.25rem;
   color: #4b5563;
   stroke-width: 1.5;
 }
-
 .dm-saved-icon {
   fill: currentColor;
   color: white;
   width: 1rem;
   height: 1rem;
 }
-
-/* Saved badge */
 .dm-saved-badge {
   position: absolute;
   top: 1rem;
@@ -126,21 +116,19 @@
   gap: 0.25rem;
 }
 
-/* Content Section */
+/* ===== Content Section ===== */
 .dm-content-section {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
-
-/* Scrollable content area */
 .dm-content-scroll {
   padding: 2rem;
   overflow-y: auto;
 }
 
-/* Category badge */
+/* ===== Category Badge ===== */
 .dm-category-badge {
   display: inline-flex;
   align-items: center;
@@ -150,19 +138,15 @@
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  font-family: 'Roboto', sans-serif;
 }
-
-/* Category icon */
 .dm-category-icon {
   width: 1.25rem;
   height: 1.25rem;
-  vertical-align: middle;
-  stroke-width: 1.5;
   margin-right: 0.25rem;
+  stroke-width: 1.5;
 }
 
-/* Title - Playfair Display */
+/* ===== Title / Description ===== */
 .dm-title {
   font-family: 'Playfair Display', serif;
   font-size: 1.875rem;
@@ -170,47 +154,36 @@
   margin-bottom: 1rem;
   color: #111111;
 }
-
-/* Description */
 .dm-description {
-  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   color: #333333;
 }
 
-/* Mini Map container */
+/* ===== Mini Map Section ===== */
 .dm-mini-map {
   background: linear-gradient(to bottom right, #ebf8ff, #def7ec);
   border-radius: 1rem;
   padding: 1rem;
   margin-bottom: 1.5rem;
   border: 1px solid #e5e7eb;
+  opacity: 0; /* Hidden */
 }
-
-/* Mini Map header */
 .dm-mini-map-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
-
-/* Mini Map location icon */
 .dm-location-icon {
   color: #f97316;
 }
-
-/* Mini Map header text */
 .dm-location-text {
-  font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   color: #111111;
 }
-
-/* Mini Map placeholder */
 .dm-mini-map-placeholder {
   height: 8rem;
   background: linear-gradient(to right, #bfdbfe, #d1fae5);
@@ -219,42 +192,31 @@
   align-items: center;
   justify-content: center;
 }
-
-/* Mini Map center content */
 .dm-mini-map-center {
   text-align: center;
   color: #6b7280;
 }
-
-/* Mini Map pin icon */
 .dm-mini-map-pin {
   width: 2rem;
   height: 2rem;
   color: #fb923c;
   margin-bottom: 0.25rem;
 }
-
-/* Mini Map text */
 .dm-mini-map-text {
-  font-family: 'Roboto', sans-serif;
   font-size: 0.875rem;
 }
 
-/* Action Buttons container */
+/* ===== Action Buttons ===== */
 .dm-action-buttons {
   padding: 1.5rem 1.5rem 2rem;
   border-top: 1px solid #e5e7eb;
   background-color: white;
   flex-shrink: 0;
 }
-
-/* Buttons row */
 .dm-buttons-row {
   display: flex;
   gap: 1rem;
 }
-
-/* Base button style */
 .dm-btn {
   flex: 1;
   display: flex;
@@ -262,138 +224,41 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
   border-radius: 1rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   user-select: none;
   border: none;
-  font-family: 'Roboto', sans-serif;
 }
-
-/* Remove button */
-.dm-btn-remove {
-  background-color: #ef4444;
-  color: white;
-}
-
-.dm-btn-remove:hover {
-  background-color: #dc2626;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.5);
-}
-
-/* Save button */
-.dm-btn-save {
-  background-color: #ef4444;
-  color: white;
-}
-
-.dm-btn-save:hover {
-  background-color: #dc2626;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.5);
-}
-
-/* Itinerary button */
-.dm-btn-itinerary {
-  background-color: #4b003d;
-  color: white;
-}
-
-.dm-btn-itinerary:hover {
-  background-color: #370029;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(75, 0, 61, 0.5);
-}
-
-/* Save button */
-.dm-btn-save {
-  background-color: #ef4444;
-  color: white;
-  font-weight: 700; /* Bolder text */
-}
-
-.dm-btn-save:hover {
-  background-color: #dc2626;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.5);
-}
-
-/* Itinerary button */
-.dm-btn-itinerary {
-  background-color: #4b003d;
-  color: white;
-  font-weight: 700; /* Bolder text */
-}
-
-.dm-btn-itinerary:hover {
-  background-color: #370029;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(75, 0, 61, 0.5);
-}
-
-/* Base button style */
-.dm-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-weight: 700; /* Make text bolder */
-  font-size: 1rem;   /* Increase font size */
-  color: white;      /* Ensure text is white */
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  user-select: none;
-  border: none;
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Save button */
-.dm-btn-save {
-  background-color: #ef4444;
-}
-
-.dm-btn-save:hover {
-  background-color: #dc2626;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.5);
-}
-
-/* Itinerary button */
-.dm-btn-itinerary {
-  background-color: #4b003d;
-}
-
-.dm-btn-itinerary:hover {
-  background-color: #370029;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(75, 0, 61, 0.5);
-}
-
-/* Remove button */
-.dm-btn-remove {
-  background-color: #ef4444;
-}
-
-.dm-btn-remove:hover {
-  background-color: #dc2626;
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.5);
-}
-
-/* Ensure all icons inside buttons are white and same size as text */
 .dm-btn .dm-icon {
-  color: white;
   width: 1rem;
   height: 1rem;
+  color: white;
   stroke-width: 2;
 }
+.dm-btn-remove,
+.dm-btn-save {
+  background-color: #ef4444;
+}
+.dm-btn-remove:hover,
+.dm-btn-save:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.5);
+}
+.dm-btn-itinerary {
+  background-color: #4b003d;
+}
+.dm-btn-itinerary:hover {
+  background-color: #370029;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(75, 0, 61, 0.5);
+}
 
-/* Itinerary Modal Overlay */
+/* ===== Itinerary Modal ===== */
 .dm-itinerary-overlay {
   position: fixed;
   inset: 0;
@@ -403,8 +268,6 @@
   align-items: center;
   justify-content: center;
 }
-
-/* Itinerary Modal Box */
 .dm-itinerary-modal {
   background: white;
   padding: 2rem;
@@ -413,15 +276,12 @@
   max-width: 24rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   text-align: center;
-  font-family: 'Roboto', sans-serif;
 }
-
 .dm-itinerary-modal h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
-
 .dm-itinerary-select {
   width: 100%;
   padding: 0.5rem 1rem;
@@ -429,10 +289,7 @@
   border-radius: 0.5rem;
   border: 1px solid #d1d5db;
   margin-bottom: 1.5rem;
-  font-family: 'Roboto', sans-serif;
 }
-
-/* Confirm/Cancel Buttons */
 .dm-itinerary-actions {
   display: flex;
   justify-content: center;

@@ -1304,13 +1304,11 @@ export namespace Prisma {
    */
 
   export type UsersCountOutputType = {
-    destinations: number
     itineraries: number
     saved_destinations: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | UsersCountOutputTypeCountDestinationsArgs
     itineraries?: boolean | UsersCountOutputTypeCountItinerariesArgs
     saved_destinations?: boolean | UsersCountOutputTypeCountSaved_destinationsArgs
   }
@@ -1324,13 +1322,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the UsersCountOutputType
      */
     select?: UsersCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UsersCountOutputType without action
-   */
-  export type UsersCountOutputTypeCountDestinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: destinationsWhereInput
   }
 
   /**
@@ -1366,84 +1357,88 @@ export namespace Prisma {
 
   export type DestinationsAvgAggregateOutputType = {
     id: number | null
-    created_by_id: number | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type DestinationsSumAggregateOutputType = {
     id: number | null
-    created_by_id: number | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type DestinationsMinAggregateOutputType = {
     id: number | null
-    title: string | null
+    name: string | null
     description: string | null
-    location: string | null
     image: string | null
     category: string | null
-    created_by_id: number | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type DestinationsMaxAggregateOutputType = {
     id: number | null
-    title: string | null
+    name: string | null
     description: string | null
-    location: string | null
     image: string | null
     category: string | null
-    created_by_id: number | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type DestinationsCountAggregateOutputType = {
     id: number
-    title: number
+    name: number
     description: number
-    location: number
     image: number
     category: number
-    created_by_id: number
+    latitude: number
+    longitude: number
     _all: number
   }
 
 
   export type DestinationsAvgAggregateInputType = {
     id?: true
-    created_by_id?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type DestinationsSumAggregateInputType = {
     id?: true
-    created_by_id?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type DestinationsMinAggregateInputType = {
     id?: true
-    title?: true
+    name?: true
     description?: true
-    location?: true
     image?: true
     category?: true
-    created_by_id?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type DestinationsMaxAggregateInputType = {
     id?: true
-    title?: true
+    name?: true
     description?: true
-    location?: true
     image?: true
     category?: true
-    created_by_id?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type DestinationsCountAggregateInputType = {
     id?: true
-    title?: true
+    name?: true
     description?: true
-    location?: true
     image?: true
     category?: true
-    created_by_id?: true
+    latitude?: true
+    longitude?: true
     _all?: true
   }
 
@@ -1535,12 +1530,12 @@ export namespace Prisma {
 
   export type DestinationsGroupByOutputType = {
     id: number
-    title: string
+    name: string
     description: string | null
-    location: string | null
     image: string | null
     category: string | null
-    created_by_id: number | null
+    latitude: number | null
+    longitude: number | null
     _count: DestinationsCountAggregateOutputType | null
     _avg: DestinationsAvgAggregateOutputType | null
     _sum: DestinationsSumAggregateOutputType | null
@@ -1564,13 +1559,12 @@ export namespace Prisma {
 
   export type destinationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
+    name?: boolean
     description?: boolean
-    location?: boolean
     image?: boolean
     category?: boolean
-    created_by_id?: boolean
-    users?: boolean | destinations$usersArgs<ExtArgs>
+    latitude?: boolean
+    longitude?: boolean
     itinerary_destinations?: boolean | destinations$itinerary_destinationsArgs<ExtArgs>
     saved_destinations?: boolean | destinations$saved_destinationsArgs<ExtArgs>
     _count?: boolean | DestinationsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1578,65 +1572,57 @@ export namespace Prisma {
 
   export type destinationsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
+    name?: boolean
     description?: boolean
-    location?: boolean
     image?: boolean
     category?: boolean
-    created_by_id?: boolean
-    users?: boolean | destinations$usersArgs<ExtArgs>
+    latitude?: boolean
+    longitude?: boolean
   }, ExtArgs["result"]["destinations"]>
 
   export type destinationsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
+    name?: boolean
     description?: boolean
-    location?: boolean
     image?: boolean
     category?: boolean
-    created_by_id?: boolean
-    users?: boolean | destinations$usersArgs<ExtArgs>
+    latitude?: boolean
+    longitude?: boolean
   }, ExtArgs["result"]["destinations"]>
 
   export type destinationsSelectScalar = {
     id?: boolean
-    title?: boolean
+    name?: boolean
     description?: boolean
-    location?: boolean
     image?: boolean
     category?: boolean
-    created_by_id?: boolean
+    latitude?: boolean
+    longitude?: boolean
   }
 
-  export type destinationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "location" | "image" | "category" | "created_by_id", ExtArgs["result"]["destinations"]>
+  export type destinationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "category" | "latitude" | "longitude", ExtArgs["result"]["destinations"]>
   export type destinationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | destinations$usersArgs<ExtArgs>
     itinerary_destinations?: boolean | destinations$itinerary_destinationsArgs<ExtArgs>
     saved_destinations?: boolean | destinations$saved_destinationsArgs<ExtArgs>
     _count?: boolean | DestinationsCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type destinationsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | destinations$usersArgs<ExtArgs>
-  }
-  export type destinationsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | destinations$usersArgs<ExtArgs>
-  }
+  export type destinationsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type destinationsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $destinationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "destinations"
     objects: {
-      users: Prisma.$usersPayload<ExtArgs> | null
       itinerary_destinations: Prisma.$itinerary_destinationsPayload<ExtArgs>[]
       saved_destinations: Prisma.$saved_destinationsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      title: string
+      name: string
       description: string | null
-      location: string | null
       image: string | null
       category: string | null
-      created_by_id: number | null
+      latitude: number | null
+      longitude: number | null
     }, ExtArgs["result"]["destinations"]>
     composites: {}
   }
@@ -2031,7 +2017,6 @@ export namespace Prisma {
    */
   export interface Prisma__destinationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users<T extends destinations$usersArgs<ExtArgs> = {}>(args?: Subset<T, destinations$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     itinerary_destinations<T extends destinations$itinerary_destinationsArgs<ExtArgs> = {}>(args?: Subset<T, destinations$itinerary_destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$itinerary_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     saved_destinations<T extends destinations$saved_destinationsArgs<ExtArgs> = {}>(args?: Subset<T, destinations$saved_destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$saved_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -2064,12 +2049,12 @@ export namespace Prisma {
    */
   interface destinationsFieldRefs {
     readonly id: FieldRef<"destinations", 'Int'>
-    readonly title: FieldRef<"destinations", 'String'>
+    readonly name: FieldRef<"destinations", 'String'>
     readonly description: FieldRef<"destinations", 'String'>
-    readonly location: FieldRef<"destinations", 'String'>
     readonly image: FieldRef<"destinations", 'String'>
     readonly category: FieldRef<"destinations", 'String'>
-    readonly created_by_id: FieldRef<"destinations", 'Int'>
+    readonly latitude: FieldRef<"destinations", 'Float'>
+    readonly longitude: FieldRef<"destinations", 'Float'>
   }
     
 
@@ -2319,10 +2304,6 @@ export namespace Prisma {
      */
     data: destinationsCreateManyInput | destinationsCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: destinationsIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2393,10 +2374,6 @@ export namespace Prisma {
      * Limit how many destinations to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: destinationsIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2463,25 +2440,6 @@ export namespace Prisma {
      * Limit how many destinations to delete.
      */
     limit?: number
-  }
-
-  /**
-   * destinations.users
-   */
-  export type destinations$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the users
-     */
-    select?: usersSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the users
-     */
-    omit?: usersOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: usersInclude<ExtArgs> | null
-    where?: usersWhereInput
   }
 
   /**
@@ -2565,60 +2523,60 @@ export namespace Prisma {
 
   export type ItinerariesAvgAggregateOutputType = {
     id: number | null
-    user_id: number | null
+    userid: number | null
   }
 
   export type ItinerariesSumAggregateOutputType = {
     id: number | null
-    user_id: number | null
+    userid: number | null
   }
 
   export type ItinerariesMinAggregateOutputType = {
     id: number | null
-    title: string | null
-    user_id: number | null
+    name: string | null
+    userid: number | null
   }
 
   export type ItinerariesMaxAggregateOutputType = {
     id: number | null
-    title: string | null
-    user_id: number | null
+    name: string | null
+    userid: number | null
   }
 
   export type ItinerariesCountAggregateOutputType = {
     id: number
-    title: number
-    user_id: number
+    name: number
+    userid: number
     _all: number
   }
 
 
   export type ItinerariesAvgAggregateInputType = {
     id?: true
-    user_id?: true
+    userid?: true
   }
 
   export type ItinerariesSumAggregateInputType = {
     id?: true
-    user_id?: true
+    userid?: true
   }
 
   export type ItinerariesMinAggregateInputType = {
     id?: true
-    title?: true
-    user_id?: true
+    name?: true
+    userid?: true
   }
 
   export type ItinerariesMaxAggregateInputType = {
     id?: true
-    title?: true
-    user_id?: true
+    name?: true
+    userid?: true
   }
 
   export type ItinerariesCountAggregateInputType = {
     id?: true
-    title?: true
-    user_id?: true
+    name?: true
+    userid?: true
     _all?: true
   }
 
@@ -2710,8 +2668,8 @@ export namespace Prisma {
 
   export type ItinerariesGroupByOutputType = {
     id: number
-    title: string | null
-    user_id: number | null
+    name: string
+    userid: number
     _count: ItinerariesCountAggregateOutputType | null
     _avg: ItinerariesAvgAggregateOutputType | null
     _sum: ItinerariesSumAggregateOutputType | null
@@ -2735,56 +2693,56 @@ export namespace Prisma {
 
   export type itinerariesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    user_id?: boolean
-    users?: boolean | itineraries$usersArgs<ExtArgs>
+    name?: boolean
+    userid?: boolean
+    users?: boolean | usersDefaultArgs<ExtArgs>
     itinerary_destinations?: boolean | itineraries$itinerary_destinationsArgs<ExtArgs>
     _count?: boolean | ItinerariesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itineraries"]>
 
   export type itinerariesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    user_id?: boolean
-    users?: boolean | itineraries$usersArgs<ExtArgs>
+    name?: boolean
+    userid?: boolean
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itineraries"]>
 
   export type itinerariesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    title?: boolean
-    user_id?: boolean
-    users?: boolean | itineraries$usersArgs<ExtArgs>
+    name?: boolean
+    userid?: boolean
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itineraries"]>
 
   export type itinerariesSelectScalar = {
     id?: boolean
-    title?: boolean
-    user_id?: boolean
+    name?: boolean
+    userid?: boolean
   }
 
-  export type itinerariesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "user_id", ExtArgs["result"]["itineraries"]>
+  export type itinerariesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "userid", ExtArgs["result"]["itineraries"]>
   export type itinerariesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | itineraries$usersArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
     itinerary_destinations?: boolean | itineraries$itinerary_destinationsArgs<ExtArgs>
     _count?: boolean | ItinerariesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type itinerariesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | itineraries$usersArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type itinerariesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | itineraries$usersArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $itinerariesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "itineraries"
     objects: {
-      users: Prisma.$usersPayload<ExtArgs> | null
+      users: Prisma.$usersPayload<ExtArgs>
       itinerary_destinations: Prisma.$itinerary_destinationsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      title: string | null
-      user_id: number | null
+      name: string
+      userid: number
     }, ExtArgs["result"]["itineraries"]>
     composites: {}
   }
@@ -3179,7 +3137,7 @@ export namespace Prisma {
    */
   export interface Prisma__itinerariesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users<T extends itineraries$usersArgs<ExtArgs> = {}>(args?: Subset<T, itineraries$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     itinerary_destinations<T extends itineraries$itinerary_destinationsArgs<ExtArgs> = {}>(args?: Subset<T, itineraries$itinerary_destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$itinerary_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3211,8 +3169,8 @@ export namespace Prisma {
    */
   interface itinerariesFieldRefs {
     readonly id: FieldRef<"itineraries", 'Int'>
-    readonly title: FieldRef<"itineraries", 'String'>
-    readonly user_id: FieldRef<"itineraries", 'Int'>
+    readonly name: FieldRef<"itineraries", 'String'>
+    readonly userid: FieldRef<"itineraries", 'Int'>
   }
     
 
@@ -3431,7 +3389,7 @@ export namespace Prisma {
     /**
      * The data needed to create a itineraries.
      */
-    data?: XOR<itinerariesCreateInput, itinerariesUncheckedCreateInput>
+    data: XOR<itinerariesCreateInput, itinerariesUncheckedCreateInput>
   }
 
   /**
@@ -3609,25 +3567,6 @@ export namespace Prisma {
   }
 
   /**
-   * itineraries.users
-   */
-  export type itineraries$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the users
-     */
-    select?: usersSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the users
-     */
-    omit?: usersOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: usersInclude<ExtArgs> | null
-    where?: usersWhereInput
-  }
-
-  /**
    * itineraries.itinerary_destinations
    */
   export type itineraries$itinerary_destinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3683,65 +3622,55 @@ export namespace Prisma {
   }
 
   export type Itinerary_destinationsAvgAggregateOutputType = {
-    id: number | null
-    itinerary_id: number | null
-    destination_id: number | null
+    itineraryid: number | null
+    destinationid: number | null
   }
 
   export type Itinerary_destinationsSumAggregateOutputType = {
-    id: number | null
-    itinerary_id: number | null
-    destination_id: number | null
+    itineraryid: number | null
+    destinationid: number | null
   }
 
   export type Itinerary_destinationsMinAggregateOutputType = {
-    id: number | null
-    itinerary_id: number | null
-    destination_id: number | null
+    itineraryid: number | null
+    destinationid: number | null
   }
 
   export type Itinerary_destinationsMaxAggregateOutputType = {
-    id: number | null
-    itinerary_id: number | null
-    destination_id: number | null
+    itineraryid: number | null
+    destinationid: number | null
   }
 
   export type Itinerary_destinationsCountAggregateOutputType = {
-    id: number
-    itinerary_id: number
-    destination_id: number
+    itineraryid: number
+    destinationid: number
     _all: number
   }
 
 
   export type Itinerary_destinationsAvgAggregateInputType = {
-    id?: true
-    itinerary_id?: true
-    destination_id?: true
+    itineraryid?: true
+    destinationid?: true
   }
 
   export type Itinerary_destinationsSumAggregateInputType = {
-    id?: true
-    itinerary_id?: true
-    destination_id?: true
+    itineraryid?: true
+    destinationid?: true
   }
 
   export type Itinerary_destinationsMinAggregateInputType = {
-    id?: true
-    itinerary_id?: true
-    destination_id?: true
+    itineraryid?: true
+    destinationid?: true
   }
 
   export type Itinerary_destinationsMaxAggregateInputType = {
-    id?: true
-    itinerary_id?: true
-    destination_id?: true
+    itineraryid?: true
+    destinationid?: true
   }
 
   export type Itinerary_destinationsCountAggregateInputType = {
-    id?: true
-    itinerary_id?: true
-    destination_id?: true
+    itineraryid?: true
+    destinationid?: true
     _all?: true
   }
 
@@ -3832,9 +3761,8 @@ export namespace Prisma {
   }
 
   export type Itinerary_destinationsGroupByOutputType = {
-    id: number
-    itinerary_id: number | null
-    destination_id: number | null
+    itineraryid: number
+    destinationid: number
     _count: Itinerary_destinationsCountAggregateOutputType | null
     _avg: Itinerary_destinationsAvgAggregateOutputType | null
     _sum: Itinerary_destinationsSumAggregateOutputType | null
@@ -3857,59 +3785,54 @@ export namespace Prisma {
 
 
   export type itinerary_destinationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    itinerary_id?: boolean
-    destination_id?: boolean
-    destinations?: boolean | itinerary_destinations$destinationsArgs<ExtArgs>
-    itineraries?: boolean | itinerary_destinations$itinerariesArgs<ExtArgs>
+    itineraryid?: boolean
+    destinationid?: boolean
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    itineraries?: boolean | itinerariesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itinerary_destinations"]>
 
   export type itinerary_destinationsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    itinerary_id?: boolean
-    destination_id?: boolean
-    destinations?: boolean | itinerary_destinations$destinationsArgs<ExtArgs>
-    itineraries?: boolean | itinerary_destinations$itinerariesArgs<ExtArgs>
+    itineraryid?: boolean
+    destinationid?: boolean
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    itineraries?: boolean | itinerariesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itinerary_destinations"]>
 
   export type itinerary_destinationsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    itinerary_id?: boolean
-    destination_id?: boolean
-    destinations?: boolean | itinerary_destinations$destinationsArgs<ExtArgs>
-    itineraries?: boolean | itinerary_destinations$itinerariesArgs<ExtArgs>
+    itineraryid?: boolean
+    destinationid?: boolean
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    itineraries?: boolean | itinerariesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["itinerary_destinations"]>
 
   export type itinerary_destinationsSelectScalar = {
-    id?: boolean
-    itinerary_id?: boolean
-    destination_id?: boolean
+    itineraryid?: boolean
+    destinationid?: boolean
   }
 
-  export type itinerary_destinationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "itinerary_id" | "destination_id", ExtArgs["result"]["itinerary_destinations"]>
+  export type itinerary_destinationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"itineraryid" | "destinationid", ExtArgs["result"]["itinerary_destinations"]>
   export type itinerary_destinationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | itinerary_destinations$destinationsArgs<ExtArgs>
-    itineraries?: boolean | itinerary_destinations$itinerariesArgs<ExtArgs>
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    itineraries?: boolean | itinerariesDefaultArgs<ExtArgs>
   }
   export type itinerary_destinationsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | itinerary_destinations$destinationsArgs<ExtArgs>
-    itineraries?: boolean | itinerary_destinations$itinerariesArgs<ExtArgs>
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    itineraries?: boolean | itinerariesDefaultArgs<ExtArgs>
   }
   export type itinerary_destinationsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | itinerary_destinations$destinationsArgs<ExtArgs>
-    itineraries?: boolean | itinerary_destinations$itinerariesArgs<ExtArgs>
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    itineraries?: boolean | itinerariesDefaultArgs<ExtArgs>
   }
 
   export type $itinerary_destinationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "itinerary_destinations"
     objects: {
-      destinations: Prisma.$destinationsPayload<ExtArgs> | null
-      itineraries: Prisma.$itinerariesPayload<ExtArgs> | null
+      destinations: Prisma.$destinationsPayload<ExtArgs>
+      itineraries: Prisma.$itinerariesPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      itinerary_id: number | null
-      destination_id: number | null
+      itineraryid: number
+      destinationid: number
     }, ExtArgs["result"]["itinerary_destinations"]>
     composites: {}
   }
@@ -3993,8 +3916,8 @@ export namespace Prisma {
      * // Get first 10 Itinerary_destinations
      * const itinerary_destinations = await prisma.itinerary_destinations.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const itinerary_destinationsWithIdOnly = await prisma.itinerary_destinations.findMany({ select: { id: true } })
+     * // Only select the `itineraryid`
+     * const itinerary_destinationsWithItineraryidOnly = await prisma.itinerary_destinations.findMany({ select: { itineraryid: true } })
      * 
      */
     findMany<T extends itinerary_destinationsFindManyArgs>(args?: SelectSubset<T, itinerary_destinationsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$itinerary_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -4038,9 +3961,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Itinerary_destinations and only return the `id`
-     * const itinerary_destinationsWithIdOnly = await prisma.itinerary_destinations.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many Itinerary_destinations and only return the `itineraryid`
+     * const itinerary_destinationsWithItineraryidOnly = await prisma.itinerary_destinations.createManyAndReturn({
+     *   select: { itineraryid: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -4129,9 +4052,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Itinerary_destinations and only return the `id`
-     * const itinerary_destinationsWithIdOnly = await prisma.itinerary_destinations.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more Itinerary_destinations and only return the `itineraryid`
+     * const itinerary_destinationsWithItineraryidOnly = await prisma.itinerary_destinations.updateManyAndReturn({
+     *   select: { itineraryid: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -4304,8 +4227,8 @@ export namespace Prisma {
    */
   export interface Prisma__itinerary_destinationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    destinations<T extends itinerary_destinations$destinationsArgs<ExtArgs> = {}>(args?: Subset<T, itinerary_destinations$destinationsArgs<ExtArgs>>): Prisma__destinationsClient<$Result.GetResult<Prisma.$destinationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    itineraries<T extends itinerary_destinations$itinerariesArgs<ExtArgs> = {}>(args?: Subset<T, itinerary_destinations$itinerariesArgs<ExtArgs>>): Prisma__itinerariesClient<$Result.GetResult<Prisma.$itinerariesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    destinations<T extends destinationsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, destinationsDefaultArgs<ExtArgs>>): Prisma__destinationsClient<$Result.GetResult<Prisma.$destinationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    itineraries<T extends itinerariesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, itinerariesDefaultArgs<ExtArgs>>): Prisma__itinerariesClient<$Result.GetResult<Prisma.$itinerariesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4335,9 +4258,8 @@ export namespace Prisma {
    * Fields of the itinerary_destinations model
    */
   interface itinerary_destinationsFieldRefs {
-    readonly id: FieldRef<"itinerary_destinations", 'Int'>
-    readonly itinerary_id: FieldRef<"itinerary_destinations", 'Int'>
-    readonly destination_id: FieldRef<"itinerary_destinations", 'Int'>
+    readonly itineraryid: FieldRef<"itinerary_destinations", 'Int'>
+    readonly destinationid: FieldRef<"itinerary_destinations", 'Int'>
   }
     
 
@@ -4556,7 +4478,7 @@ export namespace Prisma {
     /**
      * The data needed to create a itinerary_destinations.
      */
-    data?: XOR<itinerary_destinationsCreateInput, itinerary_destinationsUncheckedCreateInput>
+    data: XOR<itinerary_destinationsCreateInput, itinerary_destinationsUncheckedCreateInput>
   }
 
   /**
@@ -4734,44 +4656,6 @@ export namespace Prisma {
   }
 
   /**
-   * itinerary_destinations.destinations
-   */
-  export type itinerary_destinations$destinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the destinations
-     */
-    select?: destinationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the destinations
-     */
-    omit?: destinationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: destinationsInclude<ExtArgs> | null
-    where?: destinationsWhereInput
-  }
-
-  /**
-   * itinerary_destinations.itineraries
-   */
-  export type itinerary_destinations$itinerariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the itineraries
-     */
-    select?: itinerariesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the itineraries
-     */
-    omit?: itinerariesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: itinerariesInclude<ExtArgs> | null
-    where?: itinerariesWhereInput
-  }
-
-  /**
    * itinerary_destinations without action
    */
   export type itinerary_destinationsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4803,65 +4687,55 @@ export namespace Prisma {
   }
 
   export type Saved_destinationsAvgAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    destination_id: number | null
+    userid: number | null
+    destinationid: number | null
   }
 
   export type Saved_destinationsSumAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    destination_id: number | null
+    userid: number | null
+    destinationid: number | null
   }
 
   export type Saved_destinationsMinAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    destination_id: number | null
+    userid: number | null
+    destinationid: number | null
   }
 
   export type Saved_destinationsMaxAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    destination_id: number | null
+    userid: number | null
+    destinationid: number | null
   }
 
   export type Saved_destinationsCountAggregateOutputType = {
-    id: number
-    user_id: number
-    destination_id: number
+    userid: number
+    destinationid: number
     _all: number
   }
 
 
   export type Saved_destinationsAvgAggregateInputType = {
-    id?: true
-    user_id?: true
-    destination_id?: true
+    userid?: true
+    destinationid?: true
   }
 
   export type Saved_destinationsSumAggregateInputType = {
-    id?: true
-    user_id?: true
-    destination_id?: true
+    userid?: true
+    destinationid?: true
   }
 
   export type Saved_destinationsMinAggregateInputType = {
-    id?: true
-    user_id?: true
-    destination_id?: true
+    userid?: true
+    destinationid?: true
   }
 
   export type Saved_destinationsMaxAggregateInputType = {
-    id?: true
-    user_id?: true
-    destination_id?: true
+    userid?: true
+    destinationid?: true
   }
 
   export type Saved_destinationsCountAggregateInputType = {
-    id?: true
-    user_id?: true
-    destination_id?: true
+    userid?: true
+    destinationid?: true
     _all?: true
   }
 
@@ -4952,9 +4826,8 @@ export namespace Prisma {
   }
 
   export type Saved_destinationsGroupByOutputType = {
-    id: number
-    user_id: number | null
-    destination_id: number | null
+    userid: number
+    destinationid: number
     _count: Saved_destinationsCountAggregateOutputType | null
     _avg: Saved_destinationsAvgAggregateOutputType | null
     _sum: Saved_destinationsSumAggregateOutputType | null
@@ -4977,59 +4850,54 @@ export namespace Prisma {
 
 
   export type saved_destinationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    user_id?: boolean
-    destination_id?: boolean
-    destinations?: boolean | saved_destinations$destinationsArgs<ExtArgs>
-    users?: boolean | saved_destinations$usersArgs<ExtArgs>
+    userid?: boolean
+    destinationid?: boolean
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["saved_destinations"]>
 
   export type saved_destinationsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    user_id?: boolean
-    destination_id?: boolean
-    destinations?: boolean | saved_destinations$destinationsArgs<ExtArgs>
-    users?: boolean | saved_destinations$usersArgs<ExtArgs>
+    userid?: boolean
+    destinationid?: boolean
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["saved_destinations"]>
 
   export type saved_destinationsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    user_id?: boolean
-    destination_id?: boolean
-    destinations?: boolean | saved_destinations$destinationsArgs<ExtArgs>
-    users?: boolean | saved_destinations$usersArgs<ExtArgs>
+    userid?: boolean
+    destinationid?: boolean
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["saved_destinations"]>
 
   export type saved_destinationsSelectScalar = {
-    id?: boolean
-    user_id?: boolean
-    destination_id?: boolean
+    userid?: boolean
+    destinationid?: boolean
   }
 
-  export type saved_destinationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "destination_id", ExtArgs["result"]["saved_destinations"]>
+  export type saved_destinationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userid" | "destinationid", ExtArgs["result"]["saved_destinations"]>
   export type saved_destinationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | saved_destinations$destinationsArgs<ExtArgs>
-    users?: boolean | saved_destinations$usersArgs<ExtArgs>
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type saved_destinationsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | saved_destinations$destinationsArgs<ExtArgs>
-    users?: boolean | saved_destinations$usersArgs<ExtArgs>
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type saved_destinationsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | saved_destinations$destinationsArgs<ExtArgs>
-    users?: boolean | saved_destinations$usersArgs<ExtArgs>
+    destinations?: boolean | destinationsDefaultArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $saved_destinationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "saved_destinations"
     objects: {
-      destinations: Prisma.$destinationsPayload<ExtArgs> | null
-      users: Prisma.$usersPayload<ExtArgs> | null
+      destinations: Prisma.$destinationsPayload<ExtArgs>
+      users: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      user_id: number | null
-      destination_id: number | null
+      userid: number
+      destinationid: number
     }, ExtArgs["result"]["saved_destinations"]>
     composites: {}
   }
@@ -5113,8 +4981,8 @@ export namespace Prisma {
      * // Get first 10 Saved_destinations
      * const saved_destinations = await prisma.saved_destinations.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const saved_destinationsWithIdOnly = await prisma.saved_destinations.findMany({ select: { id: true } })
+     * // Only select the `userid`
+     * const saved_destinationsWithUseridOnly = await prisma.saved_destinations.findMany({ select: { userid: true } })
      * 
      */
     findMany<T extends saved_destinationsFindManyArgs>(args?: SelectSubset<T, saved_destinationsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$saved_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -5158,9 +5026,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Saved_destinations and only return the `id`
-     * const saved_destinationsWithIdOnly = await prisma.saved_destinations.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many Saved_destinations and only return the `userid`
+     * const saved_destinationsWithUseridOnly = await prisma.saved_destinations.createManyAndReturn({
+     *   select: { userid: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -5249,9 +5117,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Saved_destinations and only return the `id`
-     * const saved_destinationsWithIdOnly = await prisma.saved_destinations.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more Saved_destinations and only return the `userid`
+     * const saved_destinationsWithUseridOnly = await prisma.saved_destinations.updateManyAndReturn({
+     *   select: { userid: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -5424,8 +5292,8 @@ export namespace Prisma {
    */
   export interface Prisma__saved_destinationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    destinations<T extends saved_destinations$destinationsArgs<ExtArgs> = {}>(args?: Subset<T, saved_destinations$destinationsArgs<ExtArgs>>): Prisma__destinationsClient<$Result.GetResult<Prisma.$destinationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    users<T extends saved_destinations$usersArgs<ExtArgs> = {}>(args?: Subset<T, saved_destinations$usersArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    destinations<T extends destinationsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, destinationsDefaultArgs<ExtArgs>>): Prisma__destinationsClient<$Result.GetResult<Prisma.$destinationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5455,9 +5323,8 @@ export namespace Prisma {
    * Fields of the saved_destinations model
    */
   interface saved_destinationsFieldRefs {
-    readonly id: FieldRef<"saved_destinations", 'Int'>
-    readonly user_id: FieldRef<"saved_destinations", 'Int'>
-    readonly destination_id: FieldRef<"saved_destinations", 'Int'>
+    readonly userid: FieldRef<"saved_destinations", 'Int'>
+    readonly destinationid: FieldRef<"saved_destinations", 'Int'>
   }
     
 
@@ -5676,7 +5543,7 @@ export namespace Prisma {
     /**
      * The data needed to create a saved_destinations.
      */
-    data?: XOR<saved_destinationsCreateInput, saved_destinationsUncheckedCreateInput>
+    data: XOR<saved_destinationsCreateInput, saved_destinationsUncheckedCreateInput>
   }
 
   /**
@@ -5854,44 +5721,6 @@ export namespace Prisma {
   }
 
   /**
-   * saved_destinations.destinations
-   */
-  export type saved_destinations$destinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the destinations
-     */
-    select?: destinationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the destinations
-     */
-    omit?: destinationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: destinationsInclude<ExtArgs> | null
-    where?: destinationsWhereInput
-  }
-
-  /**
-   * saved_destinations.users
-   */
-  export type saved_destinations$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the users
-     */
-    select?: usersSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the users
-     */
-    omit?: usersOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: usersInclude<ExtArgs> | null
-    where?: usersWhereInput
-  }
-
-  /**
    * saved_destinations without action
    */
   export type saved_destinationsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5934,21 +5763,24 @@ export namespace Prisma {
     id: number | null
     name: string | null
     email: string | null
-    password_hash: string | null
+    password: string | null
+    hashed: string | null
   }
 
   export type UsersMaxAggregateOutputType = {
     id: number | null
     name: string | null
     email: string | null
-    password_hash: string | null
+    password: string | null
+    hashed: string | null
   }
 
   export type UsersCountAggregateOutputType = {
     id: number
     name: number
     email: number
-    password_hash: number
+    password: number
+    hashed: number
     _all: number
   }
 
@@ -5965,21 +5797,24 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    password_hash?: true
+    password?: true
+    hashed?: true
   }
 
   export type UsersMaxAggregateInputType = {
     id?: true
     name?: true
     email?: true
-    password_hash?: true
+    password?: true
+    hashed?: true
   }
 
   export type UsersCountAggregateInputType = {
     id?: true
     name?: true
     email?: true
-    password_hash?: true
+    password?: true
+    hashed?: true
     _all?: true
   }
 
@@ -6071,9 +5906,10 @@ export namespace Prisma {
 
   export type UsersGroupByOutputType = {
     id: number
-    name: string | null
+    name: string
     email: string
-    password_hash: string
+    password: string
+    hashed: string | null
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -6099,8 +5935,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hash?: boolean
-    destinations?: boolean | users$destinationsArgs<ExtArgs>
+    password?: boolean
+    hashed?: boolean
     itineraries?: boolean | users$itinerariesArgs<ExtArgs>
     saved_destinations?: boolean | users$saved_destinationsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -6110,26 +5946,28 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hash?: boolean
+    password?: boolean
+    hashed?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hash?: boolean
+    password?: boolean
+    hashed?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectScalar = {
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hash?: boolean
+    password?: boolean
+    hashed?: boolean
   }
 
-  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password_hash", ExtArgs["result"]["users"]>
+  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "hashed", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    destinations?: boolean | users$destinationsArgs<ExtArgs>
     itineraries?: boolean | users$itinerariesArgs<ExtArgs>
     saved_destinations?: boolean | users$saved_destinationsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -6140,15 +5978,15 @@ export namespace Prisma {
   export type $usersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "users"
     objects: {
-      destinations: Prisma.$destinationsPayload<ExtArgs>[]
       itineraries: Prisma.$itinerariesPayload<ExtArgs>[]
       saved_destinations: Prisma.$saved_destinationsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      name: string | null
+      name: string
       email: string
-      password_hash: string
+      password: string
+      hashed: string | null
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -6543,7 +6381,6 @@ export namespace Prisma {
    */
   export interface Prisma__usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    destinations<T extends users$destinationsArgs<ExtArgs> = {}>(args?: Subset<T, users$destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     itineraries<T extends users$itinerariesArgs<ExtArgs> = {}>(args?: Subset<T, users$itinerariesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$itinerariesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     saved_destinations<T extends users$saved_destinationsArgs<ExtArgs> = {}>(args?: Subset<T, users$saved_destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$saved_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -6578,7 +6415,8 @@ export namespace Prisma {
     readonly id: FieldRef<"users", 'Int'>
     readonly name: FieldRef<"users", 'String'>
     readonly email: FieldRef<"users", 'String'>
-    readonly password_hash: FieldRef<"users", 'String'>
+    readonly password: FieldRef<"users", 'String'>
+    readonly hashed: FieldRef<"users", 'String'>
   }
     
 
@@ -6967,30 +6805,6 @@ export namespace Prisma {
   }
 
   /**
-   * users.destinations
-   */
-  export type users$destinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the destinations
-     */
-    select?: destinationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the destinations
-     */
-    omit?: destinationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: destinationsInclude<ExtArgs> | null
-    where?: destinationsWhereInput
-    orderBy?: destinationsOrderByWithRelationInput | destinationsOrderByWithRelationInput[]
-    cursor?: destinationsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DestinationsScalarFieldEnum | DestinationsScalarFieldEnum[]
-  }
-
-  /**
    * users.itineraries
    */
   export type users$itinerariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7073,12 +6887,12 @@ export namespace Prisma {
 
   export const DestinationsScalarFieldEnum: {
     id: 'id',
-    title: 'title',
+    name: 'name',
     description: 'description',
-    location: 'location',
     image: 'image',
     category: 'category',
-    created_by_id: 'created_by_id'
+    latitude: 'latitude',
+    longitude: 'longitude'
   };
 
   export type DestinationsScalarFieldEnum = (typeof DestinationsScalarFieldEnum)[keyof typeof DestinationsScalarFieldEnum]
@@ -7086,26 +6900,24 @@ export namespace Prisma {
 
   export const ItinerariesScalarFieldEnum: {
     id: 'id',
-    title: 'title',
-    user_id: 'user_id'
+    name: 'name',
+    userid: 'userid'
   };
 
   export type ItinerariesScalarFieldEnum = (typeof ItinerariesScalarFieldEnum)[keyof typeof ItinerariesScalarFieldEnum]
 
 
   export const Itinerary_destinationsScalarFieldEnum: {
-    id: 'id',
-    itinerary_id: 'itinerary_id',
-    destination_id: 'destination_id'
+    itineraryid: 'itineraryid',
+    destinationid: 'destinationid'
   };
 
   export type Itinerary_destinationsScalarFieldEnum = (typeof Itinerary_destinationsScalarFieldEnum)[keyof typeof Itinerary_destinationsScalarFieldEnum]
 
 
   export const Saved_destinationsScalarFieldEnum: {
-    id: 'id',
-    user_id: 'user_id',
-    destination_id: 'destination_id'
+    userid: 'userid',
+    destinationid: 'destinationid'
   };
 
   export type Saved_destinationsScalarFieldEnum = (typeof Saved_destinationsScalarFieldEnum)[keyof typeof Saved_destinationsScalarFieldEnum]
@@ -7115,7 +6927,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
-    password_hash: 'password_hash'
+    password: 'password',
+    hashed: 'hashed'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -7200,26 +7013,24 @@ export namespace Prisma {
     OR?: destinationsWhereInput[]
     NOT?: destinationsWhereInput | destinationsWhereInput[]
     id?: IntFilter<"destinations"> | number
-    title?: StringFilter<"destinations"> | string
+    name?: StringFilter<"destinations"> | string
     description?: StringNullableFilter<"destinations"> | string | null
-    location?: StringNullableFilter<"destinations"> | string | null
     image?: StringNullableFilter<"destinations"> | string | null
     category?: StringNullableFilter<"destinations"> | string | null
-    created_by_id?: IntNullableFilter<"destinations"> | number | null
-    users?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
+    latitude?: FloatNullableFilter<"destinations"> | number | null
+    longitude?: FloatNullableFilter<"destinations"> | number | null
     itinerary_destinations?: Itinerary_destinationsListRelationFilter
     saved_destinations?: Saved_destinationsListRelationFilter
   }
 
   export type destinationsOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
+    name?: SortOrder
     description?: SortOrderInput | SortOrder
-    location?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     category?: SortOrderInput | SortOrder
-    created_by_id?: SortOrderInput | SortOrder
-    users?: usersOrderByWithRelationInput
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
     itinerary_destinations?: itinerary_destinationsOrderByRelationAggregateInput
     saved_destinations?: saved_destinationsOrderByRelationAggregateInput
   }
@@ -7229,25 +7040,24 @@ export namespace Prisma {
     AND?: destinationsWhereInput | destinationsWhereInput[]
     OR?: destinationsWhereInput[]
     NOT?: destinationsWhereInput | destinationsWhereInput[]
-    title?: StringFilter<"destinations"> | string
+    name?: StringFilter<"destinations"> | string
     description?: StringNullableFilter<"destinations"> | string | null
-    location?: StringNullableFilter<"destinations"> | string | null
     image?: StringNullableFilter<"destinations"> | string | null
     category?: StringNullableFilter<"destinations"> | string | null
-    created_by_id?: IntNullableFilter<"destinations"> | number | null
-    users?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
+    latitude?: FloatNullableFilter<"destinations"> | number | null
+    longitude?: FloatNullableFilter<"destinations"> | number | null
     itinerary_destinations?: Itinerary_destinationsListRelationFilter
     saved_destinations?: Saved_destinationsListRelationFilter
   }, "id">
 
   export type destinationsOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
+    name?: SortOrder
     description?: SortOrderInput | SortOrder
-    location?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     category?: SortOrderInput | SortOrder
-    created_by_id?: SortOrderInput | SortOrder
+    latitude?: SortOrderInput | SortOrder
+    longitude?: SortOrderInput | SortOrder
     _count?: destinationsCountOrderByAggregateInput
     _avg?: destinationsAvgOrderByAggregateInput
     _max?: destinationsMaxOrderByAggregateInput
@@ -7260,12 +7070,12 @@ export namespace Prisma {
     OR?: destinationsScalarWhereWithAggregatesInput[]
     NOT?: destinationsScalarWhereWithAggregatesInput | destinationsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"destinations"> | number
-    title?: StringWithAggregatesFilter<"destinations"> | string
+    name?: StringWithAggregatesFilter<"destinations"> | string
     description?: StringNullableWithAggregatesFilter<"destinations"> | string | null
-    location?: StringNullableWithAggregatesFilter<"destinations"> | string | null
     image?: StringNullableWithAggregatesFilter<"destinations"> | string | null
     category?: StringNullableWithAggregatesFilter<"destinations"> | string | null
-    created_by_id?: IntNullableWithAggregatesFilter<"destinations"> | number | null
+    latitude?: FloatNullableWithAggregatesFilter<"destinations"> | number | null
+    longitude?: FloatNullableWithAggregatesFilter<"destinations"> | number | null
   }
 
   export type itinerariesWhereInput = {
@@ -7273,16 +7083,16 @@ export namespace Prisma {
     OR?: itinerariesWhereInput[]
     NOT?: itinerariesWhereInput | itinerariesWhereInput[]
     id?: IntFilter<"itineraries"> | number
-    title?: StringNullableFilter<"itineraries"> | string | null
-    user_id?: IntNullableFilter<"itineraries"> | number | null
-    users?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
+    name?: StringFilter<"itineraries"> | string
+    userid?: IntFilter<"itineraries"> | number
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     itinerary_destinations?: Itinerary_destinationsListRelationFilter
   }
 
   export type itinerariesOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
-    user_id?: SortOrderInput | SortOrder
+    name?: SortOrder
+    userid?: SortOrder
     users?: usersOrderByWithRelationInput
     itinerary_destinations?: itinerary_destinationsOrderByRelationAggregateInput
   }
@@ -7292,16 +7102,16 @@ export namespace Prisma {
     AND?: itinerariesWhereInput | itinerariesWhereInput[]
     OR?: itinerariesWhereInput[]
     NOT?: itinerariesWhereInput | itinerariesWhereInput[]
-    title?: StringNullableFilter<"itineraries"> | string | null
-    user_id?: IntNullableFilter<"itineraries"> | number | null
-    users?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
+    name?: StringFilter<"itineraries"> | string
+    userid?: IntFilter<"itineraries"> | number
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     itinerary_destinations?: Itinerary_destinationsListRelationFilter
   }, "id">
 
   export type itinerariesOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
-    user_id?: SortOrderInput | SortOrder
+    name?: SortOrder
+    userid?: SortOrder
     _count?: itinerariesCountOrderByAggregateInput
     _avg?: itinerariesAvgOrderByAggregateInput
     _max?: itinerariesMaxOrderByAggregateInput
@@ -7314,45 +7124,41 @@ export namespace Prisma {
     OR?: itinerariesScalarWhereWithAggregatesInput[]
     NOT?: itinerariesScalarWhereWithAggregatesInput | itinerariesScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"itineraries"> | number
-    title?: StringNullableWithAggregatesFilter<"itineraries"> | string | null
-    user_id?: IntNullableWithAggregatesFilter<"itineraries"> | number | null
+    name?: StringWithAggregatesFilter<"itineraries"> | string
+    userid?: IntWithAggregatesFilter<"itineraries"> | number
   }
 
   export type itinerary_destinationsWhereInput = {
     AND?: itinerary_destinationsWhereInput | itinerary_destinationsWhereInput[]
     OR?: itinerary_destinationsWhereInput[]
     NOT?: itinerary_destinationsWhereInput | itinerary_destinationsWhereInput[]
-    id?: IntFilter<"itinerary_destinations"> | number
-    itinerary_id?: IntNullableFilter<"itinerary_destinations"> | number | null
-    destination_id?: IntNullableFilter<"itinerary_destinations"> | number | null
-    destinations?: XOR<DestinationsNullableScalarRelationFilter, destinationsWhereInput> | null
-    itineraries?: XOR<ItinerariesNullableScalarRelationFilter, itinerariesWhereInput> | null
+    itineraryid?: IntFilter<"itinerary_destinations"> | number
+    destinationid?: IntFilter<"itinerary_destinations"> | number
+    destinations?: XOR<DestinationsScalarRelationFilter, destinationsWhereInput>
+    itineraries?: XOR<ItinerariesScalarRelationFilter, itinerariesWhereInput>
   }
 
   export type itinerary_destinationsOrderByWithRelationInput = {
-    id?: SortOrder
-    itinerary_id?: SortOrderInput | SortOrder
-    destination_id?: SortOrderInput | SortOrder
+    itineraryid?: SortOrder
+    destinationid?: SortOrder
     destinations?: destinationsOrderByWithRelationInput
     itineraries?: itinerariesOrderByWithRelationInput
   }
 
   export type itinerary_destinationsWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    itinerary_id_destination_id?: itinerary_destinationsItinerary_idDestination_idCompoundUniqueInput
+    itineraryid_destinationid?: itinerary_destinationsItineraryidDestinationidCompoundUniqueInput
     AND?: itinerary_destinationsWhereInput | itinerary_destinationsWhereInput[]
     OR?: itinerary_destinationsWhereInput[]
     NOT?: itinerary_destinationsWhereInput | itinerary_destinationsWhereInput[]
-    itinerary_id?: IntNullableFilter<"itinerary_destinations"> | number | null
-    destination_id?: IntNullableFilter<"itinerary_destinations"> | number | null
-    destinations?: XOR<DestinationsNullableScalarRelationFilter, destinationsWhereInput> | null
-    itineraries?: XOR<ItinerariesNullableScalarRelationFilter, itinerariesWhereInput> | null
-  }, "id" | "itinerary_id_destination_id">
+    itineraryid?: IntFilter<"itinerary_destinations"> | number
+    destinationid?: IntFilter<"itinerary_destinations"> | number
+    destinations?: XOR<DestinationsScalarRelationFilter, destinationsWhereInput>
+    itineraries?: XOR<ItinerariesScalarRelationFilter, itinerariesWhereInput>
+  }, "itineraryid_destinationid">
 
   export type itinerary_destinationsOrderByWithAggregationInput = {
-    id?: SortOrder
-    itinerary_id?: SortOrderInput | SortOrder
-    destination_id?: SortOrderInput | SortOrder
+    itineraryid?: SortOrder
+    destinationid?: SortOrder
     _count?: itinerary_destinationsCountOrderByAggregateInput
     _avg?: itinerary_destinationsAvgOrderByAggregateInput
     _max?: itinerary_destinationsMaxOrderByAggregateInput
@@ -7364,46 +7170,41 @@ export namespace Prisma {
     AND?: itinerary_destinationsScalarWhereWithAggregatesInput | itinerary_destinationsScalarWhereWithAggregatesInput[]
     OR?: itinerary_destinationsScalarWhereWithAggregatesInput[]
     NOT?: itinerary_destinationsScalarWhereWithAggregatesInput | itinerary_destinationsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"itinerary_destinations"> | number
-    itinerary_id?: IntNullableWithAggregatesFilter<"itinerary_destinations"> | number | null
-    destination_id?: IntNullableWithAggregatesFilter<"itinerary_destinations"> | number | null
+    itineraryid?: IntWithAggregatesFilter<"itinerary_destinations"> | number
+    destinationid?: IntWithAggregatesFilter<"itinerary_destinations"> | number
   }
 
   export type saved_destinationsWhereInput = {
     AND?: saved_destinationsWhereInput | saved_destinationsWhereInput[]
     OR?: saved_destinationsWhereInput[]
     NOT?: saved_destinationsWhereInput | saved_destinationsWhereInput[]
-    id?: IntFilter<"saved_destinations"> | number
-    user_id?: IntNullableFilter<"saved_destinations"> | number | null
-    destination_id?: IntNullableFilter<"saved_destinations"> | number | null
-    destinations?: XOR<DestinationsNullableScalarRelationFilter, destinationsWhereInput> | null
-    users?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
+    userid?: IntFilter<"saved_destinations"> | number
+    destinationid?: IntFilter<"saved_destinations"> | number
+    destinations?: XOR<DestinationsScalarRelationFilter, destinationsWhereInput>
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type saved_destinationsOrderByWithRelationInput = {
-    id?: SortOrder
-    user_id?: SortOrderInput | SortOrder
-    destination_id?: SortOrderInput | SortOrder
+    userid?: SortOrder
+    destinationid?: SortOrder
     destinations?: destinationsOrderByWithRelationInput
     users?: usersOrderByWithRelationInput
   }
 
   export type saved_destinationsWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    user_id_destination_id?: saved_destinationsUser_idDestination_idCompoundUniqueInput
+    userid_destinationid?: saved_destinationsUseridDestinationidCompoundUniqueInput
     AND?: saved_destinationsWhereInput | saved_destinationsWhereInput[]
     OR?: saved_destinationsWhereInput[]
     NOT?: saved_destinationsWhereInput | saved_destinationsWhereInput[]
-    user_id?: IntNullableFilter<"saved_destinations"> | number | null
-    destination_id?: IntNullableFilter<"saved_destinations"> | number | null
-    destinations?: XOR<DestinationsNullableScalarRelationFilter, destinationsWhereInput> | null
-    users?: XOR<UsersNullableScalarRelationFilter, usersWhereInput> | null
-  }, "id" | "user_id_destination_id">
+    userid?: IntFilter<"saved_destinations"> | number
+    destinationid?: IntFilter<"saved_destinations"> | number
+    destinations?: XOR<DestinationsScalarRelationFilter, destinationsWhereInput>
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "userid_destinationid">
 
   export type saved_destinationsOrderByWithAggregationInput = {
-    id?: SortOrder
-    user_id?: SortOrderInput | SortOrder
-    destination_id?: SortOrderInput | SortOrder
+    userid?: SortOrder
+    destinationid?: SortOrder
     _count?: saved_destinationsCountOrderByAggregateInput
     _avg?: saved_destinationsAvgOrderByAggregateInput
     _max?: saved_destinationsMaxOrderByAggregateInput
@@ -7415,9 +7216,8 @@ export namespace Prisma {
     AND?: saved_destinationsScalarWhereWithAggregatesInput | saved_destinationsScalarWhereWithAggregatesInput[]
     OR?: saved_destinationsScalarWhereWithAggregatesInput[]
     NOT?: saved_destinationsScalarWhereWithAggregatesInput | saved_destinationsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"saved_destinations"> | number
-    user_id?: IntNullableWithAggregatesFilter<"saved_destinations"> | number | null
-    destination_id?: IntNullableWithAggregatesFilter<"saved_destinations"> | number | null
+    userid?: IntWithAggregatesFilter<"saved_destinations"> | number
+    destinationid?: IntWithAggregatesFilter<"saved_destinations"> | number
   }
 
   export type usersWhereInput = {
@@ -7425,20 +7225,20 @@ export namespace Prisma {
     OR?: usersWhereInput[]
     NOT?: usersWhereInput | usersWhereInput[]
     id?: IntFilter<"users"> | number
-    name?: StringNullableFilter<"users"> | string | null
+    name?: StringFilter<"users"> | string
     email?: StringFilter<"users"> | string
-    password_hash?: StringFilter<"users"> | string
-    destinations?: DestinationsListRelationFilter
+    password?: StringFilter<"users"> | string
+    hashed?: StringNullableFilter<"users"> | string | null
     itineraries?: ItinerariesListRelationFilter
     saved_destinations?: Saved_destinationsListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
+    name?: SortOrder
     email?: SortOrder
-    password_hash?: SortOrder
-    destinations?: destinationsOrderByRelationAggregateInput
+    password?: SortOrder
+    hashed?: SortOrderInput | SortOrder
     itineraries?: itinerariesOrderByRelationAggregateInput
     saved_destinations?: saved_destinationsOrderByRelationAggregateInput
   }
@@ -7449,18 +7249,19 @@ export namespace Prisma {
     AND?: usersWhereInput | usersWhereInput[]
     OR?: usersWhereInput[]
     NOT?: usersWhereInput | usersWhereInput[]
-    name?: StringNullableFilter<"users"> | string | null
-    password_hash?: StringFilter<"users"> | string
-    destinations?: DestinationsListRelationFilter
+    name?: StringFilter<"users"> | string
+    password?: StringFilter<"users"> | string
+    hashed?: StringNullableFilter<"users"> | string | null
     itineraries?: ItinerariesListRelationFilter
     saved_destinations?: Saved_destinationsListRelationFilter
   }, "id" | "email">
 
   export type usersOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrderInput | SortOrder
+    name?: SortOrder
     email?: SortOrder
-    password_hash?: SortOrder
+    password?: SortOrder
+    hashed?: SortOrderInput | SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
@@ -7473,153 +7274,152 @@ export namespace Prisma {
     OR?: usersScalarWhereWithAggregatesInput[]
     NOT?: usersScalarWhereWithAggregatesInput | usersScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"users"> | number
-    name?: StringNullableWithAggregatesFilter<"users"> | string | null
+    name?: StringWithAggregatesFilter<"users"> | string
     email?: StringWithAggregatesFilter<"users"> | string
-    password_hash?: StringWithAggregatesFilter<"users"> | string
+    password?: StringWithAggregatesFilter<"users"> | string
+    hashed?: StringNullableWithAggregatesFilter<"users"> | string | null
   }
 
   export type destinationsCreateInput = {
-    title: string
+    name: string
     description?: string | null
-    location?: string | null
     image?: string | null
     category?: string | null
-    users?: usersCreateNestedOneWithoutDestinationsInput
+    latitude?: number | null
+    longitude?: number | null
     itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutDestinationsInput
     saved_destinations?: saved_destinationsCreateNestedManyWithoutDestinationsInput
   }
 
   export type destinationsUncheckedCreateInput = {
     id?: number
-    title: string
+    name: string
     description?: string | null
-    location?: string | null
     image?: string | null
     category?: string | null
-    created_by_id?: number | null
+    latitude?: number | null
+    longitude?: number | null
     itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
     saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
   }
 
   export type destinationsUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
-    users?: usersUpdateOneWithoutDestinationsNestedInput
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     itinerary_destinations?: itinerary_destinationsUpdateManyWithoutDestinationsNestedInput
     saved_destinations?: saved_destinationsUpdateManyWithoutDestinationsNestedInput
   }
 
   export type destinationsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by_id?: NullableIntFieldUpdateOperationsInput | number | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
     saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
   }
 
   export type destinationsCreateManyInput = {
     id?: number
-    title: string
+    name: string
     description?: string | null
-    location?: string | null
     image?: string | null
     category?: string | null
-    created_by_id?: number | null
+    latitude?: number | null
+    longitude?: number | null
   }
 
   export type destinationsUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type destinationsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by_id?: NullableIntFieldUpdateOperationsInput | number | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type itinerariesCreateInput = {
-    title?: string | null
-    users?: usersCreateNestedOneWithoutItinerariesInput
+    name: string
+    users: usersCreateNestedOneWithoutItinerariesInput
     itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutItinerariesInput
   }
 
   export type itinerariesUncheckedCreateInput = {
     id?: number
-    title?: string | null
-    user_id?: number | null
+    name: string
+    userid: number
     itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutItinerariesInput
   }
 
   export type itinerariesUpdateInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    users?: usersUpdateOneWithoutItinerariesNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    users?: usersUpdateOneRequiredWithoutItinerariesNestedInput
     itinerary_destinations?: itinerary_destinationsUpdateManyWithoutItinerariesNestedInput
   }
 
   export type itinerariesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    userid?: IntFieldUpdateOperationsInput | number
     itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutItinerariesNestedInput
   }
 
   export type itinerariesCreateManyInput = {
     id?: number
-    title?: string | null
-    user_id?: number | null
+    name: string
+    userid: number
   }
 
   export type itinerariesUpdateManyMutationInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type itinerariesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    userid?: IntFieldUpdateOperationsInput | number
   }
 
   export type itinerary_destinationsCreateInput = {
-    destinations?: destinationsCreateNestedOneWithoutItinerary_destinationsInput
-    itineraries?: itinerariesCreateNestedOneWithoutItinerary_destinationsInput
+    destinations: destinationsCreateNestedOneWithoutItinerary_destinationsInput
+    itineraries: itinerariesCreateNestedOneWithoutItinerary_destinationsInput
   }
 
   export type itinerary_destinationsUncheckedCreateInput = {
-    id?: number
-    itinerary_id?: number | null
-    destination_id?: number | null
+    itineraryid: number
+    destinationid: number
   }
 
   export type itinerary_destinationsUpdateInput = {
-    destinations?: destinationsUpdateOneWithoutItinerary_destinationsNestedInput
-    itineraries?: itinerariesUpdateOneWithoutItinerary_destinationsNestedInput
+    destinations?: destinationsUpdateOneRequiredWithoutItinerary_destinationsNestedInput
+    itineraries?: itinerariesUpdateOneRequiredWithoutItinerary_destinationsNestedInput
   }
 
   export type itinerary_destinationsUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    itinerary_id?: NullableIntFieldUpdateOperationsInput | number | null
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    itineraryid?: IntFieldUpdateOperationsInput | number
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
   export type itinerary_destinationsCreateManyInput = {
-    id?: number
-    itinerary_id?: number | null
-    destination_id?: number | null
+    itineraryid: number
+    destinationid: number
   }
 
   export type itinerary_destinationsUpdateManyMutationInput = {
@@ -7627,37 +7427,33 @@ export namespace Prisma {
   }
 
   export type itinerary_destinationsUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    itinerary_id?: NullableIntFieldUpdateOperationsInput | number | null
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    itineraryid?: IntFieldUpdateOperationsInput | number
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
   export type saved_destinationsCreateInput = {
-    destinations?: destinationsCreateNestedOneWithoutSaved_destinationsInput
-    users?: usersCreateNestedOneWithoutSaved_destinationsInput
+    destinations: destinationsCreateNestedOneWithoutSaved_destinationsInput
+    users: usersCreateNestedOneWithoutSaved_destinationsInput
   }
 
   export type saved_destinationsUncheckedCreateInput = {
-    id?: number
-    user_id?: number | null
-    destination_id?: number | null
+    userid: number
+    destinationid: number
   }
 
   export type saved_destinationsUpdateInput = {
-    destinations?: destinationsUpdateOneWithoutSaved_destinationsNestedInput
-    users?: usersUpdateOneWithoutSaved_destinationsNestedInput
+    destinations?: destinationsUpdateOneRequiredWithoutSaved_destinationsNestedInput
+    users?: usersUpdateOneRequiredWithoutSaved_destinationsNestedInput
   }
 
   export type saved_destinationsUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    userid?: IntFieldUpdateOperationsInput | number
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
   export type saved_destinationsCreateManyInput = {
-    id?: number
-    user_id?: number | null
-    destination_id?: number | null
+    userid: number
+    destinationid: number
   }
 
   export type saved_destinationsUpdateManyMutationInput = {
@@ -7665,67 +7461,69 @@ export namespace Prisma {
   }
 
   export type saved_destinationsUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    userid?: IntFieldUpdateOperationsInput | number
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
   export type usersCreateInput = {
-    name?: string | null
+    name: string
     email: string
-    password_hash: string
-    destinations?: destinationsCreateNestedManyWithoutUsersInput
+    password: string
+    hashed?: string | null
     itineraries?: itinerariesCreateNestedManyWithoutUsersInput
     saved_destinations?: saved_destinationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateInput = {
     id?: number
-    name?: string | null
+    name: string
     email: string
-    password_hash: string
-    destinations?: destinationsUncheckedCreateNestedManyWithoutUsersInput
+    password: string
+    hashed?: string | null
     itineraries?: itinerariesUncheckedCreateNestedManyWithoutUsersInput
     saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersUpdateInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    destinations?: destinationsUpdateManyWithoutUsersNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
     itineraries?: itinerariesUpdateManyWithoutUsersNestedInput
     saved_destinations?: saved_destinationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    destinations?: destinationsUncheckedUpdateManyWithoutUsersNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
     itineraries?: itinerariesUncheckedUpdateManyWithoutUsersNestedInput
     saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersCreateManyInput = {
     id?: number
-    name?: string | null
+    name: string
     email: string
-    password_hash: string
+    password: string
+    hashed?: string | null
   }
 
   export type usersUpdateManyMutationInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type usersUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7769,20 +7567,15 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type UsersNullableScalarRelationFilter = {
-    is?: usersWhereInput | null
-    isNot?: usersWhereInput | null
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type Itinerary_destinationsListRelationFilter = {
@@ -7812,42 +7605,44 @@ export namespace Prisma {
 
   export type destinationsCountOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
+    name?: SortOrder
     description?: SortOrder
-    location?: SortOrder
     image?: SortOrder
     category?: SortOrder
-    created_by_id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type destinationsAvgOrderByAggregateInput = {
     id?: SortOrder
-    created_by_id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type destinationsMaxOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
+    name?: SortOrder
     description?: SortOrder
-    location?: SortOrder
     image?: SortOrder
     category?: SortOrder
-    created_by_id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type destinationsMinOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
+    name?: SortOrder
     description?: SortOrder
-    location?: SortOrder
     image?: SortOrder
     category?: SortOrder
-    created_by_id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type destinationsSumOrderByAggregateInput = {
     id?: SortOrder
-    created_by_id?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -7902,144 +7697,129 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type UsersScalarRelationFilter = {
+    is?: usersWhereInput
+    isNot?: usersWhereInput
   }
 
   export type itinerariesCountOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    user_id?: SortOrder
+    name?: SortOrder
+    userid?: SortOrder
   }
 
   export type itinerariesAvgOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
+    userid?: SortOrder
   }
 
   export type itinerariesMaxOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    user_id?: SortOrder
+    name?: SortOrder
+    userid?: SortOrder
   }
 
   export type itinerariesMinOrderByAggregateInput = {
     id?: SortOrder
-    title?: SortOrder
-    user_id?: SortOrder
+    name?: SortOrder
+    userid?: SortOrder
   }
 
   export type itinerariesSumOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
+    userid?: SortOrder
   }
 
-  export type DestinationsNullableScalarRelationFilter = {
-    is?: destinationsWhereInput | null
-    isNot?: destinationsWhereInput | null
+  export type DestinationsScalarRelationFilter = {
+    is?: destinationsWhereInput
+    isNot?: destinationsWhereInput
   }
 
-  export type ItinerariesNullableScalarRelationFilter = {
-    is?: itinerariesWhereInput | null
-    isNot?: itinerariesWhereInput | null
+  export type ItinerariesScalarRelationFilter = {
+    is?: itinerariesWhereInput
+    isNot?: itinerariesWhereInput
   }
 
-  export type itinerary_destinationsItinerary_idDestination_idCompoundUniqueInput = {
-    itinerary_id: number
-    destination_id: number
+  export type itinerary_destinationsItineraryidDestinationidCompoundUniqueInput = {
+    itineraryid: number
+    destinationid: number
   }
 
   export type itinerary_destinationsCountOrderByAggregateInput = {
-    id?: SortOrder
-    itinerary_id?: SortOrder
-    destination_id?: SortOrder
+    itineraryid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type itinerary_destinationsAvgOrderByAggregateInput = {
-    id?: SortOrder
-    itinerary_id?: SortOrder
-    destination_id?: SortOrder
+    itineraryid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type itinerary_destinationsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    itinerary_id?: SortOrder
-    destination_id?: SortOrder
+    itineraryid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type itinerary_destinationsMinOrderByAggregateInput = {
-    id?: SortOrder
-    itinerary_id?: SortOrder
-    destination_id?: SortOrder
+    itineraryid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type itinerary_destinationsSumOrderByAggregateInput = {
-    id?: SortOrder
-    itinerary_id?: SortOrder
-    destination_id?: SortOrder
+    itineraryid?: SortOrder
+    destinationid?: SortOrder
   }
 
-  export type saved_destinationsUser_idDestination_idCompoundUniqueInput = {
-    user_id: number
-    destination_id: number
+  export type saved_destinationsUseridDestinationidCompoundUniqueInput = {
+    userid: number
+    destinationid: number
   }
 
   export type saved_destinationsCountOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    destination_id?: SortOrder
+    userid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type saved_destinationsAvgOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    destination_id?: SortOrder
+    userid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type saved_destinationsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    destination_id?: SortOrder
+    userid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type saved_destinationsMinOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    destination_id?: SortOrder
+    userid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type saved_destinationsSumOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    destination_id?: SortOrder
-  }
-
-  export type DestinationsListRelationFilter = {
-    every?: destinationsWhereInput
-    some?: destinationsWhereInput
-    none?: destinationsWhereInput
+    userid?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type ItinerariesListRelationFilter = {
     every?: itinerariesWhereInput
     some?: itinerariesWhereInput
     none?: itinerariesWhereInput
-  }
-
-  export type destinationsOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type itinerariesOrderByRelationAggregateInput = {
@@ -8050,7 +7830,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hash?: SortOrder
+    password?: SortOrder
+    hashed?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
@@ -8061,24 +7842,20 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hash?: SortOrder
+    password?: SortOrder
+    hashed?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hash?: SortOrder
+    password?: SortOrder
+    hashed?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type usersCreateNestedOneWithoutDestinationsInput = {
-    create?: XOR<usersCreateWithoutDestinationsInput, usersUncheckedCreateWithoutDestinationsInput>
-    connectOrCreate?: usersCreateOrConnectWithoutDestinationsInput
-    connect?: usersWhereUniqueInput
   }
 
   export type itinerary_destinationsCreateNestedManyWithoutDestinationsInput = {
@@ -8117,14 +7894,12 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type usersUpdateOneWithoutDestinationsNestedInput = {
-    create?: XOR<usersCreateWithoutDestinationsInput, usersUncheckedCreateWithoutDestinationsInput>
-    connectOrCreate?: usersCreateOrConnectWithoutDestinationsInput
-    upsert?: usersUpsertWithoutDestinationsInput
-    disconnect?: usersWhereInput | boolean
-    delete?: usersWhereInput | boolean
-    connect?: usersWhereUniqueInput
-    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutDestinationsInput, usersUpdateWithoutDestinationsInput>, usersUncheckedUpdateWithoutDestinationsInput>
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type itinerary_destinationsUpdateManyWithoutDestinationsNestedInput = {
@@ -8157,14 +7932,6 @@ export namespace Prisma {
 
   export type IntFieldUpdateOperationsInput = {
     set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
@@ -8219,12 +7986,10 @@ export namespace Prisma {
     connect?: itinerary_destinationsWhereUniqueInput | itinerary_destinationsWhereUniqueInput[]
   }
 
-  export type usersUpdateOneWithoutItinerariesNestedInput = {
+  export type usersUpdateOneRequiredWithoutItinerariesNestedInput = {
     create?: XOR<usersCreateWithoutItinerariesInput, usersUncheckedCreateWithoutItinerariesInput>
     connectOrCreate?: usersCreateOrConnectWithoutItinerariesInput
     upsert?: usersUpsertWithoutItinerariesInput
-    disconnect?: usersWhereInput | boolean
-    delete?: usersWhereInput | boolean
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutItinerariesInput, usersUpdateWithoutItinerariesInput>, usersUncheckedUpdateWithoutItinerariesInput>
   }
@@ -8269,22 +8034,18 @@ export namespace Prisma {
     connect?: itinerariesWhereUniqueInput
   }
 
-  export type destinationsUpdateOneWithoutItinerary_destinationsNestedInput = {
+  export type destinationsUpdateOneRequiredWithoutItinerary_destinationsNestedInput = {
     create?: XOR<destinationsCreateWithoutItinerary_destinationsInput, destinationsUncheckedCreateWithoutItinerary_destinationsInput>
     connectOrCreate?: destinationsCreateOrConnectWithoutItinerary_destinationsInput
     upsert?: destinationsUpsertWithoutItinerary_destinationsInput
-    disconnect?: destinationsWhereInput | boolean
-    delete?: destinationsWhereInput | boolean
     connect?: destinationsWhereUniqueInput
     update?: XOR<XOR<destinationsUpdateToOneWithWhereWithoutItinerary_destinationsInput, destinationsUpdateWithoutItinerary_destinationsInput>, destinationsUncheckedUpdateWithoutItinerary_destinationsInput>
   }
 
-  export type itinerariesUpdateOneWithoutItinerary_destinationsNestedInput = {
+  export type itinerariesUpdateOneRequiredWithoutItinerary_destinationsNestedInput = {
     create?: XOR<itinerariesCreateWithoutItinerary_destinationsInput, itinerariesUncheckedCreateWithoutItinerary_destinationsInput>
     connectOrCreate?: itinerariesCreateOrConnectWithoutItinerary_destinationsInput
     upsert?: itinerariesUpsertWithoutItinerary_destinationsInput
-    disconnect?: itinerariesWhereInput | boolean
-    delete?: itinerariesWhereInput | boolean
     connect?: itinerariesWhereUniqueInput
     update?: XOR<XOR<itinerariesUpdateToOneWithWhereWithoutItinerary_destinationsInput, itinerariesUpdateWithoutItinerary_destinationsInput>, itinerariesUncheckedUpdateWithoutItinerary_destinationsInput>
   }
@@ -8301,31 +8062,20 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
-  export type destinationsUpdateOneWithoutSaved_destinationsNestedInput = {
+  export type destinationsUpdateOneRequiredWithoutSaved_destinationsNestedInput = {
     create?: XOR<destinationsCreateWithoutSaved_destinationsInput, destinationsUncheckedCreateWithoutSaved_destinationsInput>
     connectOrCreate?: destinationsCreateOrConnectWithoutSaved_destinationsInput
     upsert?: destinationsUpsertWithoutSaved_destinationsInput
-    disconnect?: destinationsWhereInput | boolean
-    delete?: destinationsWhereInput | boolean
     connect?: destinationsWhereUniqueInput
     update?: XOR<XOR<destinationsUpdateToOneWithWhereWithoutSaved_destinationsInput, destinationsUpdateWithoutSaved_destinationsInput>, destinationsUncheckedUpdateWithoutSaved_destinationsInput>
   }
 
-  export type usersUpdateOneWithoutSaved_destinationsNestedInput = {
+  export type usersUpdateOneRequiredWithoutSaved_destinationsNestedInput = {
     create?: XOR<usersCreateWithoutSaved_destinationsInput, usersUncheckedCreateWithoutSaved_destinationsInput>
     connectOrCreate?: usersCreateOrConnectWithoutSaved_destinationsInput
     upsert?: usersUpsertWithoutSaved_destinationsInput
-    disconnect?: usersWhereInput | boolean
-    delete?: usersWhereInput | boolean
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutSaved_destinationsInput, usersUpdateWithoutSaved_destinationsInput>, usersUncheckedUpdateWithoutSaved_destinationsInput>
-  }
-
-  export type destinationsCreateNestedManyWithoutUsersInput = {
-    create?: XOR<destinationsCreateWithoutUsersInput, destinationsUncheckedCreateWithoutUsersInput> | destinationsCreateWithoutUsersInput[] | destinationsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: destinationsCreateOrConnectWithoutUsersInput | destinationsCreateOrConnectWithoutUsersInput[]
-    createMany?: destinationsCreateManyUsersInputEnvelope
-    connect?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
   }
 
   export type itinerariesCreateNestedManyWithoutUsersInput = {
@@ -8342,13 +8092,6 @@ export namespace Prisma {
     connect?: saved_destinationsWhereUniqueInput | saved_destinationsWhereUniqueInput[]
   }
 
-  export type destinationsUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<destinationsCreateWithoutUsersInput, destinationsUncheckedCreateWithoutUsersInput> | destinationsCreateWithoutUsersInput[] | destinationsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: destinationsCreateOrConnectWithoutUsersInput | destinationsCreateOrConnectWithoutUsersInput[]
-    createMany?: destinationsCreateManyUsersInputEnvelope
-    connect?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-  }
-
   export type itinerariesUncheckedCreateNestedManyWithoutUsersInput = {
     create?: XOR<itinerariesCreateWithoutUsersInput, itinerariesUncheckedCreateWithoutUsersInput> | itinerariesCreateWithoutUsersInput[] | itinerariesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: itinerariesCreateOrConnectWithoutUsersInput | itinerariesCreateOrConnectWithoutUsersInput[]
@@ -8361,20 +8104,6 @@ export namespace Prisma {
     connectOrCreate?: saved_destinationsCreateOrConnectWithoutUsersInput | saved_destinationsCreateOrConnectWithoutUsersInput[]
     createMany?: saved_destinationsCreateManyUsersInputEnvelope
     connect?: saved_destinationsWhereUniqueInput | saved_destinationsWhereUniqueInput[]
-  }
-
-  export type destinationsUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<destinationsCreateWithoutUsersInput, destinationsUncheckedCreateWithoutUsersInput> | destinationsCreateWithoutUsersInput[] | destinationsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: destinationsCreateOrConnectWithoutUsersInput | destinationsCreateOrConnectWithoutUsersInput[]
-    upsert?: destinationsUpsertWithWhereUniqueWithoutUsersInput | destinationsUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: destinationsCreateManyUsersInputEnvelope
-    set?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    disconnect?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    delete?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    connect?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    update?: destinationsUpdateWithWhereUniqueWithoutUsersInput | destinationsUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: destinationsUpdateManyWithWhereWithoutUsersInput | destinationsUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: destinationsScalarWhereInput | destinationsScalarWhereInput[]
   }
 
   export type itinerariesUpdateManyWithoutUsersNestedInput = {
@@ -8403,20 +8132,6 @@ export namespace Prisma {
     update?: saved_destinationsUpdateWithWhereUniqueWithoutUsersInput | saved_destinationsUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: saved_destinationsUpdateManyWithWhereWithoutUsersInput | saved_destinationsUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: saved_destinationsScalarWhereInput | saved_destinationsScalarWhereInput[]
-  }
-
-  export type destinationsUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<destinationsCreateWithoutUsersInput, destinationsUncheckedCreateWithoutUsersInput> | destinationsCreateWithoutUsersInput[] | destinationsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: destinationsCreateOrConnectWithoutUsersInput | destinationsCreateOrConnectWithoutUsersInput[]
-    upsert?: destinationsUpsertWithWhereUniqueWithoutUsersInput | destinationsUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: destinationsCreateManyUsersInputEnvelope
-    set?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    disconnect?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    delete?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    connect?: destinationsWhereUniqueInput | destinationsWhereUniqueInput[]
-    update?: destinationsUpdateWithWhereUniqueWithoutUsersInput | destinationsUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: destinationsUpdateManyWithWhereWithoutUsersInput | destinationsUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: destinationsScalarWhereInput | destinationsScalarWhereInput[]
   }
 
   export type itinerariesUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -8486,15 +8201,15 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -8558,7 +8273,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -8566,15 +8281,10 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -8582,38 +8292,20 @@ export namespace Prisma {
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type usersCreateWithoutDestinationsInput = {
-    name?: string | null
-    email: string
-    password_hash: string
-    itineraries?: itinerariesCreateNestedManyWithoutUsersInput
-    saved_destinations?: saved_destinationsCreateNestedManyWithoutUsersInput
-  }
-
-  export type usersUncheckedCreateWithoutDestinationsInput = {
-    id?: number
-    name?: string | null
-    email: string
-    password_hash: string
-    itineraries?: itinerariesUncheckedCreateNestedManyWithoutUsersInput
-    saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutUsersInput
-  }
-
-  export type usersCreateOrConnectWithoutDestinationsInput = {
-    where: usersWhereUniqueInput
-    create: XOR<usersCreateWithoutDestinationsInput, usersUncheckedCreateWithoutDestinationsInput>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type itinerary_destinationsCreateWithoutDestinationsInput = {
-    itineraries?: itinerariesCreateNestedOneWithoutItinerary_destinationsInput
+    itineraries: itinerariesCreateNestedOneWithoutItinerary_destinationsInput
   }
 
   export type itinerary_destinationsUncheckedCreateWithoutDestinationsInput = {
-    id?: number
-    itinerary_id?: number | null
+    itineraryid: number
   }
 
   export type itinerary_destinationsCreateOrConnectWithoutDestinationsInput = {
@@ -8627,12 +8319,11 @@ export namespace Prisma {
   }
 
   export type saved_destinationsCreateWithoutDestinationsInput = {
-    users?: usersCreateNestedOneWithoutSaved_destinationsInput
+    users: usersCreateNestedOneWithoutSaved_destinationsInput
   }
 
   export type saved_destinationsUncheckedCreateWithoutDestinationsInput = {
-    id?: number
-    user_id?: number | null
+    userid: number
   }
 
   export type saved_destinationsCreateOrConnectWithoutDestinationsInput = {
@@ -8643,34 +8334,6 @@ export namespace Prisma {
   export type saved_destinationsCreateManyDestinationsInputEnvelope = {
     data: saved_destinationsCreateManyDestinationsInput | saved_destinationsCreateManyDestinationsInput[]
     skipDuplicates?: boolean
-  }
-
-  export type usersUpsertWithoutDestinationsInput = {
-    update: XOR<usersUpdateWithoutDestinationsInput, usersUncheckedUpdateWithoutDestinationsInput>
-    create: XOR<usersCreateWithoutDestinationsInput, usersUncheckedCreateWithoutDestinationsInput>
-    where?: usersWhereInput
-  }
-
-  export type usersUpdateToOneWithWhereWithoutDestinationsInput = {
-    where?: usersWhereInput
-    data: XOR<usersUpdateWithoutDestinationsInput, usersUncheckedUpdateWithoutDestinationsInput>
-  }
-
-  export type usersUpdateWithoutDestinationsInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    itineraries?: itinerariesUpdateManyWithoutUsersNestedInput
-    saved_destinations?: saved_destinationsUpdateManyWithoutUsersNestedInput
-  }
-
-  export type usersUncheckedUpdateWithoutDestinationsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    itineraries?: itinerariesUncheckedUpdateManyWithoutUsersNestedInput
-    saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type itinerary_destinationsUpsertWithWhereUniqueWithoutDestinationsInput = {
@@ -8693,9 +8356,8 @@ export namespace Prisma {
     AND?: itinerary_destinationsScalarWhereInput | itinerary_destinationsScalarWhereInput[]
     OR?: itinerary_destinationsScalarWhereInput[]
     NOT?: itinerary_destinationsScalarWhereInput | itinerary_destinationsScalarWhereInput[]
-    id?: IntFilter<"itinerary_destinations"> | number
-    itinerary_id?: IntNullableFilter<"itinerary_destinations"> | number | null
-    destination_id?: IntNullableFilter<"itinerary_destinations"> | number | null
+    itineraryid?: IntFilter<"itinerary_destinations"> | number
+    destinationid?: IntFilter<"itinerary_destinations"> | number
   }
 
   export type saved_destinationsUpsertWithWhereUniqueWithoutDestinationsInput = {
@@ -8718,25 +8380,24 @@ export namespace Prisma {
     AND?: saved_destinationsScalarWhereInput | saved_destinationsScalarWhereInput[]
     OR?: saved_destinationsScalarWhereInput[]
     NOT?: saved_destinationsScalarWhereInput | saved_destinationsScalarWhereInput[]
-    id?: IntFilter<"saved_destinations"> | number
-    user_id?: IntNullableFilter<"saved_destinations"> | number | null
-    destination_id?: IntNullableFilter<"saved_destinations"> | number | null
+    userid?: IntFilter<"saved_destinations"> | number
+    destinationid?: IntFilter<"saved_destinations"> | number
   }
 
   export type usersCreateWithoutItinerariesInput = {
-    name?: string | null
+    name: string
     email: string
-    password_hash: string
-    destinations?: destinationsCreateNestedManyWithoutUsersInput
+    password: string
+    hashed?: string | null
     saved_destinations?: saved_destinationsCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutItinerariesInput = {
     id?: number
-    name?: string | null
+    name: string
     email: string
-    password_hash: string
-    destinations?: destinationsUncheckedCreateNestedManyWithoutUsersInput
+    password: string
+    hashed?: string | null
     saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -8746,12 +8407,11 @@ export namespace Prisma {
   }
 
   export type itinerary_destinationsCreateWithoutItinerariesInput = {
-    destinations?: destinationsCreateNestedOneWithoutItinerary_destinationsInput
+    destinations: destinationsCreateNestedOneWithoutItinerary_destinationsInput
   }
 
   export type itinerary_destinationsUncheckedCreateWithoutItinerariesInput = {
-    id?: number
-    destination_id?: number | null
+    destinationid: number
   }
 
   export type itinerary_destinationsCreateOrConnectWithoutItinerariesInput = {
@@ -8776,19 +8436,19 @@ export namespace Prisma {
   }
 
   export type usersUpdateWithoutItinerariesInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    destinations?: destinationsUpdateManyWithoutUsersNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
     saved_destinations?: saved_destinationsUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutItinerariesInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    destinations?: destinationsUncheckedUpdateManyWithoutUsersNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
     saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -8809,23 +8469,23 @@ export namespace Prisma {
   }
 
   export type destinationsCreateWithoutItinerary_destinationsInput = {
-    title: string
+    name: string
     description?: string | null
-    location?: string | null
     image?: string | null
     category?: string | null
-    users?: usersCreateNestedOneWithoutDestinationsInput
+    latitude?: number | null
+    longitude?: number | null
     saved_destinations?: saved_destinationsCreateNestedManyWithoutDestinationsInput
   }
 
   export type destinationsUncheckedCreateWithoutItinerary_destinationsInput = {
     id?: number
-    title: string
+    name: string
     description?: string | null
-    location?: string | null
     image?: string | null
     category?: string | null
-    created_by_id?: number | null
+    latitude?: number | null
+    longitude?: number | null
     saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
   }
 
@@ -8835,14 +8495,14 @@ export namespace Prisma {
   }
 
   export type itinerariesCreateWithoutItinerary_destinationsInput = {
-    title?: string | null
-    users?: usersCreateNestedOneWithoutItinerariesInput
+    name: string
+    users: usersCreateNestedOneWithoutItinerariesInput
   }
 
   export type itinerariesUncheckedCreateWithoutItinerary_destinationsInput = {
     id?: number
-    title?: string | null
-    user_id?: number | null
+    name: string
+    userid: number
   }
 
   export type itinerariesCreateOrConnectWithoutItinerary_destinationsInput = {
@@ -8862,23 +8522,23 @@ export namespace Prisma {
   }
 
   export type destinationsUpdateWithoutItinerary_destinationsInput = {
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
-    users?: usersUpdateOneWithoutDestinationsNestedInput
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     saved_destinations?: saved_destinationsUpdateManyWithoutDestinationsNestedInput
   }
 
   export type destinationsUncheckedUpdateWithoutItinerary_destinationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by_id?: NullableIntFieldUpdateOperationsInput | number | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
   }
 
@@ -8894,34 +8554,34 @@ export namespace Prisma {
   }
 
   export type itinerariesUpdateWithoutItinerary_destinationsInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    users?: usersUpdateOneWithoutItinerariesNestedInput
+    name?: StringFieldUpdateOperationsInput | string
+    users?: usersUpdateOneRequiredWithoutItinerariesNestedInput
   }
 
   export type itinerariesUncheckedUpdateWithoutItinerary_destinationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    userid?: IntFieldUpdateOperationsInput | number
   }
 
   export type destinationsCreateWithoutSaved_destinationsInput = {
-    title: string
+    name: string
     description?: string | null
-    location?: string | null
     image?: string | null
     category?: string | null
-    users?: usersCreateNestedOneWithoutDestinationsInput
+    latitude?: number | null
+    longitude?: number | null
     itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutDestinationsInput
   }
 
   export type destinationsUncheckedCreateWithoutSaved_destinationsInput = {
     id?: number
-    title: string
+    name: string
     description?: string | null
-    location?: string | null
     image?: string | null
     category?: string | null
-    created_by_id?: number | null
+    latitude?: number | null
+    longitude?: number | null
     itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
   }
 
@@ -8931,19 +8591,19 @@ export namespace Prisma {
   }
 
   export type usersCreateWithoutSaved_destinationsInput = {
-    name?: string | null
+    name: string
     email: string
-    password_hash: string
-    destinations?: destinationsCreateNestedManyWithoutUsersInput
+    password: string
+    hashed?: string | null
     itineraries?: itinerariesCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutSaved_destinationsInput = {
     id?: number
-    name?: string | null
+    name: string
     email: string
-    password_hash: string
-    destinations?: destinationsUncheckedCreateNestedManyWithoutUsersInput
+    password: string
+    hashed?: string | null
     itineraries?: itinerariesUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -8964,23 +8624,23 @@ export namespace Prisma {
   }
 
   export type destinationsUpdateWithoutSaved_destinationsInput = {
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
-    users?: usersUpdateOneWithoutDestinationsNestedInput
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     itinerary_destinations?: itinerary_destinationsUpdateManyWithoutDestinationsNestedInput
   }
 
   export type destinationsUncheckedUpdateWithoutSaved_destinationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
-    created_by_id?: NullableIntFieldUpdateOperationsInput | number | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
   }
 
@@ -8996,61 +8656,30 @@ export namespace Prisma {
   }
 
   export type usersUpdateWithoutSaved_destinationsInput = {
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    destinations?: destinationsUpdateManyWithoutUsersNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
     itineraries?: itinerariesUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutSaved_destinationsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hash?: StringFieldUpdateOperationsInput | string
-    destinations?: destinationsUncheckedUpdateManyWithoutUsersNestedInput
+    password?: StringFieldUpdateOperationsInput | string
+    hashed?: NullableStringFieldUpdateOperationsInput | string | null
     itineraries?: itinerariesUncheckedUpdateManyWithoutUsersNestedInput
   }
 
-  export type destinationsCreateWithoutUsersInput = {
-    title: string
-    description?: string | null
-    location?: string | null
-    image?: string | null
-    category?: string | null
-    itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutDestinationsInput
-    saved_destinations?: saved_destinationsCreateNestedManyWithoutDestinationsInput
-  }
-
-  export type destinationsUncheckedCreateWithoutUsersInput = {
-    id?: number
-    title: string
-    description?: string | null
-    location?: string | null
-    image?: string | null
-    category?: string | null
-    itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
-    saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
-  }
-
-  export type destinationsCreateOrConnectWithoutUsersInput = {
-    where: destinationsWhereUniqueInput
-    create: XOR<destinationsCreateWithoutUsersInput, destinationsUncheckedCreateWithoutUsersInput>
-  }
-
-  export type destinationsCreateManyUsersInputEnvelope = {
-    data: destinationsCreateManyUsersInput | destinationsCreateManyUsersInput[]
-    skipDuplicates?: boolean
-  }
-
   export type itinerariesCreateWithoutUsersInput = {
-    title?: string | null
+    name: string
     itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutItinerariesInput
   }
 
   export type itinerariesUncheckedCreateWithoutUsersInput = {
     id?: number
-    title?: string | null
+    name: string
     itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutItinerariesInput
   }
 
@@ -9065,12 +8694,11 @@ export namespace Prisma {
   }
 
   export type saved_destinationsCreateWithoutUsersInput = {
-    destinations?: destinationsCreateNestedOneWithoutSaved_destinationsInput
+    destinations: destinationsCreateNestedOneWithoutSaved_destinationsInput
   }
 
   export type saved_destinationsUncheckedCreateWithoutUsersInput = {
-    id?: number
-    destination_id?: number | null
+    destinationid: number
   }
 
   export type saved_destinationsCreateOrConnectWithoutUsersInput = {
@@ -9081,35 +8709,6 @@ export namespace Prisma {
   export type saved_destinationsCreateManyUsersInputEnvelope = {
     data: saved_destinationsCreateManyUsersInput | saved_destinationsCreateManyUsersInput[]
     skipDuplicates?: boolean
-  }
-
-  export type destinationsUpsertWithWhereUniqueWithoutUsersInput = {
-    where: destinationsWhereUniqueInput
-    update: XOR<destinationsUpdateWithoutUsersInput, destinationsUncheckedUpdateWithoutUsersInput>
-    create: XOR<destinationsCreateWithoutUsersInput, destinationsUncheckedCreateWithoutUsersInput>
-  }
-
-  export type destinationsUpdateWithWhereUniqueWithoutUsersInput = {
-    where: destinationsWhereUniqueInput
-    data: XOR<destinationsUpdateWithoutUsersInput, destinationsUncheckedUpdateWithoutUsersInput>
-  }
-
-  export type destinationsUpdateManyWithWhereWithoutUsersInput = {
-    where: destinationsScalarWhereInput
-    data: XOR<destinationsUpdateManyMutationInput, destinationsUncheckedUpdateManyWithoutUsersInput>
-  }
-
-  export type destinationsScalarWhereInput = {
-    AND?: destinationsScalarWhereInput | destinationsScalarWhereInput[]
-    OR?: destinationsScalarWhereInput[]
-    NOT?: destinationsScalarWhereInput | destinationsScalarWhereInput[]
-    id?: IntFilter<"destinations"> | number
-    title?: StringFilter<"destinations"> | string
-    description?: StringNullableFilter<"destinations"> | string | null
-    location?: StringNullableFilter<"destinations"> | string | null
-    image?: StringNullableFilter<"destinations"> | string | null
-    category?: StringNullableFilter<"destinations"> | string | null
-    created_by_id?: IntNullableFilter<"destinations"> | number | null
   }
 
   export type itinerariesUpsertWithWhereUniqueWithoutUsersInput = {
@@ -9133,8 +8732,8 @@ export namespace Prisma {
     OR?: itinerariesScalarWhereInput[]
     NOT?: itinerariesScalarWhereInput | itinerariesScalarWhereInput[]
     id?: IntFilter<"itineraries"> | number
-    title?: StringNullableFilter<"itineraries"> | string | null
-    user_id?: IntNullableFilter<"itineraries"> | number | null
+    name?: StringFilter<"itineraries"> | string
+    userid?: IntFilter<"itineraries"> | number
   }
 
   export type saved_destinationsUpsertWithWhereUniqueWithoutUsersInput = {
@@ -9154,139 +8753,88 @@ export namespace Prisma {
   }
 
   export type itinerary_destinationsCreateManyDestinationsInput = {
-    id?: number
-    itinerary_id?: number | null
+    itineraryid: number
   }
 
   export type saved_destinationsCreateManyDestinationsInput = {
-    id?: number
-    user_id?: number | null
+    userid: number
   }
 
   export type itinerary_destinationsUpdateWithoutDestinationsInput = {
-    itineraries?: itinerariesUpdateOneWithoutItinerary_destinationsNestedInput
+    itineraries?: itinerariesUpdateOneRequiredWithoutItinerary_destinationsNestedInput
   }
 
   export type itinerary_destinationsUncheckedUpdateWithoutDestinationsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    itinerary_id?: NullableIntFieldUpdateOperationsInput | number | null
+    itineraryid?: IntFieldUpdateOperationsInput | number
   }
 
   export type itinerary_destinationsUncheckedUpdateManyWithoutDestinationsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    itinerary_id?: NullableIntFieldUpdateOperationsInput | number | null
+    itineraryid?: IntFieldUpdateOperationsInput | number
   }
 
   export type saved_destinationsUpdateWithoutDestinationsInput = {
-    users?: usersUpdateOneWithoutSaved_destinationsNestedInput
+    users?: usersUpdateOneRequiredWithoutSaved_destinationsNestedInput
   }
 
   export type saved_destinationsUncheckedUpdateWithoutDestinationsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    userid?: IntFieldUpdateOperationsInput | number
   }
 
   export type saved_destinationsUncheckedUpdateManyWithoutDestinationsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    userid?: IntFieldUpdateOperationsInput | number
   }
 
   export type itinerary_destinationsCreateManyItinerariesInput = {
-    id?: number
-    destination_id?: number | null
+    destinationid: number
   }
 
   export type itinerary_destinationsUpdateWithoutItinerariesInput = {
-    destinations?: destinationsUpdateOneWithoutItinerary_destinationsNestedInput
+    destinations?: destinationsUpdateOneRequiredWithoutItinerary_destinationsNestedInput
   }
 
   export type itinerary_destinationsUncheckedUpdateWithoutItinerariesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
   export type itinerary_destinationsUncheckedUpdateManyWithoutItinerariesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type destinationsCreateManyUsersInput = {
-    id?: number
-    title: string
-    description?: string | null
-    location?: string | null
-    image?: string | null
-    category?: string | null
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
   export type itinerariesCreateManyUsersInput = {
     id?: number
-    title?: string | null
+    name: string
   }
 
   export type saved_destinationsCreateManyUsersInput = {
-    id?: number
-    destination_id?: number | null
-  }
-
-  export type destinationsUpdateWithoutUsersInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    itinerary_destinations?: itinerary_destinationsUpdateManyWithoutDestinationsNestedInput
-    saved_destinations?: saved_destinationsUpdateManyWithoutDestinationsNestedInput
-  }
-
-  export type destinationsUncheckedUpdateWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
-    saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
-  }
-
-  export type destinationsUncheckedUpdateManyWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
+    destinationid: number
   }
 
   export type itinerariesUpdateWithoutUsersInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     itinerary_destinations?: itinerary_destinationsUpdateManyWithoutItinerariesNestedInput
   }
 
   export type itinerariesUncheckedUpdateWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutItinerariesNestedInput
   }
 
   export type itinerariesUncheckedUpdateManyWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type saved_destinationsUpdateWithoutUsersInput = {
-    destinations?: destinationsUpdateOneWithoutSaved_destinationsNestedInput
+    destinations?: destinationsUpdateOneRequiredWithoutSaved_destinationsNestedInput
   }
 
   export type saved_destinationsUncheckedUpdateWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
   export type saved_destinationsUncheckedUpdateManyWithoutUsersInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    destinationid?: IntFieldUpdateOperationsInput | number
   }
 
 

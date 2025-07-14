@@ -74,7 +74,12 @@ export default function AddImage() {
 
       console.log("Destination data to save:", newDestination);
       try {
-        axios.post("http://localhost:3000/destinations/add", newDestination);
+        const token = localStorage.getItem("pintrail-token");
+        await axios.post("http://localhost:3000/destinations/add", newDestination,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        });
       } catch (error) {
         console.error("Error adding destination:", error);
       }

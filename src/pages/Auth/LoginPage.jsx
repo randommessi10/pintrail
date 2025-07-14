@@ -1,25 +1,36 @@
 import { LogIn, Mail, Lock, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; 
 import '../../styles/LoginPage.css';
 import axios from 'axios';
+
 export default function LoginPage() {
+    const navigate = useNavigate(); 
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
     function handleSubmit(event) {
-        event.preventDefault();
-        axios.post('http://localhost:3000/auth/login', 
-            {email,password}
-        )
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-        
+        event.preventDefault();    
+        axios.post('http://localhost:3000/auth/login', { email, password })
+            .then(response => {
+                const { token, user } = response.data;
+                localStorage.setItem("pintrail-token", token);
+                localStorage.setItem("pintrail-user", JSON.stringify(user));
+                alert("Login successful!");
+                navigate("/explore"); 
+            })
+            .catch(error => {
+                if (error.response?.data?.message) {
+                    alert(error.response.data.message);
+                } else {
+                    alert("An unexpected error occurred. Please try again.");
+                }
+                console.error(error);
+            });
     }
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const [showPassword,setShowPassword] = useState(false);
+    
     return (
         <div className="loginCard">
             <div className="loginIconWrapper">

@@ -1,34 +1,45 @@
 import { UserPlus, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import "../../styles/RegisterPage.css"
+import "../../styles/RegisterPage.css";
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 export default function RegisterPage() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [checkbox, setCheckbox] = useState(false);
+
+    const navigate = useNavigate();
 
     function handleSubmit(event) {
         event.preventDefault();
+
         if (name && email && password && checkbox) {
-            axios.post('http://localhost:3000/auth/register', 
-                {name,email,password}
-            )
+            axios.post('http://localhost:3000/auth/register', {
+                name,
+                email,
+                password
+            })
             .then(response => {
                 console.log(response.data);
+                alert('Account created successfully!');
+                navigate('/login'); // 🔁 Redirect to Login after success
             })
             .catch(error => {
+                if (error.response?.data?.message) {
+                    alert(error.response.data.message); // Show backend error (e.g. duplicate email)
+                } else {
+                    alert('An unexpected error occurred. Please try again.');
+                }
                 console.error(error);
             });
         } else {
-            console.log('Please fill all the fields');
+            alert('Please fill all fields and agree to the terms.');
         }
     }
-
-    const [name,setName] = useState('');
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const [showPassword,setShowPassword] = useState(false);
-    const [checkbox,setCheckbox] = useState(false);
-
+    
     return (
         <div className="registerPage">
             <div className="loginCard">
@@ -55,14 +66,24 @@ export default function RegisterPage() {
                     <p>Password</p>
                     <div className="inputWrapper">
                         <Lock className="icon" />
-                        <input type= {showPassword ? "text" : "password"} placeholder="Create your password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input 
+                            type={showPassword ? "text" : "password"} 
+                            placeholder="Create your password" 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)} 
+                        />
                         {showPassword ? 
-                        <Eye className="icon right" onClick={() => setShowPassword(false)} /> : 
-                        <EyeOff className="icon right" onClick={() => setShowPassword(true)} />}
+                            <Eye className="icon right" onClick={() => setShowPassword(false)} /> : 
+                            <EyeOff className="icon right" onClick={() => setShowPassword(true)} />
+                        }
                     </div>
 
                     <div className="inputWrapper checkboxRow">
-                        <input type="checkbox" id="terms" onChange={(e) => setCheckbox(e.target.checked)} />
+                        <input 
+                            type="checkbox" 
+                            id="terms" 
+                            onChange={(e) => setCheckbox(e.target.checked)} 
+                        />
                         <label htmlFor="terms" className="termsText">
                             I agree to the <Link to="/terms-of-service">Terms of Service</Link> and <Link to="/privacy-policy">Privacy Policy</Link>
                         </label>

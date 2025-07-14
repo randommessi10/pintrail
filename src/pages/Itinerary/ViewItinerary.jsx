@@ -1,45 +1,59 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  mockItineraries,
-  mockItineraryDestinations,
-  destinations,
-} from "../../data/travelData";
 import { Trash2 } from "lucide-react";
 import "../../styles/ViewItinerary.css";
+import axios from "axios";
 
 export default function ViewItinerary() {
   const { id } = useParams();
-  const foundItinerary = mockItineraries.find((item) => item.id === id);
+  const itineraryId = Number(id); // Convert to number here
 
   const [itinerary, setItinerary] = useState({
-    ...foundItinerary,
+    name: '',
     destinations: [],
   });
 
   useEffect(() => {
-    const relatedDestIds = mockItineraryDestinations
-      .filter((entry) => entry.itineraryId === id)
-      .map((entry) => entry.destinationId);
+    const fetchItinerary = async () => {
+      try {
+        const token = localStorage.getItem('pintrail-token');
+        const response = await axios.get(`/itineraries/view?id=${itineraryId}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        setItinerary(response.data);
+      } catch (error) {
+        console.error(error);
+        setItinerary({ name: 'Itinerary not found', destinations: [] });
+      }
+    };
+    fetchItinerary();
+  }, [itineraryId]);
 
-    const fullDestinations = destinations.filter((dest) =>
-      relatedDestIds.includes(dest.id)
-    );
-
-    setItinerary((prev) => ({
-      ...prev,
-      destinations: fullDestinations,
-    }));
-  }, [id]);
-
-  const handleRemoveDestination = (destinationId) => {
-    console.log("removed destination:", destinationId, "from itinerary:", itinerary.id);
-    setItinerary((prev) => ({
-      ...prev,
-      destinations: prev.destinations.filter(
-        (dest) => dest.id !== destinationId
-      ),
-    }));
+  const handleRemoveDestination = async (destinationId) => {
+    const token = localStorage.getItem('pintrail-token');
+    try {
+      const response = await axios.post('/itineraries/remove',
+        { itineraryId: itinerary.id, destinationId },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+      alert(response.data.message)
+      setItinerary((prev) => ({
+        ...prev,
+        destinations: prev.destinations.filter(
+          (dest) => dest.id !== destinationId
+        ),
+      }));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -47,7 +61,7 @@ export default function ViewItinerary() {
       <main className="view-main">
         <header className="view-header">
           <div className="header-top">
-            <h1 className="itinerary-name">{itinerary.name}</h1>
+            <h1 className="itinerary-name">{itinerary?.name || "Itinerary not found"}</h1>
             <button className="map-button">View on Map</button>
           </div>
         </header>

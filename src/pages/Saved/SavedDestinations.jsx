@@ -1,37 +1,67 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios"; // Import axios
 import FilterBar from "../../components/FilterBar";
 import SearchBar from "../../components/SearchBar";
 import DestinationGrid from "../../components/DestinationGrid";
 import DestinationModal from "../../components/DestinationModal";
-import { savedDestinations, destinations } from "../../data/travelData";
 import { Heart } from "lucide-react";
 import "../../styles/SavedDestinations.css";
 
 export default function SavedDestinations() {
   const [category, setCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [destinations, setDestinations] = useState([]); // Fetched destinations
+  const [savedDestinations, setSavedDestinations] = useState([]); // Saved destinations
   const [filteredDestinations, setFilteredDestinations] = useState([]);
   const [selectedDestination, setSelectedDestination] = useState(null);
 
-  // Join savedDestinations with destinations just once (since data is static for now)
-  const savedDestinationDetails = useMemo(() => {
-    return savedDestinations
-      .map((entry) =>
-        destinations.find((dest) => dest.id === entry.destinationId)
-      )
-      .filter(Boolean);
-  }, []); // ✅ empty dependency array — calculated once
+  // Fetch saved destinations and all destinations on mount
+  useEffect(() => {
+    const token = localStorage.getItem("pintrail-token");
 
+    // Fetch all destinations
+    axios
+      .get("http://localhost:3000/destinations/fetch", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setDestinations(response.data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch destinations:", error);
+      });
+
+    // Fetch saved destinations
+    axios
+      .get("http://localhost:3000/saved/fetch", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setSavedDestinations(response.data); // Set saved destinations
+      })
+      .catch((error) => {
+        console.error("Failed to fetch saved destinations:", error);
+      });
+  }, []);
+
+  // Filter saved destinations based on category and search query
   useEffect(() => {
     const lowerQuery = searchQuery.toLowerCase();
-    const results = savedDestinationDetails.filter((destination) => {
-      const matchesCategory =
-        category === "all" || destination.category.includes(category);
-      const matchesSearch = destination.name.toLowerCase().includes(lowerQuery);
-      return matchesCategory && matchesSearch;
-    });
+    const results = destinations
+      .filter((destination) => savedDestinations.includes(destination.id)) // Only show saved destinations
+      .filter((destination) => {
+        const matchesCategory =
+          category === "all" || destination.category.includes(category);
+        const matchesSearch = destination.name.toLowerCase().includes(lowerQuery);
+        return matchesCategory && matchesSearch;
+      });
+
     setFilteredDestinations(results);
-  }, [category, searchQuery, savedDestinationDetails]);
+  }, [category, searchQuery, destinations, savedDestinations]);
 
   return (
     <div className="saved-page">
@@ -56,12 +86,14 @@ export default function SavedDestinations() {
         destinations={filteredDestinations}
         onDestinationClick={setSelectedDestination}
         highlightedDestination={selectedDestination?.id || null}
+        isSaved={true} // All destinations in this grid are saved
       />
 
       {selectedDestination && (
         <DestinationModal
           destination={selectedDestination}
           onClose={() => setSelectedDestination(null)}
+          isSaved={true} // This is a saved destination
         />
       )}
     </div>

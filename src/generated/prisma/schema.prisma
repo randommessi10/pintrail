@@ -10,51 +10,48 @@ datasource db {
 
 model destinations {
   id                     Int                      @id @default(autoincrement())
-  title                  String                   @db.VarChar(255)
+  name                   String                   @db.VarChar(255)
   description            String?
-  location               String?                  @db.VarChar(255)
   image                  String?
   category               String?                  @db.VarChar(100)
-  created_by_id          Int?
-  users                  users?                   @relation(fields: [created_by_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  latitude               Float?
+  longitude              Float?
   itinerary_destinations itinerary_destinations[]
   saved_destinations     saved_destinations[]
 }
 
 model itineraries {
   id                     Int                      @id @default(autoincrement())
-  title                  String?                  @db.VarChar(255)
-  user_id                Int?
-  users                  users?                   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  name                   String                   @db.VarChar(255)
+  userid                 Int
+  users                  users                    @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction)
   itinerary_destinations itinerary_destinations[]
 }
 
 model itinerary_destinations {
-  id             Int           @id @default(autoincrement())
-  itinerary_id   Int?
-  destination_id Int?
-  destinations   destinations? @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  itineraries    itineraries?  @relation(fields: [itinerary_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  itineraryid   Int
+  destinationid Int
+  destinations  destinations @relation(fields: [destinationid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  itineraries   itineraries  @relation(fields: [itineraryid], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
-  @@unique([itinerary_id, destination_id])
+  @@id([itineraryid, destinationid])
 }
 
 model saved_destinations {
-  id             Int           @id @default(autoincrement())
-  user_id        Int?
-  destination_id Int?
-  destinations   destinations? @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  users          users?        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  userid        Int
+  destinationid Int
+  destinations  destinations @relation(fields: [destinationid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_destination")
+  users         users        @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user")
 
-  @@unique([user_id, destination_id])
+  @@unique([userid, destinationid], map: "saved_destinations_userid_destinationid_unique")
 }
 
 model users {
   id                 Int                  @id @default(autoincrement())
-  name               String?              @db.VarChar(100)
-  email              String               @unique @db.VarChar(100)
-  password_hash      String
-  destinations       destinations[]
+  name               String               @db.VarChar(255)
+  email              String               @unique @db.VarChar(255)
+  password           String               @db.VarChar(255)
+  hashed             String?              @db.VarChar(255)
   itineraries        itineraries[]
   saved_destinations saved_destinations[]
 }
