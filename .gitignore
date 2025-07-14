@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Vite
+dist/
+.vite/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/migrations/
+
+# Logs
+logs
+*.log
+*.log.*
+
+# IDEs
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Optional: prevent uploading of lockfiles (if you're using just one manager)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

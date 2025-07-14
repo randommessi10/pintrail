@@ -1,0 +1,57 @@
+:root {
+  --header-height: 96px; /* Adjust if your header changes */
+}
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, 
+    rgba(255, 154, 158, 0.05) 0%, 
+    rgba(254, 207, 239, 0.05) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Gradient overlay behind all content */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg,
+    rgba(255, 154, 158, 0.05) 0%,
+    rgba(254, 207, 239, 0.05) 100%);
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Ensure full height layout */
+#root,
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header offset */
+.page-content {
+  padding-top: var(--header-height);
+}
+
+

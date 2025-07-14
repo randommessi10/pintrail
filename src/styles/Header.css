@@ -1,0 +1,188 @@
+/* Layout */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Logo */
+.logo-text {
+  font-family: 'Lobster', cursive;
+  font-size: 1.75rem;
+  font-weight: normal;
+  color: #111827;
+  margin: 0;
+}
+
+/* Navigation items */
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-item {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  color: #374151;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+/* Profile menu */
+.profile-menu {
+  position: relative;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #374151;
+  border-radius: 0.5rem;
+}
+
+.profile-btn:hover {
+  background-color: #f3f4f6;
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  width: 12rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  display: none;
+}
+
+.profile-menu:hover .dropdown {
+  display: block;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  padding: 0.5rem 1rem;
+  color: #111827;
+  background: none;
+  border: none;
+  width: 100%;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #ffe4ee;
+  color: #ad1457;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 0.25rem 0;
+}
+
+/* Icons */
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-sm {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Initially hide the dropdown */
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 120%; /* Adjust based on spacing */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 160px;
+}
+
+/* Show dropdown when hovering over profile-menu */
+.profile-menu:hover .dropdown {
+  display: block;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+/* This creates an invisible hover zone above the dropdown */
+.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px; /* Extends hover area upward */
+  left: 0;
+  width: 100%;
+  height: 12px;
+}
+
+.nav-item,
+.logo-link,
+.dropdown-item {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item:hover,
+.dropdown-item:hover {
+  text-decoration: none;
+  color: inherit; /* or custom hover color */
+}
+

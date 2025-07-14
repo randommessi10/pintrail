@@ -1,0 +1,44 @@
+.search-bar-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 0 1rem 1rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 9999px; /* Pill shape */
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #111111;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.search-bar-wrapper:focus-within {
+  background-color: #fef2f2;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
+}
+
+.search-bar-wrapper .search-bar {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  color: #111111;
+}
+
+.search-bar-wrapper .search-bar::placeholder {
+  color: #9ca3af;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #9ca3af;
+}
+

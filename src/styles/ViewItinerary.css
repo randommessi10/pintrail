@@ -1,0 +1,180 @@
+.view-main {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .view-not-found {
+    text-align: center;
+    margin-top: 5rem;
+  }
+  
+  .view-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--foreground);
+    margin-bottom: 1rem;
+  }
+  
+  .view-header {
+    margin-bottom: 3rem;
+  }
+  
+  .back-button {
+    margin-bottom: 1rem;
+    color: var(--foreground);
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    opacity: 0; /* hidden */
+  pointer-events: none; /* optional: disable click */
+  }
+  
+  .icon-sm {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .itinerary-name {
+    font-size: 2rem;
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    color: #4b003d;
+    margin: 0;
+  }
+  
+  .map-button {
+    background-color: #4b003d;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .destination-section {
+    margin-bottom: 3rem;
+  }
+  
+  .destination-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111111;
+    margin-bottom: 1.5rem;
+  }
+  
+  .destination-card {
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+  
+  .destination-content {
+    display: flex;
+    padding: 0.5rem;
+  }
+  
+  .destination-order {
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #4b003d;
+  }
+  
+  .destination-image {
+    width: 8rem;
+    height: 6rem;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .destination-text {
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  .destination-name {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    color: #111111;
+  }
+  
+  .destination-desc {
+    font-size: 0.875rem;
+    color: #333333;
+  }
+  
+  .destination-remove {
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .remove-button {
+    background: transparent;
+    border: none;
+    color: crimson;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  .empty-icon {
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 9999px;
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-lg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #888;
+  }
+  
+  .empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #111111;
+  }
+  
+  .empty-subtitle {
+    color: #333333;
+    margin-bottom: 1.5rem;
+  }
+  

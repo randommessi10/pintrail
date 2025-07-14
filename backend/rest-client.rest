@@ -1,0 +1,83 @@
+### AUTH
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+###
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+### DESTINATIONS
+GET http://localhost:3000/destinations
+
+###
+POST http://localhost:3000/destinations
+Content-Type: application/json
+
+{
+  "title": "Paris",
+  "description": "A beautiful city",
+  "location": "France"
+}
+
+### ITINERARIES
+GET http://localhost:3000/itineraries
+
+###
+POST http://localhost:3000/itineraries
+Content-Type: application/json
+
+{
+  "title": "Europe Trip"
+}
+
+###
+GET http://localhost:3000/itineraries/1
+
+###
+PUT http://localhost:3000/itineraries/1
+Content-Type: application/json
+
+{
+  "title": "Updated Trip Name"
+}
+
+###
+GET http://localhost:3000/itineraries/1/destinations
+
+###
+POST http://localhost:3000/itineraries/1/destinations
+Content-Type: application/json
+
+{
+  "destinationId": 2
+}
+
+###
+PUT http://localhost:3000/itineraries/1/destinations/2
+Content-Type: application/json
+
+{
+  "note": "Updated info for this destination in itinerary"
+}
+
+### SAVED DESTINATIONS
+GET http://localhost:3000/saved-destinations
+
+###
+POST http://localhost:3000/saved-destinations
+Content-Type: application/json
+
+{
+  "destinationId": 2
+}

@@ -1,0 +1,213 @@
+.registerPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem; /* Prevent cutoff on smaller screens */
+}
+
+.loginCard {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 34rem;
+  margin: 0 auto 2rem auto; /* Removed top margin */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.loginCard h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.loginCard p.subtext {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.loginCard form > p {
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.loginCard form > * + * {
+  margin-top: 0.75rem;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: "Roboto", sans-serif;
+}
+
+.inputWrapper input:focus {
+  border-color: #888;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.inputWrapper .icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  color: #888;
+}
+
+.inputWrapper .icon.right {
+  left: auto;
+  right: 0.75rem;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Checkbox row */
+.checkboxRow {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.3;
+  margin-top: 0.5rem;
+}
+
+.checkboxRow input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: #ff758c;
+  position: relative;
+  top: 2px;
+}
+
+.checkboxRow label {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.loginCard button[type="submit"] {
+  width: 100%;
+  padding: 0.6rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+
+  background-color: #4b003d;
+  color: white;
+}
+
+.loginCard button[type="submit"]:hover {
+  background-color: #37002d;
+  color: white;
+  text-decoration: none;
+}
+
+/* Already have an account? */
+.loginCard > p:not(.subtext):not(.backHomeLink) {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.loginCard > p a {
+  font-weight: 500;
+  font-size: inherit;
+}
+
+/* Back to Home link */
+.backHomeLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #555;
+}
+
+.backHomeLink a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.arrowIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.infoText {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+}
+
+/* Remove underline from all links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Center UserPlus icon */
+.loginIconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #4b003d;
+}

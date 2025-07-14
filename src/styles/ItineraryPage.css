@@ -1,0 +1,183 @@
+.itinerary-main {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.itinerary-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.itinerary-description {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.create-button {
+  background-color: #4b003d;
+  color: white;
+  border: none;
+  padding: 0.9rem 1.8rem;
+  border-radius: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.itinerary-count {
+  margin-bottom: 2rem;
+  color: #666;
+  font-size: 1rem;
+}
+
+.itinerary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* Card Styling */
+.itinerary-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.itinerary-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.itinerary-thumbnail img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.itinerary-placeholder {
+  height: 180px;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.itinerary-info {
+  padding: 1rem;
+  text-align: left;
+}
+
+.itinerary-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #111;
+}
+
+.itinerary-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn.view {
+  background-color: #4b003d;
+  color: white;
+}
+
+.btn.map {
+  background-color: white;
+  border: 1px solid #ccc;
+  color: #4b003d;
+}
+
+.btn.delete {
+  background-color: white;
+  border: 1px solid #fbb;
+  color: #e53935;
+}
+
+.icon-only {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  flex: 0 0 2.2rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.modal-content h2 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #111;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;     /* Add horizontal spacing */
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  /* Removed: flex: 1 */
+}
+
