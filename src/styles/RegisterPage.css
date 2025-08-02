@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 1rem; /* Prevent cutoff on smaller screens */
+  padding: 1rem;
 }
 
 .loginCard {
@@ -11,7 +11,7 @@
   border-radius: 12px;
   padding: 1.5rem;
   width: 34rem;
-  margin: 0 auto 2rem auto; /* Removed top margin */
+  margin: 0 auto 2rem auto; 
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   color: #333;
   font-family: "Roboto", sans-serif;
@@ -89,7 +89,7 @@
   cursor: pointer;
 }
 
-/* Checkbox row */
+
 .checkboxRow {
   display: inline-flex;
   align-items: flex-end;
@@ -142,7 +142,6 @@
   text-decoration: none;
 }
 
-/* Already have an account? */
 .loginCard > p:not(.subtext):not(.backHomeLink) {
   font-family: "Roboto", sans-serif;
   font-size: 0.875rem;
@@ -154,7 +153,6 @@
   font-size: inherit;
 }
 
-/* Back to Home link */
 .backHomeLink {
   display: flex;
   justify-content: center;
@@ -190,7 +188,6 @@
   text-align: center;
 }
 
-/* Remove underline from all links */
 a {
   text-decoration: none;
   color: inherit;
@@ -202,7 +199,6 @@ a:visited {
   color: inherit;
 }
 
-/* Center UserPlus icon */
 .loginIconWrapper {
   display: flex;
   justify-content: center;

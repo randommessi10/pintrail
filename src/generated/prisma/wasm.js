@@ -154,6 +154,14 @@ exports.Prisma.UsersScalarFieldEnum = {
   hashed: 'hashed'
 };
 
+exports.Prisma.Destination_pricingScalarFieldEnum = {
+  id: 'id',
+  destination_id: 'destination_id',
+  category: 'category',
+  cost_per_day: 'cost_per_day',
+  currency: 'currency'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -175,7 +183,8 @@ exports.Prisma.ModelName = {
   itineraries: 'itineraries',
   itinerary_destinations: 'itinerary_destinations',
   saved_destinations: 'saved_destinations',
-  users: 'users'
+  users: 'users',
+  destination_pricing: 'destination_pricing'
 };
 
 /**

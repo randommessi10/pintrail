@@ -57,6 +57,8 @@
   align-items: center;
   cursor: pointer;
   font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* === Destination Section === */
@@ -77,6 +79,8 @@
   border-radius: 6px;
   margin-bottom: 1.5rem;
   transition: box-shadow 0.2s;
+  background-color: rgba(243, 211, 234, 0.25); /* 50% opacity */
+
 }
 
 .destination-content {
@@ -98,6 +102,9 @@
   height: 6rem;
   flex-shrink: 0;
   margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
@@ -122,6 +129,7 @@
 .destination-desc {
   font-size: 0.875rem;
   color: #333;
+  margin-top: 0.5rem; /* Added space below cost */
 }
 
 .destination-remove {
@@ -181,7 +189,95 @@
   margin-bottom: 1.5rem;
 }
 
-.map-button{
+/* === Total Itinerary Cost Card === */
+.total-cost-card {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 6px; /* Same radius as destination cards */
+  background: linear-gradient(135deg, #fde1eb 0%, #fce7f3 100%);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease;
+}
+
+.total-cost-card:hover {
+  box-shadow: 0 6px 12px rgba(255, 105, 180, 0.25);
+}
+
+.total-cost-card .cost-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.total-cost-card .cost-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.total-cost-card .icon-wrapper {
+  font-size: 1.5rem;
+  background-color: white;
+  color: #e11d48;
+  padding: 0.4rem 0.6rem;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+.total-cost-card .cost-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+  text-align: right;
+}
+
+.total-cost-card .cost-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.total-cost-card .cost-unit {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.2rem;
+}
+
+/* === Individual Destination Cost Display === */
+.destination-header {
+  display: flex;
+  justify-content: space-between; /* Important: Keep name left, cost right */
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.destination-cost {
+  text-align: right;
+}
+
+.cost-value {
+  color: #16a34a;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.cost-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Hide unused icon-wrapper */
+.icon-wrapper {
   opacity: 0;
   pointer-events: none;
 }

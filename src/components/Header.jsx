@@ -21,7 +21,7 @@ export default function Header() {
       <nav className="header-container">
         <div className="left-group">
           <Link to="/" className="logo-link">
-            <h1 className="logo-text">PinTrail</h1>
+            <h1 className="logo-text">Pintrail</h1>
           </Link>
           <Link
             to="/explore"

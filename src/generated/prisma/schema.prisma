@@ -16,6 +16,7 @@ model destinations {
   category               String?                  @db.VarChar(100)
   latitude               Float?
   longitude              Float?
+  destination_pricing    destination_pricing[]
   itinerary_destinations itinerary_destinations[]
   saved_destinations     saved_destinations[]
 }
@@ -54,4 +55,14 @@ model users {
   hashed             String?              @db.VarChar(255)
   itineraries        itineraries[]
   saved_destinations saved_destinations[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model destination_pricing {
+  id             Int           @id @default(autoincrement())
+  destination_id Int?
+  category       String?
+  cost_per_day   Decimal       @db.Decimal(10, 2)
+  currency       String?       @default("INR")
+  destinations   destinations? @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }

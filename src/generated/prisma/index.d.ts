@@ -38,6 +38,11 @@ export type saved_destinations = $Result.DefaultSelection<Prisma.$saved_destinat
  * 
  */
 export type users = $Result.DefaultSelection<Prisma.$usersPayload>
+/**
+ * Model destination_pricing
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type destination_pricing = $Result.DefaultSelection<Prisma.$destination_pricingPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +218,16 @@ export class PrismaClient<
     * ```
     */
   get users(): Prisma.usersDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.destination_pricing`: Exposes CRUD operations for the **destination_pricing** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Destination_pricings
+    * const destination_pricings = await prisma.destination_pricing.findMany()
+    * ```
+    */
+  get destination_pricing(): Prisma.destination_pricingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     itineraries: 'itineraries',
     itinerary_destinations: 'itinerary_destinations',
     saved_destinations: 'saved_destinations',
-    users: 'users'
+    users: 'users',
+    destination_pricing: 'destination_pricing'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "destinations" | "itineraries" | "itinerary_destinations" | "saved_destinations" | "users"
+      modelProps: "destinations" | "itineraries" | "itinerary_destinations" | "saved_destinations" | "users" | "destination_pricing"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1066,80 @@ export namespace Prisma {
           }
         }
       }
+      destination_pricing: {
+        payload: Prisma.$destination_pricingPayload<ExtArgs>
+        fields: Prisma.destination_pricingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.destination_pricingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.destination_pricingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>
+          }
+          findFirst: {
+            args: Prisma.destination_pricingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.destination_pricingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>
+          }
+          findMany: {
+            args: Prisma.destination_pricingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>[]
+          }
+          create: {
+            args: Prisma.destination_pricingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>
+          }
+          createMany: {
+            args: Prisma.destination_pricingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.destination_pricingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>[]
+          }
+          delete: {
+            args: Prisma.destination_pricingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>
+          }
+          update: {
+            args: Prisma.destination_pricingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>
+          }
+          deleteMany: {
+            args: Prisma.destination_pricingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.destination_pricingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.destination_pricingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>[]
+          }
+          upsert: {
+            args: Prisma.destination_pricingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$destination_pricingPayload>
+          }
+          aggregate: {
+            args: Prisma.Destination_pricingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDestination_pricing>
+          }
+          groupBy: {
+            args: Prisma.destination_pricingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Destination_pricingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.destination_pricingCountArgs<ExtArgs>
+            result: $Utils.Optional<Destination_pricingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1139,6 +1229,7 @@ export namespace Prisma {
     itinerary_destinations?: itinerary_destinationsOmit
     saved_destinations?: saved_destinationsOmit
     users?: usersOmit
+    destination_pricing?: destination_pricingOmit
   }
 
   /* Types for Logging */
@@ -1233,11 +1324,13 @@ export namespace Prisma {
    */
 
   export type DestinationsCountOutputType = {
+    destination_pricing: number
     itinerary_destinations: number
     saved_destinations: number
   }
 
   export type DestinationsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destination_pricing?: boolean | DestinationsCountOutputTypeCountDestination_pricingArgs
     itinerary_destinations?: boolean | DestinationsCountOutputTypeCountItinerary_destinationsArgs
     saved_destinations?: boolean | DestinationsCountOutputTypeCountSaved_destinationsArgs
   }
@@ -1251,6 +1344,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the DestinationsCountOutputType
      */
     select?: DestinationsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DestinationsCountOutputType without action
+   */
+  export type DestinationsCountOutputTypeCountDestination_pricingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: destination_pricingWhereInput
   }
 
   /**
@@ -1565,6 +1665,7 @@ export namespace Prisma {
     category?: boolean
     latitude?: boolean
     longitude?: boolean
+    destination_pricing?: boolean | destinations$destination_pricingArgs<ExtArgs>
     itinerary_destinations?: boolean | destinations$itinerary_destinationsArgs<ExtArgs>
     saved_destinations?: boolean | destinations$saved_destinationsArgs<ExtArgs>
     _count?: boolean | DestinationsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1602,6 +1703,7 @@ export namespace Prisma {
 
   export type destinationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "category" | "latitude" | "longitude", ExtArgs["result"]["destinations"]>
   export type destinationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destination_pricing?: boolean | destinations$destination_pricingArgs<ExtArgs>
     itinerary_destinations?: boolean | destinations$itinerary_destinationsArgs<ExtArgs>
     saved_destinations?: boolean | destinations$saved_destinationsArgs<ExtArgs>
     _count?: boolean | DestinationsCountOutputTypeDefaultArgs<ExtArgs>
@@ -1612,6 +1714,7 @@ export namespace Prisma {
   export type $destinationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "destinations"
     objects: {
+      destination_pricing: Prisma.$destination_pricingPayload<ExtArgs>[]
       itinerary_destinations: Prisma.$itinerary_destinationsPayload<ExtArgs>[]
       saved_destinations: Prisma.$saved_destinationsPayload<ExtArgs>[]
     }
@@ -2017,6 +2120,7 @@ export namespace Prisma {
    */
   export interface Prisma__destinationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    destination_pricing<T extends destinations$destination_pricingArgs<ExtArgs> = {}>(args?: Subset<T, destinations$destination_pricingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     itinerary_destinations<T extends destinations$itinerary_destinationsArgs<ExtArgs> = {}>(args?: Subset<T, destinations$itinerary_destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$itinerary_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     saved_destinations<T extends destinations$saved_destinationsArgs<ExtArgs> = {}>(args?: Subset<T, destinations$saved_destinationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$saved_destinationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -2440,6 +2544,30 @@ export namespace Prisma {
      * Limit how many destinations to delete.
      */
     limit?: number
+  }
+
+  /**
+   * destinations.destination_pricing
+   */
+  export type destinations$destination_pricingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    where?: destination_pricingWhereInput
+    orderBy?: destination_pricingOrderByWithRelationInput | destination_pricingOrderByWithRelationInput[]
+    cursor?: destination_pricingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Destination_pricingScalarFieldEnum | Destination_pricingScalarFieldEnum[]
   }
 
   /**
@@ -6872,6 +7000,1125 @@ export namespace Prisma {
 
 
   /**
+   * Model destination_pricing
+   */
+
+  export type AggregateDestination_pricing = {
+    _count: Destination_pricingCountAggregateOutputType | null
+    _avg: Destination_pricingAvgAggregateOutputType | null
+    _sum: Destination_pricingSumAggregateOutputType | null
+    _min: Destination_pricingMinAggregateOutputType | null
+    _max: Destination_pricingMaxAggregateOutputType | null
+  }
+
+  export type Destination_pricingAvgAggregateOutputType = {
+    id: number | null
+    destination_id: number | null
+    cost_per_day: Decimal | null
+  }
+
+  export type Destination_pricingSumAggregateOutputType = {
+    id: number | null
+    destination_id: number | null
+    cost_per_day: Decimal | null
+  }
+
+  export type Destination_pricingMinAggregateOutputType = {
+    id: number | null
+    destination_id: number | null
+    category: string | null
+    cost_per_day: Decimal | null
+    currency: string | null
+  }
+
+  export type Destination_pricingMaxAggregateOutputType = {
+    id: number | null
+    destination_id: number | null
+    category: string | null
+    cost_per_day: Decimal | null
+    currency: string | null
+  }
+
+  export type Destination_pricingCountAggregateOutputType = {
+    id: number
+    destination_id: number
+    category: number
+    cost_per_day: number
+    currency: number
+    _all: number
+  }
+
+
+  export type Destination_pricingAvgAggregateInputType = {
+    id?: true
+    destination_id?: true
+    cost_per_day?: true
+  }
+
+  export type Destination_pricingSumAggregateInputType = {
+    id?: true
+    destination_id?: true
+    cost_per_day?: true
+  }
+
+  export type Destination_pricingMinAggregateInputType = {
+    id?: true
+    destination_id?: true
+    category?: true
+    cost_per_day?: true
+    currency?: true
+  }
+
+  export type Destination_pricingMaxAggregateInputType = {
+    id?: true
+    destination_id?: true
+    category?: true
+    cost_per_day?: true
+    currency?: true
+  }
+
+  export type Destination_pricingCountAggregateInputType = {
+    id?: true
+    destination_id?: true
+    category?: true
+    cost_per_day?: true
+    currency?: true
+    _all?: true
+  }
+
+  export type Destination_pricingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which destination_pricing to aggregate.
+     */
+    where?: destination_pricingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of destination_pricings to fetch.
+     */
+    orderBy?: destination_pricingOrderByWithRelationInput | destination_pricingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: destination_pricingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` destination_pricings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` destination_pricings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned destination_pricings
+    **/
+    _count?: true | Destination_pricingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Destination_pricingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Destination_pricingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Destination_pricingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Destination_pricingMaxAggregateInputType
+  }
+
+  export type GetDestination_pricingAggregateType<T extends Destination_pricingAggregateArgs> = {
+        [P in keyof T & keyof AggregateDestination_pricing]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDestination_pricing[P]>
+      : GetScalarType<T[P], AggregateDestination_pricing[P]>
+  }
+
+
+
+
+  export type destination_pricingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: destination_pricingWhereInput
+    orderBy?: destination_pricingOrderByWithAggregationInput | destination_pricingOrderByWithAggregationInput[]
+    by: Destination_pricingScalarFieldEnum[] | Destination_pricingScalarFieldEnum
+    having?: destination_pricingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Destination_pricingCountAggregateInputType | true
+    _avg?: Destination_pricingAvgAggregateInputType
+    _sum?: Destination_pricingSumAggregateInputType
+    _min?: Destination_pricingMinAggregateInputType
+    _max?: Destination_pricingMaxAggregateInputType
+  }
+
+  export type Destination_pricingGroupByOutputType = {
+    id: number
+    destination_id: number | null
+    category: string | null
+    cost_per_day: Decimal
+    currency: string | null
+    _count: Destination_pricingCountAggregateOutputType | null
+    _avg: Destination_pricingAvgAggregateOutputType | null
+    _sum: Destination_pricingSumAggregateOutputType | null
+    _min: Destination_pricingMinAggregateOutputType | null
+    _max: Destination_pricingMaxAggregateOutputType | null
+  }
+
+  type GetDestination_pricingGroupByPayload<T extends destination_pricingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Destination_pricingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Destination_pricingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Destination_pricingGroupByOutputType[P]>
+            : GetScalarType<T[P], Destination_pricingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type destination_pricingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    destination_id?: boolean
+    category?: boolean
+    cost_per_day?: boolean
+    currency?: boolean
+    destinations?: boolean | destination_pricing$destinationsArgs<ExtArgs>
+  }, ExtArgs["result"]["destination_pricing"]>
+
+  export type destination_pricingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    destination_id?: boolean
+    category?: boolean
+    cost_per_day?: boolean
+    currency?: boolean
+    destinations?: boolean | destination_pricing$destinationsArgs<ExtArgs>
+  }, ExtArgs["result"]["destination_pricing"]>
+
+  export type destination_pricingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    destination_id?: boolean
+    category?: boolean
+    cost_per_day?: boolean
+    currency?: boolean
+    destinations?: boolean | destination_pricing$destinationsArgs<ExtArgs>
+  }, ExtArgs["result"]["destination_pricing"]>
+
+  export type destination_pricingSelectScalar = {
+    id?: boolean
+    destination_id?: boolean
+    category?: boolean
+    cost_per_day?: boolean
+    currency?: boolean
+  }
+
+  export type destination_pricingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "destination_id" | "category" | "cost_per_day" | "currency", ExtArgs["result"]["destination_pricing"]>
+  export type destination_pricingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destinations?: boolean | destination_pricing$destinationsArgs<ExtArgs>
+  }
+  export type destination_pricingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destinations?: boolean | destination_pricing$destinationsArgs<ExtArgs>
+  }
+  export type destination_pricingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destinations?: boolean | destination_pricing$destinationsArgs<ExtArgs>
+  }
+
+  export type $destination_pricingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "destination_pricing"
+    objects: {
+      destinations: Prisma.$destinationsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      destination_id: number | null
+      category: string | null
+      cost_per_day: Prisma.Decimal
+      currency: string | null
+    }, ExtArgs["result"]["destination_pricing"]>
+    composites: {}
+  }
+
+  type destination_pricingGetPayload<S extends boolean | null | undefined | destination_pricingDefaultArgs> = $Result.GetResult<Prisma.$destination_pricingPayload, S>
+
+  type destination_pricingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<destination_pricingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Destination_pricingCountAggregateInputType | true
+    }
+
+  export interface destination_pricingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['destination_pricing'], meta: { name: 'destination_pricing' } }
+    /**
+     * Find zero or one Destination_pricing that matches the filter.
+     * @param {destination_pricingFindUniqueArgs} args - Arguments to find a Destination_pricing
+     * @example
+     * // Get one Destination_pricing
+     * const destination_pricing = await prisma.destination_pricing.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends destination_pricingFindUniqueArgs>(args: SelectSubset<T, destination_pricingFindUniqueArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Destination_pricing that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {destination_pricingFindUniqueOrThrowArgs} args - Arguments to find a Destination_pricing
+     * @example
+     * // Get one Destination_pricing
+     * const destination_pricing = await prisma.destination_pricing.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends destination_pricingFindUniqueOrThrowArgs>(args: SelectSubset<T, destination_pricingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Destination_pricing that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {destination_pricingFindFirstArgs} args - Arguments to find a Destination_pricing
+     * @example
+     * // Get one Destination_pricing
+     * const destination_pricing = await prisma.destination_pricing.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends destination_pricingFindFirstArgs>(args?: SelectSubset<T, destination_pricingFindFirstArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Destination_pricing that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {destination_pricingFindFirstOrThrowArgs} args - Arguments to find a Destination_pricing
+     * @example
+     * // Get one Destination_pricing
+     * const destination_pricing = await prisma.destination_pricing.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends destination_pricingFindFirstOrThrowArgs>(args?: SelectSubset<T, destination_pricingFindFirstOrThrowArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Destination_pricings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {destination_pricingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Destination_pricings
+     * const destination_pricings = await prisma.destination_pricing.findMany()
+     * 
+     * // Get first 10 Destination_pricings
+     * const destination_pricings = await prisma.destination_pricing.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const destination_pricingWithIdOnly = await prisma.destination_pricing.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends destination_pricingFindManyArgs>(args?: SelectSubset<T, destination_pricingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Destination_pricing.
+     * @param {destination_pricingCreateArgs} args - Arguments to create a Destination_pricing.
+     * @example
+     * // Create one Destination_pricing
+     * const Destination_pricing = await prisma.destination_pricing.create({
+     *   data: {
+     *     // ... data to create a Destination_pricing
+     *   }
+     * })
+     * 
+     */
+    create<T extends destination_pricingCreateArgs>(args: SelectSubset<T, destination_pricingCreateArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Destination_pricings.
+     * @param {destination_pricingCreateManyArgs} args - Arguments to create many Destination_pricings.
+     * @example
+     * // Create many Destination_pricings
+     * const destination_pricing = await prisma.destination_pricing.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends destination_pricingCreateManyArgs>(args?: SelectSubset<T, destination_pricingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Destination_pricings and returns the data saved in the database.
+     * @param {destination_pricingCreateManyAndReturnArgs} args - Arguments to create many Destination_pricings.
+     * @example
+     * // Create many Destination_pricings
+     * const destination_pricing = await prisma.destination_pricing.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Destination_pricings and only return the `id`
+     * const destination_pricingWithIdOnly = await prisma.destination_pricing.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends destination_pricingCreateManyAndReturnArgs>(args?: SelectSubset<T, destination_pricingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Destination_pricing.
+     * @param {destination_pricingDeleteArgs} args - Arguments to delete one Destination_pricing.
+     * @example
+     * // Delete one Destination_pricing
+     * const Destination_pricing = await prisma.destination_pricing.delete({
+     *   where: {
+     *     // ... filter to delete one Destination_pricing
+     *   }
+     * })
+     * 
+     */
+    delete<T extends destination_pricingDeleteArgs>(args: SelectSubset<T, destination_pricingDeleteArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Destination_pricing.
+     * @param {destination_pricingUpdateArgs} args - Arguments to update one Destination_pricing.
+     * @example
+     * // Update one Destination_pricing
+     * const destination_pricing = await prisma.destination_pricing.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends destination_pricingUpdateArgs>(args: SelectSubset<T, destination_pricingUpdateArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Destination_pricings.
+     * @param {destination_pricingDeleteManyArgs} args - Arguments to filter Destination_pricings to delete.
+     * @example
+     * // Delete a few Destination_pricings
+     * const { count } = await prisma.destination_pricing.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends destination_pricingDeleteManyArgs>(args?: SelectSubset<T, destination_pricingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Destination_pricings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {destination_pricingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Destination_pricings
+     * const destination_pricing = await prisma.destination_pricing.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends destination_pricingUpdateManyArgs>(args: SelectSubset<T, destination_pricingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Destination_pricings and returns the data updated in the database.
+     * @param {destination_pricingUpdateManyAndReturnArgs} args - Arguments to update many Destination_pricings.
+     * @example
+     * // Update many Destination_pricings
+     * const destination_pricing = await prisma.destination_pricing.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Destination_pricings and only return the `id`
+     * const destination_pricingWithIdOnly = await prisma.destination_pricing.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends destination_pricingUpdateManyAndReturnArgs>(args: SelectSubset<T, destination_pricingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Destination_pricing.
+     * @param {destination_pricingUpsertArgs} args - Arguments to update or create a Destination_pricing.
+     * @example
+     * // Update or create a Destination_pricing
+     * const destination_pricing = await prisma.destination_pricing.upsert({
+     *   create: {
+     *     // ... data to create a Destination_pricing
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Destination_pricing we want to update
+     *   }
+     * })
+     */
+    upsert<T extends destination_pricingUpsertArgs>(args: SelectSubset<T, destination_pricingUpsertArgs<ExtArgs>>): Prisma__destination_pricingClient<$Result.GetResult<Prisma.$destination_pricingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Destination_pricings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {destination_pricingCountArgs} args - Arguments to filter Destination_pricings to count.
+     * @example
+     * // Count the number of Destination_pricings
+     * const count = await prisma.destination_pricing.count({
+     *   where: {
+     *     // ... the filter for the Destination_pricings we want to count
+     *   }
+     * })
+    **/
+    count<T extends destination_pricingCountArgs>(
+      args?: Subset<T, destination_pricingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Destination_pricingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Destination_pricing.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Destination_pricingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Destination_pricingAggregateArgs>(args: Subset<T, Destination_pricingAggregateArgs>): Prisma.PrismaPromise<GetDestination_pricingAggregateType<T>>
+
+    /**
+     * Group by Destination_pricing.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {destination_pricingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends destination_pricingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: destination_pricingGroupByArgs['orderBy'] }
+        : { orderBy?: destination_pricingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, destination_pricingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDestination_pricingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the destination_pricing model
+   */
+  readonly fields: destination_pricingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for destination_pricing.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__destination_pricingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    destinations<T extends destination_pricing$destinationsArgs<ExtArgs> = {}>(args?: Subset<T, destination_pricing$destinationsArgs<ExtArgs>>): Prisma__destinationsClient<$Result.GetResult<Prisma.$destinationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the destination_pricing model
+   */
+  interface destination_pricingFieldRefs {
+    readonly id: FieldRef<"destination_pricing", 'Int'>
+    readonly destination_id: FieldRef<"destination_pricing", 'Int'>
+    readonly category: FieldRef<"destination_pricing", 'String'>
+    readonly cost_per_day: FieldRef<"destination_pricing", 'Decimal'>
+    readonly currency: FieldRef<"destination_pricing", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * destination_pricing findUnique
+   */
+  export type destination_pricingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * Filter, which destination_pricing to fetch.
+     */
+    where: destination_pricingWhereUniqueInput
+  }
+
+  /**
+   * destination_pricing findUniqueOrThrow
+   */
+  export type destination_pricingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * Filter, which destination_pricing to fetch.
+     */
+    where: destination_pricingWhereUniqueInput
+  }
+
+  /**
+   * destination_pricing findFirst
+   */
+  export type destination_pricingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * Filter, which destination_pricing to fetch.
+     */
+    where?: destination_pricingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of destination_pricings to fetch.
+     */
+    orderBy?: destination_pricingOrderByWithRelationInput | destination_pricingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for destination_pricings.
+     */
+    cursor?: destination_pricingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` destination_pricings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` destination_pricings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of destination_pricings.
+     */
+    distinct?: Destination_pricingScalarFieldEnum | Destination_pricingScalarFieldEnum[]
+  }
+
+  /**
+   * destination_pricing findFirstOrThrow
+   */
+  export type destination_pricingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * Filter, which destination_pricing to fetch.
+     */
+    where?: destination_pricingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of destination_pricings to fetch.
+     */
+    orderBy?: destination_pricingOrderByWithRelationInput | destination_pricingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for destination_pricings.
+     */
+    cursor?: destination_pricingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` destination_pricings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` destination_pricings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of destination_pricings.
+     */
+    distinct?: Destination_pricingScalarFieldEnum | Destination_pricingScalarFieldEnum[]
+  }
+
+  /**
+   * destination_pricing findMany
+   */
+  export type destination_pricingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * Filter, which destination_pricings to fetch.
+     */
+    where?: destination_pricingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of destination_pricings to fetch.
+     */
+    orderBy?: destination_pricingOrderByWithRelationInput | destination_pricingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing destination_pricings.
+     */
+    cursor?: destination_pricingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` destination_pricings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` destination_pricings.
+     */
+    skip?: number
+    distinct?: Destination_pricingScalarFieldEnum | Destination_pricingScalarFieldEnum[]
+  }
+
+  /**
+   * destination_pricing create
+   */
+  export type destination_pricingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a destination_pricing.
+     */
+    data: XOR<destination_pricingCreateInput, destination_pricingUncheckedCreateInput>
+  }
+
+  /**
+   * destination_pricing createMany
+   */
+  export type destination_pricingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many destination_pricings.
+     */
+    data: destination_pricingCreateManyInput | destination_pricingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * destination_pricing createManyAndReturn
+   */
+  export type destination_pricingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * The data used to create many destination_pricings.
+     */
+    data: destination_pricingCreateManyInput | destination_pricingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * destination_pricing update
+   */
+  export type destination_pricingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a destination_pricing.
+     */
+    data: XOR<destination_pricingUpdateInput, destination_pricingUncheckedUpdateInput>
+    /**
+     * Choose, which destination_pricing to update.
+     */
+    where: destination_pricingWhereUniqueInput
+  }
+
+  /**
+   * destination_pricing updateMany
+   */
+  export type destination_pricingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update destination_pricings.
+     */
+    data: XOR<destination_pricingUpdateManyMutationInput, destination_pricingUncheckedUpdateManyInput>
+    /**
+     * Filter which destination_pricings to update
+     */
+    where?: destination_pricingWhereInput
+    /**
+     * Limit how many destination_pricings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * destination_pricing updateManyAndReturn
+   */
+  export type destination_pricingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * The data used to update destination_pricings.
+     */
+    data: XOR<destination_pricingUpdateManyMutationInput, destination_pricingUncheckedUpdateManyInput>
+    /**
+     * Filter which destination_pricings to update
+     */
+    where?: destination_pricingWhereInput
+    /**
+     * Limit how many destination_pricings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * destination_pricing upsert
+   */
+  export type destination_pricingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the destination_pricing to update in case it exists.
+     */
+    where: destination_pricingWhereUniqueInput
+    /**
+     * In case the destination_pricing found by the `where` argument doesn't exist, create a new destination_pricing with this data.
+     */
+    create: XOR<destination_pricingCreateInput, destination_pricingUncheckedCreateInput>
+    /**
+     * In case the destination_pricing was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<destination_pricingUpdateInput, destination_pricingUncheckedUpdateInput>
+  }
+
+  /**
+   * destination_pricing delete
+   */
+  export type destination_pricingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+    /**
+     * Filter which destination_pricing to delete.
+     */
+    where: destination_pricingWhereUniqueInput
+  }
+
+  /**
+   * destination_pricing deleteMany
+   */
+  export type destination_pricingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which destination_pricings to delete
+     */
+    where?: destination_pricingWhereInput
+    /**
+     * Limit how many destination_pricings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * destination_pricing.destinations
+   */
+  export type destination_pricing$destinationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destinations
+     */
+    select?: destinationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destinations
+     */
+    omit?: destinationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destinationsInclude<ExtArgs> | null
+    where?: destinationsWhereInput
+  }
+
+  /**
+   * destination_pricing without action
+   */
+  export type destination_pricingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the destination_pricing
+     */
+    select?: destination_pricingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the destination_pricing
+     */
+    omit?: destination_pricingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: destination_pricingInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6932,6 +8179,17 @@ export namespace Prisma {
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+  export const Destination_pricingScalarFieldEnum: {
+    id: 'id',
+    destination_id: 'destination_id',
+    category: 'category',
+    cost_per_day: 'cost_per_day',
+    currency: 'currency'
+  };
+
+  export type Destination_pricingScalarFieldEnum = (typeof Destination_pricingScalarFieldEnum)[keyof typeof Destination_pricingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7003,6 +8261,20 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
   /**
    * Deep Input Types
    */
@@ -7019,6 +8291,7 @@ export namespace Prisma {
     category?: StringNullableFilter<"destinations"> | string | null
     latitude?: FloatNullableFilter<"destinations"> | number | null
     longitude?: FloatNullableFilter<"destinations"> | number | null
+    destination_pricing?: Destination_pricingListRelationFilter
     itinerary_destinations?: Itinerary_destinationsListRelationFilter
     saved_destinations?: Saved_destinationsListRelationFilter
   }
@@ -7031,6 +8304,7 @@ export namespace Prisma {
     category?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
+    destination_pricing?: destination_pricingOrderByRelationAggregateInput
     itinerary_destinations?: itinerary_destinationsOrderByRelationAggregateInput
     saved_destinations?: saved_destinationsOrderByRelationAggregateInput
   }
@@ -7046,6 +8320,7 @@ export namespace Prisma {
     category?: StringNullableFilter<"destinations"> | string | null
     latitude?: FloatNullableFilter<"destinations"> | number | null
     longitude?: FloatNullableFilter<"destinations"> | number | null
+    destination_pricing?: Destination_pricingListRelationFilter
     itinerary_destinations?: Itinerary_destinationsListRelationFilter
     saved_destinations?: Saved_destinationsListRelationFilter
   }, "id">
@@ -7280,6 +8555,63 @@ export namespace Prisma {
     hashed?: StringNullableWithAggregatesFilter<"users"> | string | null
   }
 
+  export type destination_pricingWhereInput = {
+    AND?: destination_pricingWhereInput | destination_pricingWhereInput[]
+    OR?: destination_pricingWhereInput[]
+    NOT?: destination_pricingWhereInput | destination_pricingWhereInput[]
+    id?: IntFilter<"destination_pricing"> | number
+    destination_id?: IntNullableFilter<"destination_pricing"> | number | null
+    category?: StringNullableFilter<"destination_pricing"> | string | null
+    cost_per_day?: DecimalFilter<"destination_pricing"> | Decimal | DecimalJsLike | number | string
+    currency?: StringNullableFilter<"destination_pricing"> | string | null
+    destinations?: XOR<DestinationsNullableScalarRelationFilter, destinationsWhereInput> | null
+  }
+
+  export type destination_pricingOrderByWithRelationInput = {
+    id?: SortOrder
+    destination_id?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    cost_per_day?: SortOrder
+    currency?: SortOrderInput | SortOrder
+    destinations?: destinationsOrderByWithRelationInput
+  }
+
+  export type destination_pricingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: destination_pricingWhereInput | destination_pricingWhereInput[]
+    OR?: destination_pricingWhereInput[]
+    NOT?: destination_pricingWhereInput | destination_pricingWhereInput[]
+    destination_id?: IntNullableFilter<"destination_pricing"> | number | null
+    category?: StringNullableFilter<"destination_pricing"> | string | null
+    cost_per_day?: DecimalFilter<"destination_pricing"> | Decimal | DecimalJsLike | number | string
+    currency?: StringNullableFilter<"destination_pricing"> | string | null
+    destinations?: XOR<DestinationsNullableScalarRelationFilter, destinationsWhereInput> | null
+  }, "id">
+
+  export type destination_pricingOrderByWithAggregationInput = {
+    id?: SortOrder
+    destination_id?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    cost_per_day?: SortOrder
+    currency?: SortOrderInput | SortOrder
+    _count?: destination_pricingCountOrderByAggregateInput
+    _avg?: destination_pricingAvgOrderByAggregateInput
+    _max?: destination_pricingMaxOrderByAggregateInput
+    _min?: destination_pricingMinOrderByAggregateInput
+    _sum?: destination_pricingSumOrderByAggregateInput
+  }
+
+  export type destination_pricingScalarWhereWithAggregatesInput = {
+    AND?: destination_pricingScalarWhereWithAggregatesInput | destination_pricingScalarWhereWithAggregatesInput[]
+    OR?: destination_pricingScalarWhereWithAggregatesInput[]
+    NOT?: destination_pricingScalarWhereWithAggregatesInput | destination_pricingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"destination_pricing"> | number
+    destination_id?: IntNullableWithAggregatesFilter<"destination_pricing"> | number | null
+    category?: StringNullableWithAggregatesFilter<"destination_pricing"> | string | null
+    cost_per_day?: DecimalWithAggregatesFilter<"destination_pricing"> | Decimal | DecimalJsLike | number | string
+    currency?: StringNullableWithAggregatesFilter<"destination_pricing"> | string | null
+  }
+
   export type destinationsCreateInput = {
     name: string
     description?: string | null
@@ -7287,6 +8619,7 @@ export namespace Prisma {
     category?: string | null
     latitude?: number | null
     longitude?: number | null
+    destination_pricing?: destination_pricingCreateNestedManyWithoutDestinationsInput
     itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutDestinationsInput
     saved_destinations?: saved_destinationsCreateNestedManyWithoutDestinationsInput
   }
@@ -7299,6 +8632,7 @@ export namespace Prisma {
     category?: string | null
     latitude?: number | null
     longitude?: number | null
+    destination_pricing?: destination_pricingUncheckedCreateNestedManyWithoutDestinationsInput
     itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
     saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
   }
@@ -7310,6 +8644,7 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination_pricing?: destination_pricingUpdateManyWithoutDestinationsNestedInput
     itinerary_destinations?: itinerary_destinationsUpdateManyWithoutDestinationsNestedInput
     saved_destinations?: saved_destinationsUpdateManyWithoutDestinationsNestedInput
   }
@@ -7322,6 +8657,7 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination_pricing?: destination_pricingUncheckedUpdateManyWithoutDestinationsNestedInput
     itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
     saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
   }
@@ -7526,6 +8862,58 @@ export namespace Prisma {
     hashed?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type destination_pricingCreateInput = {
+    category?: string | null
+    cost_per_day: Decimal | DecimalJsLike | number | string
+    currency?: string | null
+    destinations?: destinationsCreateNestedOneWithoutDestination_pricingInput
+  }
+
+  export type destination_pricingUncheckedCreateInput = {
+    id?: number
+    destination_id?: number | null
+    category?: string | null
+    cost_per_day: Decimal | DecimalJsLike | number | string
+    currency?: string | null
+  }
+
+  export type destination_pricingUpdateInput = {
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    cost_per_day?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+    destinations?: destinationsUpdateOneWithoutDestination_pricingNestedInput
+  }
+
+  export type destination_pricingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    cost_per_day?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type destination_pricingCreateManyInput = {
+    id?: number
+    destination_id?: number | null
+    category?: string | null
+    cost_per_day: Decimal | DecimalJsLike | number | string
+    currency?: string | null
+  }
+
+  export type destination_pricingUpdateManyMutationInput = {
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    cost_per_day?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type destination_pricingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    destination_id?: NullableIntFieldUpdateOperationsInput | number | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    cost_per_day?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -7578,6 +8966,12 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type Destination_pricingListRelationFilter = {
+    every?: destination_pricingWhereInput
+    some?: destination_pricingWhereInput
+    none?: destination_pricingWhereInput
+  }
+
   export type Itinerary_destinationsListRelationFilter = {
     every?: itinerary_destinationsWhereInput
     some?: itinerary_destinationsWhereInput
@@ -7593,6 +8987,10 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type destination_pricingOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type itinerary_destinationsOrderByRelationAggregateInput = {
@@ -7858,6 +9256,108 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DestinationsNullableScalarRelationFilter = {
+    is?: destinationsWhereInput | null
+    isNot?: destinationsWhereInput | null
+  }
+
+  export type destination_pricingCountOrderByAggregateInput = {
+    id?: SortOrder
+    destination_id?: SortOrder
+    category?: SortOrder
+    cost_per_day?: SortOrder
+    currency?: SortOrder
+  }
+
+  export type destination_pricingAvgOrderByAggregateInput = {
+    id?: SortOrder
+    destination_id?: SortOrder
+    cost_per_day?: SortOrder
+  }
+
+  export type destination_pricingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    destination_id?: SortOrder
+    category?: SortOrder
+    cost_per_day?: SortOrder
+    currency?: SortOrder
+  }
+
+  export type destination_pricingMinOrderByAggregateInput = {
+    id?: SortOrder
+    destination_id?: SortOrder
+    category?: SortOrder
+    cost_per_day?: SortOrder
+    currency?: SortOrder
+  }
+
+  export type destination_pricingSumOrderByAggregateInput = {
+    id?: SortOrder
+    destination_id?: SortOrder
+    cost_per_day?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type destination_pricingCreateNestedManyWithoutDestinationsInput = {
+    create?: XOR<destination_pricingCreateWithoutDestinationsInput, destination_pricingUncheckedCreateWithoutDestinationsInput> | destination_pricingCreateWithoutDestinationsInput[] | destination_pricingUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: destination_pricingCreateOrConnectWithoutDestinationsInput | destination_pricingCreateOrConnectWithoutDestinationsInput[]
+    createMany?: destination_pricingCreateManyDestinationsInputEnvelope
+    connect?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+  }
+
   export type itinerary_destinationsCreateNestedManyWithoutDestinationsInput = {
     create?: XOR<itinerary_destinationsCreateWithoutDestinationsInput, itinerary_destinationsUncheckedCreateWithoutDestinationsInput> | itinerary_destinationsCreateWithoutDestinationsInput[] | itinerary_destinationsUncheckedCreateWithoutDestinationsInput[]
     connectOrCreate?: itinerary_destinationsCreateOrConnectWithoutDestinationsInput | itinerary_destinationsCreateOrConnectWithoutDestinationsInput[]
@@ -7870,6 +9370,13 @@ export namespace Prisma {
     connectOrCreate?: saved_destinationsCreateOrConnectWithoutDestinationsInput | saved_destinationsCreateOrConnectWithoutDestinationsInput[]
     createMany?: saved_destinationsCreateManyDestinationsInputEnvelope
     connect?: saved_destinationsWhereUniqueInput | saved_destinationsWhereUniqueInput[]
+  }
+
+  export type destination_pricingUncheckedCreateNestedManyWithoutDestinationsInput = {
+    create?: XOR<destination_pricingCreateWithoutDestinationsInput, destination_pricingUncheckedCreateWithoutDestinationsInput> | destination_pricingCreateWithoutDestinationsInput[] | destination_pricingUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: destination_pricingCreateOrConnectWithoutDestinationsInput | destination_pricingCreateOrConnectWithoutDestinationsInput[]
+    createMany?: destination_pricingCreateManyDestinationsInputEnvelope
+    connect?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
   }
 
   export type itinerary_destinationsUncheckedCreateNestedManyWithoutDestinationsInput = {
@@ -7900,6 +9407,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type destination_pricingUpdateManyWithoutDestinationsNestedInput = {
+    create?: XOR<destination_pricingCreateWithoutDestinationsInput, destination_pricingUncheckedCreateWithoutDestinationsInput> | destination_pricingCreateWithoutDestinationsInput[] | destination_pricingUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: destination_pricingCreateOrConnectWithoutDestinationsInput | destination_pricingCreateOrConnectWithoutDestinationsInput[]
+    upsert?: destination_pricingUpsertWithWhereUniqueWithoutDestinationsInput | destination_pricingUpsertWithWhereUniqueWithoutDestinationsInput[]
+    createMany?: destination_pricingCreateManyDestinationsInputEnvelope
+    set?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    disconnect?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    delete?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    connect?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    update?: destination_pricingUpdateWithWhereUniqueWithoutDestinationsInput | destination_pricingUpdateWithWhereUniqueWithoutDestinationsInput[]
+    updateMany?: destination_pricingUpdateManyWithWhereWithoutDestinationsInput | destination_pricingUpdateManyWithWhereWithoutDestinationsInput[]
+    deleteMany?: destination_pricingScalarWhereInput | destination_pricingScalarWhereInput[]
   }
 
   export type itinerary_destinationsUpdateManyWithoutDestinationsNestedInput = {
@@ -7936,6 +9457,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type destination_pricingUncheckedUpdateManyWithoutDestinationsNestedInput = {
+    create?: XOR<destination_pricingCreateWithoutDestinationsInput, destination_pricingUncheckedCreateWithoutDestinationsInput> | destination_pricingCreateWithoutDestinationsInput[] | destination_pricingUncheckedCreateWithoutDestinationsInput[]
+    connectOrCreate?: destination_pricingCreateOrConnectWithoutDestinationsInput | destination_pricingCreateOrConnectWithoutDestinationsInput[]
+    upsert?: destination_pricingUpsertWithWhereUniqueWithoutDestinationsInput | destination_pricingUpsertWithWhereUniqueWithoutDestinationsInput[]
+    createMany?: destination_pricingCreateManyDestinationsInputEnvelope
+    set?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    disconnect?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    delete?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    connect?: destination_pricingWhereUniqueInput | destination_pricingWhereUniqueInput[]
+    update?: destination_pricingUpdateWithWhereUniqueWithoutDestinationsInput | destination_pricingUpdateWithWhereUniqueWithoutDestinationsInput[]
+    updateMany?: destination_pricingUpdateManyWithWhereWithoutDestinationsInput | destination_pricingUpdateManyWithWhereWithoutDestinationsInput[]
+    deleteMany?: destination_pricingScalarWhereInput | destination_pricingScalarWhereInput[]
   }
 
   export type itinerary_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput = {
@@ -8162,6 +9697,38 @@ export namespace Prisma {
     deleteMany?: saved_destinationsScalarWhereInput | saved_destinationsScalarWhereInput[]
   }
 
+  export type destinationsCreateNestedOneWithoutDestination_pricingInput = {
+    create?: XOR<destinationsCreateWithoutDestination_pricingInput, destinationsUncheckedCreateWithoutDestination_pricingInput>
+    connectOrCreate?: destinationsCreateOrConnectWithoutDestination_pricingInput
+    connect?: destinationsWhereUniqueInput
+  }
+
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type destinationsUpdateOneWithoutDestination_pricingNestedInput = {
+    create?: XOR<destinationsCreateWithoutDestination_pricingInput, destinationsUncheckedCreateWithoutDestination_pricingInput>
+    connectOrCreate?: destinationsCreateOrConnectWithoutDestination_pricingInput
+    upsert?: destinationsUpsertWithoutDestination_pricingInput
+    disconnect?: destinationsWhereInput | boolean
+    delete?: destinationsWhereInput | boolean
+    connect?: destinationsWhereUniqueInput
+    update?: XOR<XOR<destinationsUpdateToOneWithWhereWithoutDestination_pricingInput, destinationsUpdateWithoutDestination_pricingInput>, destinationsUncheckedUpdateWithoutDestination_pricingInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -8300,6 +9867,72 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type destination_pricingCreateWithoutDestinationsInput = {
+    category?: string | null
+    cost_per_day: Decimal | DecimalJsLike | number | string
+    currency?: string | null
+  }
+
+  export type destination_pricingUncheckedCreateWithoutDestinationsInput = {
+    id?: number
+    category?: string | null
+    cost_per_day: Decimal | DecimalJsLike | number | string
+    currency?: string | null
+  }
+
+  export type destination_pricingCreateOrConnectWithoutDestinationsInput = {
+    where: destination_pricingWhereUniqueInput
+    create: XOR<destination_pricingCreateWithoutDestinationsInput, destination_pricingUncheckedCreateWithoutDestinationsInput>
+  }
+
+  export type destination_pricingCreateManyDestinationsInputEnvelope = {
+    data: destination_pricingCreateManyDestinationsInput | destination_pricingCreateManyDestinationsInput[]
+    skipDuplicates?: boolean
+  }
+
   export type itinerary_destinationsCreateWithoutDestinationsInput = {
     itineraries: itinerariesCreateNestedOneWithoutItinerary_destinationsInput
   }
@@ -8334,6 +9967,33 @@ export namespace Prisma {
   export type saved_destinationsCreateManyDestinationsInputEnvelope = {
     data: saved_destinationsCreateManyDestinationsInput | saved_destinationsCreateManyDestinationsInput[]
     skipDuplicates?: boolean
+  }
+
+  export type destination_pricingUpsertWithWhereUniqueWithoutDestinationsInput = {
+    where: destination_pricingWhereUniqueInput
+    update: XOR<destination_pricingUpdateWithoutDestinationsInput, destination_pricingUncheckedUpdateWithoutDestinationsInput>
+    create: XOR<destination_pricingCreateWithoutDestinationsInput, destination_pricingUncheckedCreateWithoutDestinationsInput>
+  }
+
+  export type destination_pricingUpdateWithWhereUniqueWithoutDestinationsInput = {
+    where: destination_pricingWhereUniqueInput
+    data: XOR<destination_pricingUpdateWithoutDestinationsInput, destination_pricingUncheckedUpdateWithoutDestinationsInput>
+  }
+
+  export type destination_pricingUpdateManyWithWhereWithoutDestinationsInput = {
+    where: destination_pricingScalarWhereInput
+    data: XOR<destination_pricingUpdateManyMutationInput, destination_pricingUncheckedUpdateManyWithoutDestinationsInput>
+  }
+
+  export type destination_pricingScalarWhereInput = {
+    AND?: destination_pricingScalarWhereInput | destination_pricingScalarWhereInput[]
+    OR?: destination_pricingScalarWhereInput[]
+    NOT?: destination_pricingScalarWhereInput | destination_pricingScalarWhereInput[]
+    id?: IntFilter<"destination_pricing"> | number
+    destination_id?: IntNullableFilter<"destination_pricing"> | number | null
+    category?: StringNullableFilter<"destination_pricing"> | string | null
+    cost_per_day?: DecimalFilter<"destination_pricing"> | Decimal | DecimalJsLike | number | string
+    currency?: StringNullableFilter<"destination_pricing"> | string | null
   }
 
   export type itinerary_destinationsUpsertWithWhereUniqueWithoutDestinationsInput = {
@@ -8475,6 +10135,7 @@ export namespace Prisma {
     category?: string | null
     latitude?: number | null
     longitude?: number | null
+    destination_pricing?: destination_pricingCreateNestedManyWithoutDestinationsInput
     saved_destinations?: saved_destinationsCreateNestedManyWithoutDestinationsInput
   }
 
@@ -8486,6 +10147,7 @@ export namespace Prisma {
     category?: string | null
     latitude?: number | null
     longitude?: number | null
+    destination_pricing?: destination_pricingUncheckedCreateNestedManyWithoutDestinationsInput
     saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
   }
 
@@ -8528,6 +10190,7 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination_pricing?: destination_pricingUpdateManyWithoutDestinationsNestedInput
     saved_destinations?: saved_destinationsUpdateManyWithoutDestinationsNestedInput
   }
 
@@ -8539,6 +10202,7 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination_pricing?: destination_pricingUncheckedUpdateManyWithoutDestinationsNestedInput
     saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
   }
 
@@ -8571,6 +10235,7 @@ export namespace Prisma {
     category?: string | null
     latitude?: number | null
     longitude?: number | null
+    destination_pricing?: destination_pricingCreateNestedManyWithoutDestinationsInput
     itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutDestinationsInput
   }
 
@@ -8582,6 +10247,7 @@ export namespace Prisma {
     category?: string | null
     latitude?: number | null
     longitude?: number | null
+    destination_pricing?: destination_pricingUncheckedCreateNestedManyWithoutDestinationsInput
     itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
   }
 
@@ -8630,6 +10296,7 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination_pricing?: destination_pricingUpdateManyWithoutDestinationsNestedInput
     itinerary_destinations?: itinerary_destinationsUpdateManyWithoutDestinationsNestedInput
   }
 
@@ -8641,6 +10308,7 @@ export namespace Prisma {
     category?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    destination_pricing?: destination_pricingUncheckedUpdateManyWithoutDestinationsNestedInput
     itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
   }
 
@@ -8752,12 +10420,101 @@ export namespace Prisma {
     data: XOR<saved_destinationsUpdateManyMutationInput, saved_destinationsUncheckedUpdateManyWithoutUsersInput>
   }
 
+  export type destinationsCreateWithoutDestination_pricingInput = {
+    name: string
+    description?: string | null
+    image?: string | null
+    category?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    itinerary_destinations?: itinerary_destinationsCreateNestedManyWithoutDestinationsInput
+    saved_destinations?: saved_destinationsCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type destinationsUncheckedCreateWithoutDestination_pricingInput = {
+    id?: number
+    name: string
+    description?: string | null
+    image?: string | null
+    category?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    itinerary_destinations?: itinerary_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
+    saved_destinations?: saved_destinationsUncheckedCreateNestedManyWithoutDestinationsInput
+  }
+
+  export type destinationsCreateOrConnectWithoutDestination_pricingInput = {
+    where: destinationsWhereUniqueInput
+    create: XOR<destinationsCreateWithoutDestination_pricingInput, destinationsUncheckedCreateWithoutDestination_pricingInput>
+  }
+
+  export type destinationsUpsertWithoutDestination_pricingInput = {
+    update: XOR<destinationsUpdateWithoutDestination_pricingInput, destinationsUncheckedUpdateWithoutDestination_pricingInput>
+    create: XOR<destinationsCreateWithoutDestination_pricingInput, destinationsUncheckedCreateWithoutDestination_pricingInput>
+    where?: destinationsWhereInput
+  }
+
+  export type destinationsUpdateToOneWithWhereWithoutDestination_pricingInput = {
+    where?: destinationsWhereInput
+    data: XOR<destinationsUpdateWithoutDestination_pricingInput, destinationsUncheckedUpdateWithoutDestination_pricingInput>
+  }
+
+  export type destinationsUpdateWithoutDestination_pricingInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    itinerary_destinations?: itinerary_destinationsUpdateManyWithoutDestinationsNestedInput
+    saved_destinations?: saved_destinationsUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type destinationsUncheckedUpdateWithoutDestination_pricingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    itinerary_destinations?: itinerary_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
+    saved_destinations?: saved_destinationsUncheckedUpdateManyWithoutDestinationsNestedInput
+  }
+
+  export type destination_pricingCreateManyDestinationsInput = {
+    id?: number
+    category?: string | null
+    cost_per_day: Decimal | DecimalJsLike | number | string
+    currency?: string | null
+  }
+
   export type itinerary_destinationsCreateManyDestinationsInput = {
     itineraryid: number
   }
 
   export type saved_destinationsCreateManyDestinationsInput = {
     userid: number
+  }
+
+  export type destination_pricingUpdateWithoutDestinationsInput = {
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    cost_per_day?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type destination_pricingUncheckedUpdateWithoutDestinationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    cost_per_day?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type destination_pricingUncheckedUpdateManyWithoutDestinationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    cost_per_day?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    currency?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type itinerary_destinationsUpdateWithoutDestinationsInput = {

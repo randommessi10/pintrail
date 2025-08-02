@@ -1,4 +1,3 @@
-/* Main card layout */
 .loginCard {
   background: white;
   border-radius: 12px;
@@ -10,7 +9,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-/* Heading */
 .loginCard h2 {
   font-family: "Playfair Display", serif;
   font-weight: 700;
@@ -19,7 +17,6 @@
   text-align: center;
 }
 
-/* Subtitle */
 .loginCard p.subtext {
   font-weight: 400;
   font-size: 1rem;
@@ -29,24 +26,19 @@
   margin-bottom: 1.5rem;
 }
 
-/* General text inside card */
 .loginCard > p {
   font-size: 1rem;
   text-align: center;
 }
 
-/* Form label */
 .loginCard form p {
   font-weight: 600;
   margin-bottom: 0;
 }
 
-/* Form spacing */
 .loginCard form > * + * {
   margin-top: 1rem;
 }
-
-/* Input fields */
 .inputWrapper {
   position: relative;
 }
@@ -67,7 +59,6 @@
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Input icons */
 .inputWrapper .icon {
   position: absolute;
   top: 50%;
@@ -86,7 +77,6 @@
   cursor: pointer;
 }
 
-/* Submit button */
 .loginCard button[type="submit"] {
   width: 100%;
   padding: 0.75rem;
@@ -98,7 +88,6 @@
   font-size: 1rem;
 }
 
-/* Forgot password */
 .forgotPassword {
   text-align: right;
   margin-top: -0.5rem;
@@ -106,7 +95,6 @@
   opacity: 0;
 }
 
-/* Link styling */
 .loginCard a {
   color: inherit;
   text-decoration: none;
@@ -117,13 +105,11 @@
   text-decoration: underline;
 }
 
-/* Login icon */
 .loginCard > svg {
   display: block;
   margin: 0 auto 1rem auto;
 }
 
-/* Optional circle wrapper */
 .loginIconWrapper {
   width: 3.5rem;
   height: 3.5rem;
@@ -135,7 +121,6 @@
   margin: 0 auto 1rem auto;
 }
 
-/* Back to home */
 .backHomeLink {
   display: flex;
   justify-content: center;
@@ -164,8 +149,8 @@
   transition: background-color 0.2s ease;
   font-family: 'Roboto', sans-serif;
   text-decoration: none;
-  width: 100%; /* Optional: full-width button */
-  margin-top: 1.25rem; /* Optional: spacing from inputs */
+  width: 100%;
+  margin-top: 1.25rem;
 }
 
 .loginCard button:hover {

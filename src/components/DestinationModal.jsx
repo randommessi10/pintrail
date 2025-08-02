@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  X,
-  HeartIcon,
-  Plus,
-  MapPin,
-  Trash2,
-  TreePine,
-  Building,
-  Waves,
-  Mountain,
-  Camera,
-  Utensils,
-  Library,
-} from "lucide-react";
+import { X, HeartIcon, Plus, MapPin, Trash2, TreePine, Building, Waves, Mountain,Camera, Utensils, Library, Plane, Wallet } from "lucide-react";
 import "../styles/DestinationModal.css";
 import axios from "axios";
-
 
 const categories = {
   all: { name: "All", color: "#ef4444", Icon: MapPin },
@@ -28,89 +14,98 @@ const categories = {
   culture: { name: "Culture", color: "#f97316", Icon: Library },
 };
 
-export default function DestinationModal({
-  destination,
-  onClose,
-  isSaved = false,
-}) {
+const categoryIcons = {
+  flights: Plane,accommodation: Building,food: Utensils,activities: Mountain,
+};
+
+const formatCurrency = (amount) => `₹${parseInt(amount).toLocaleString()}`;
+
+export default function DestinationModal(
+  {destination,onClose,isSaved = false,onUnsave}
+){
+  
   const category = categories[destination.category];
   const [saved, setSaved] = useState(isSaved);
   const [showItineraryModal, setShowItineraryModal] = useState(false);
   const [selectedItineraryId, setSelectedItineraryId] = useState("");
-
   const [itineraries, setItineraries] = useState([]);
-  
+  const [expenses, setExpenses] = useState([]);
+
+  const destinationExpenses = expenses.filter(
+    (e) => e.destination_id === destination.id
+  );
+
+  const totalCostPerDay = destinationExpenses
+    .filter((item) => item.category !== "flights")
+    .reduce((sum, item) => sum + Number(item.cost_per_day), 0);
+
+  useEffect(() => {
+    const token = localStorage.getItem("pintrail-token");
+    if (!token) return;
+
+    axios
+      .get("http://localhost:3000/itineraries/options", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setItineraries(res.data);
+        if (res.data.length > 0) {
+          setSelectedItineraryId(res.data[0].id);
+        }
+      })
+      .catch((err) => console.error("Error fetching itineraries:", err));
+  }, []);
+
   useEffect(() => {
     const token = localStorage.getItem("pintrail-token");
     if (!token) return;
   
-    // Fetch itineraries from the new endpoint
     axios
-      .get("http://localhost:3000/itineraries/options", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      .get("http://localhost:3000/pricing/all", {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
-        setItineraries(response.data); // Set the fetched itineraries
-        if (response.data.length > 0) {
-          setSelectedItineraryId(response.data[0].id); // Default to first itinerary if available
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching itineraries:", error);
-      });
-  }, []);  
+      .then((res) => setExpenses(res.data))
+      .catch((err) => console.error("Error fetching pricing data:", err));
+  }, []);
+  
 
   const handleRemoveFromSaved = async () => {
     const token = localStorage.getItem("pintrail-token");
     if (!token) return;
-  
+
     try {
-      // Send the save request to the backend
-      const response = await axios.post('/saved/unsaving', {
-        destinationId: destination.id,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      // Check if the request was successful
-      if (response.status === 200) {
-        console.log(" unsaved:", destination.id);
-        setSaved(false); // Set state after successful save
+      const res = await axios.post(
+        "/saved/unsaving",
+        { destinationId: destination.id },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (res.status === 200) {
+        setSaved(false);
+        onUnsave?.(destination.id);
       }
-    } catch (error) {
-      console.error("Error unsaving destination:", error);
+    } catch (err) {
+      console.error("Error unsaving destination:", err);
     }
   };
 
   const handleSave = async () => {
     const token = localStorage.getItem("pintrail-token");
     if (!token) return;
-  
+
     try {
-      // Send the save request to the backend
-      const response = await axios.post('/saved/saving', {
-        destinationId: destination.id,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      // Check if the request was successful
-      if (response.status === 200) {
-        console.log("saved:", destination.id);
-        setSaved(true); // Set state after successful save
-      }
-    } catch (error) {
-      console.error("Error saving destination:", error);
+      const res = await axios.post(
+        "/saved/saving",
+        { destinationId: destination.id },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (res.status === 200) setSaved(true);
+    } catch (err) {
+      console.error("Error saving destination:", err);
     }
   };
-  
-  
+
   const handleAddToItineraryClick = () => {
     setShowItineraryModal(true);
   };
@@ -118,32 +113,27 @@ export default function DestinationModal({
   const handleAddToItineraryConfirm = async () => {
     const token = localStorage.getItem("pintrail-token");
     if (!token) return;
-  
+
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         "http://localhost:3000/itineraries/add",
         {
           itineraryId: selectedItineraryId,
           destinationId: destination.id,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-  
-      if (response.status === 200) {
-        console.log("added to itinerary:", selectedItineraryId, destination.id);
+
+      if (res.status === 200) {
         alert("Destination successfully added");
         setShowItineraryModal(false);
       }
-    } catch (error) {
-      console.error("Error adding to itinerary:", error);
+    } catch (err) {
+      console.error("Error adding to itinerary:", err);
       alert("Failed to add destination to itinerary");
     }
   };
-  
+
   return (
     <div className="dm-overlay">
       <div className="dm-modal">
@@ -177,9 +167,7 @@ export default function DestinationModal({
                     color: category.color,
                   }}
                 >
-                  {category.Icon && (
-                    <category.Icon className="dm-category-icon" />
-                  )}
+                  <category.Icon className="dm-category-icon" />
                   <span>{category.name}</span>
                 </div>
               )}
@@ -187,7 +175,48 @@ export default function DestinationModal({
               <h2 className="dm-title">{destination.name}</h2>
               <p className="dm-description">{destination.description}</p>
 
-              {/* Mini Map */}
+              {/* Budget Breakdown Section */}
+              <div className="dm-budget-wrapper">
+                <h3 className="dm-budget-heading">
+                  Budget Breakdown (Per Day)
+                </h3>
+                <div className="dm-budget-list">
+                  {destinationExpenses.map((expense) => {
+                    const IconComponent = categoryIcons[expense.category] || MapPin;
+                    return (
+                      <div
+                        key={`${expense.destination_id}-${expense.category}`}
+                        className="dm-budget-item"
+                      >
+                        <div className="dm-budget-left">
+                          <div className="dm-budget-icon-wrapper">
+                            <IconComponent className="dm-budget-icon" />
+                          </div>
+                          <span className="dm-budget-category">
+                            {expense.category}
+                          </span>
+                        </div>
+                        <span className="dm-budget-cost">
+                          {formatCurrency(expense.cost_per_day)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                  <div className="dm-budget-total">
+  <div className="dm-budget-left">
+    <div className="dm-budget-icon-wrapper">
+      <Wallet className="dm-budget-icon" />
+    </div>
+    <span className="dm-budget-category">Total Per Day</span>
+  </div>
+  <span className="dm-budget-cost">
+    {formatCurrency(totalCostPerDay)}
+  </span>
+</div>
+                </div>
+              </div>
+
+              {/* Mini Map Placeholder */}
               <div className="dm-mini-map">
                 <div className="dm-mini-map-header">
                   <MapPin className="dm-icon dm-location-icon" />
@@ -205,19 +234,17 @@ export default function DestinationModal({
             {/* Action Buttons */}
             <div className="dm-action-buttons">
               <div className="dm-buttons-row">
-                {isSaved || saved ? (
+                {(isSaved || saved) ? (
                   <>
                     <button
                       onClick={handleRemoveFromSaved}
                       className="dm-btn dm-btn-remove"
-                      type="button"
                     >
                       <Trash2 className="dm-icon" />
                       Remove
                     </button>
                     <button
                       className="dm-btn dm-btn-itinerary"
-                      type="button"
                       onClick={handleAddToItineraryClick}
                     >
                       <Plus className="dm-icon" />
@@ -228,7 +255,6 @@ export default function DestinationModal({
                   <>
                     <button
                       className="dm-btn dm-btn-save"
-                      type="button"
                       onClick={handleSave}
                     >
                       <HeartIcon className="dm-icon" />
@@ -236,7 +262,6 @@ export default function DestinationModal({
                     </button>
                     <button
                       className="dm-btn dm-btn-itinerary"
-                      type="button"
                       onClick={handleAddToItineraryClick}
                     >
                       <Plus className="dm-icon" />

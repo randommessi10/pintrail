@@ -63,6 +63,17 @@ export default function SavedDestinations() {
     setFilteredDestinations(results);
   }, [category, searchQuery, destinations, savedDestinations]);
 
+  // Handle when a destination is unsaved
+  const handleDestinationUnsave = (destinationId) => {
+    // Remove the destination from savedDestinations
+    setSavedDestinations(prev => prev.filter(id => id !== destinationId));
+    
+    // If the currently selected destination is the one being unsaved, close the modal
+    if (selectedDestination?.id === destinationId) {
+      setSelectedDestination(null);
+    }
+  };
+
   return (
     <div className="saved-page">
       <header className="saved-header">
@@ -93,7 +104,8 @@ export default function SavedDestinations() {
         <DestinationModal
           destination={selectedDestination}
           onClose={() => setSelectedDestination(null)}
-          isSaved={true} // This is a saved destination
+          isSaved={savedDestinations.includes(selectedDestination.id)}
+          onUnsave={handleDestinationUnsave}
         />
       )}
     </div>

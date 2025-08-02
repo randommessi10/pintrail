@@ -6,30 +6,43 @@ import axios from "axios";
 
 export default function ViewItinerary() {
   const { id } = useParams();
-  const itineraryId = Number(id); // Convert to number here
+  const itineraryId = Number(id);
 
   const [itinerary, setItinerary] = useState({
     name: '',
     destinations: [],
   });
+  const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
-    const fetchItinerary = async () => {
+    const fetchData = async () => {
       try {
         const token = localStorage.getItem('pintrail-token');
-        const response = await axios.get(`/itineraries/view?id=${itineraryId}`, {
+
+        const itineraryRes = await axios.get(`/itineraries/view?id=${itineraryId}`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
           },
         });
-        setItinerary(response.data);
+
+        const pricingRes = await axios.get(`/pricing/all`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        setItinerary(itineraryRes.data);
+        setExpenses(pricingRes.data);
       } catch (error) {
         console.error(error);
         setItinerary({ name: 'Itinerary not found', destinations: [] });
+        setExpenses([]);
       }
     };
-    fetchItinerary();
+
+    fetchData();
   }, [itineraryId]);
 
   const handleRemoveDestination = async (destinationId) => {
@@ -44,16 +57,44 @@ export default function ViewItinerary() {
           },
         }
       );
-      alert(response.data.message)
+      alert(response.data.message);
       setItinerary((prev) => ({
         ...prev,
         destinations: prev.destinations.filter(
           (dest) => dest.id !== destinationId
         ),
       }));
+      setExpenses((prev) => prev.filter(
+        (exp) => exp.destination_id !== destinationId
+      ));
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(amount);
+  };
+
+  const calculateDestinationCost = (destinationId) => {
+    const destinationExpenses = expenses.filter(
+      (expense) => expense.destination_id === destinationId
+    );
+    const totalCostPerDay = destinationExpenses
+      .filter((item) => item.category !== "flights")
+      .reduce((sum, item) => sum + Number(item.cost_per_day), 0);
+
+    return totalCostPerDay;
+  };
+
+  const calculateTotalItineraryCost = () => {
+    return itinerary.destinations.reduce((total, dest) => {
+      return total + calculateDestinationCost(dest.id);
+    }, 0);
   };
 
   return (
@@ -65,6 +106,24 @@ export default function ViewItinerary() {
             <button className="map-button">View on Map</button>
           </div>
         </header>
+
+        {itinerary.destinations.length > 0 && (
+          <div className="total-cost-card">
+            <div className="cost-wrapper">
+              <div className="cost-left">
+                <div className="icon-wrapper">₹</div>
+                <div>
+                  <h3>Total Itinerary Cost</h3>
+                  <p>(excl. flights)</p>
+                </div>
+              </div>
+              <div className="cost-right">
+                <div className="cost-amount">{formatCurrency(calculateTotalItineraryCost())}</div>
+                <div className="cost-unit"></div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <section className="destination-section">
           <h2 className="destination-heading">Destinations</h2>
@@ -83,7 +142,15 @@ export default function ViewItinerary() {
                   />
                 </div>
                 <div className="destination-text">
-                  <h3 className="destination-name">{destination.name}</h3>
+                  <div className="destination-header">
+                    <h3 className="destination-name">{destination.name}</h3>
+                    <div className="destination-cost">
+                      <div className="cost-value">
+                        {formatCurrency(calculateDestinationCost(destination.id))}
+                      </div>
+                      <div className="cost-label">per day</div>
+                    </div>
+                  </div>
                   <p className="destination-desc">{destination.description}</p>
                 </div>
                 <div className="destination-remove">

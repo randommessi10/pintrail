@@ -33,7 +33,7 @@ router.post("/saving", authenticateToken, async (req,res) => {
                 userid: userId,
             },
         }); 
-        console.log("Saved with userid:", userId ," and destinationId:", destinationId);
+        
         res.status(200).json(saved);
     } catch (error) {
         console.error("Error saving destination:", error);
@@ -54,7 +54,6 @@ router.post("/unsaving", authenticateToken, async (req, res) => {
                 },
             },
         });
-        console.log("Unsaved with userid:", userId ," and destinationId:", destinationId);
 
         res.status(200).json(unsaved); // Use 200 for successful deletion
     } catch (error) {

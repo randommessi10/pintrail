@@ -14,11 +14,11 @@
 
 /* ===== Modal Container ===== */
 .dm-modal {
-  background-color: white;
+  background-color: white  ;
   border-radius: 1.5rem;
   max-width: 64rem;
   width: 100%;
-  max-height: 90vh;
+  max-height: 80vh;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   animation: dm-scale-in 0.3s ease forwards;
@@ -210,7 +210,7 @@
 .dm-action-buttons {
   padding: 1.5rem 1.5rem 2rem;
   border-top: 1px solid #e5e7eb;
-  background-color: white;
+  background-color: #fff1f2;
   flex-shrink: 0;
 }
 .dm-buttons-row {
@@ -294,4 +294,99 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+.dm-budget-wrapper {
+  background: linear-gradient(to bottom right, #ffe4e6, #fce7f3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+.dm-budget-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dm-budget-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dm-budget-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dm-budget-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dm-budget-icon-wrapper {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+}
+
+.dm-budget-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #4b5563;
+}
+
+.dm-budget-category {
+  font-weight: 500;
+  text-transform: capitalize;
+  color: #333333;
+}
+
+.dm-budget-cost {
+  font-weight: 600;
+  color: #111111;
+}
+
+.dm-budget-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(to right, #f9a8d4, #f472b6);
+  color: black;
+  font-weight: 600;
+}
+
+.dm-modal {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.dm-content-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.dm-content-scroll {
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 100%;
 }
