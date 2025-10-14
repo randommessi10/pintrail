@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Upload, MapPin, Lightbulb, Camera, Pencil, Tag } from "lucide-react";
 import "../../styles/AddDestination.css";
 import { uploadImageToCloudinary } from "../../utils/uploadCloudinary";
+import PriceModal from "../../components/PriceModal";
 import axios from "axios";
 
 export default function AddImage() {
@@ -12,6 +13,8 @@ export default function AddImage() {
     image: null,
   });
   const [imagePreview, setImagePreview] = useState(null);
+  const [showPriceModal, setShowPriceModal] = useState(false);
+  const [pendingDestinationPayload, setPendingDestinationPayload] = useState(null);
   const categories = [
     "all", "nature", "cities", "beaches", "adventure", "photography", "food", "culture"
   ];
@@ -72,25 +75,80 @@ export default function AddImage() {
         image: imageUrl,
       };
 
-      console.log("Destination data to save:", newDestination);
-      try {
-        const token = localStorage.getItem("pintrail-token");
-        await axios.post("http://localhost:3000/destinations/add", newDestination,{
-          headers:{
-            Authorization:`Bearer ${token}`
-          }
-        });
-      } catch (error) {
-        console.error("Error adding destination:", error);
-      }
-      alert("Destination added successfully.");
-
-      e.target.reset();
-      setFormData({ name: "", description: "", category: "", image: null });
-      setImagePreview(null);
+      setPendingDestinationPayload(newDestination);
+      setShowPriceModal(true);
     } catch (err) {
       console.error("Error uploading image:", err);
       alert("Image upload failed. Please try again.");
+    }
+  }
+
+  async function finalizeCreateDestinationWithPrices(priceItems) {
+    try {
+      const token = localStorage.getItem("pintrail-token");
+      // Client-side null checks for price items BEFORE creating destination
+      const allowed = new Set(["accommodation", "food", "activities"]);
+      const cleanedItems = Array.isArray(priceItems)
+        ? priceItems
+            .filter((i) => i && allowed.has(String(i.category).toLowerCase()))
+            .map((i) => ({
+              category: String(i.category).toLowerCase(),
+              cost_per_day: Number(i.cost_per_day),
+              currency: i.currency || "INR",
+            }))
+            .filter((i) => Number.isFinite(i.cost_per_day) && i.cost_per_day >= 0)
+        : [];
+
+      if (cleanedItems.length === 0) {
+        alert("Please add at least one valid pricing item to continue.");
+        return;
+      }
+
+      const res = await axios.post(
+        "http://localhost:3000/destinations/add",
+        pendingDestinationPayload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      const createdId = res?.data?.destination?.id;
+      if (!createdId) {
+        throw new Error("Destination created but id missing in response");
+      }
+
+      try {
+        await axios.post(
+          "http://localhost:3000/pricing/bulk",
+          { destinationId: createdId, items: cleanedItems },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } catch (pricingErr) {
+        console.error("Pricing save failed:", pricingErr);
+        const serverMsg = pricingErr?.response?.data?.error;
+        // Roll back destination on pricing failure
+        try {
+          await axios.delete(`http://localhost:3000/destinations/delete/${createdId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+        } catch (rollbackErr) {
+          console.error("Rollback failed:", rollbackErr);
+        }
+        alert(serverMsg ? `Failed to save prices: ${serverMsg}` : "Failed to save prices. Destination was not created.");
+        return;
+      }
+
+      alert("Destination added successfully.");
+
+      // reset form
+      const form = document.getElementById("add-image-form");
+      form?.reset();
+      setFormData({ name: "", description: "", category: "", image: null });
+      setImagePreview(null);
+      setPendingDestinationPayload(null);
+      setShowPriceModal(false);
+    } catch (error) {
+      console.error("Error saving destination and prices:", error);
+      const serverMsg = error?.response?.data?.error;
+      alert(serverMsg ? `Failed to save destination: ${serverMsg}` : "Failed to save destination/prices. Please try again.");
     }
   }
 
@@ -184,6 +242,14 @@ export default function AddImage() {
             Add Destination
           </button>
         </form>
+        <PriceModal
+          open={showPriceModal}
+          onClose={() => {
+            // Close the modal without creating the destination
+            setShowPriceModal(false);
+          }}
+          onSubmit={(items) => finalizeCreateDestinationWithPrices(items)}
+        />
 
         {/* Sidebar */}
         <aside className="tips-sidebar">

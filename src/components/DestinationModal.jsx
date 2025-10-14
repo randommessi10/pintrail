@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { X, HeartIcon, Plus, MapPin, Trash2, TreePine, Building, Waves, Mountain,Camera, Utensils, Library, Plane, Wallet } from "lucide-react";
+import { X, HeartIcon, Plus, MapPin, Trash2, TreePine, Building, Waves, Mountain,Camera, Utensils, Library, Wallet } from "lucide-react";
 import "../styles/DestinationModal.css";
 import axios from "axios";
 
@@ -15,7 +15,9 @@ const categories = {
 };
 
 const categoryIcons = {
-  flights: Plane,accommodation: Building,food: Utensils,activities: Mountain,
+  accommodation: Building,
+  food: Utensils,
+  activities: Mountain,
 };
 
 const formatCurrency = (amount) => `₹${parseInt(amount).toLocaleString()}`;
@@ -36,7 +38,6 @@ export default function DestinationModal(
   );
 
   const totalCostPerDay = destinationExpenses
-    .filter((item) => item.category !== "flights")
     .reduce((sum, item) => sum + Number(item.cost_per_day), 0);
 
   useEffect(() => {

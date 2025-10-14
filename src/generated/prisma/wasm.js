@@ -125,9 +125,7 @@ exports.Prisma.DestinationsScalarFieldEnum = {
   name: 'name',
   description: 'description',
   image: 'image',
-  category: 'category',
-  latitude: 'latitude',
-  longitude: 'longitude'
+  category: 'category'
 };
 
 exports.Prisma.ItinerariesScalarFieldEnum = {
@@ -167,14 +165,32 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.destinationsOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description',
+  image: 'image',
+  category: 'category'
+};
+
+exports.Prisma.itinerariesOrderByRelevanceFieldEnum = {
+  name: 'name'
+};
+
+exports.Prisma.usersOrderByRelevanceFieldEnum = {
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  hashed: 'hashed'
+};
+
+exports.Prisma.destination_pricingOrderByRelevanceFieldEnum = {
+  category: 'category',
+  currency: 'currency'
 };
 
 

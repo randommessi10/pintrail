@@ -1,6 +1,7 @@
 export async function uploadImageToCloudinary(file) {
-    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+    const cloudName = "dqspii5do";
+    const uploadPreset = "pintrail";
+  
   
     const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
   

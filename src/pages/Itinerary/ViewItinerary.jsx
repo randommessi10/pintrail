@@ -85,7 +85,6 @@ export default function ViewItinerary() {
       (expense) => expense.destination_id === destinationId
     );
     const totalCostPerDay = destinationExpenses
-      .filter((item) => item.category !== "flights")
       .reduce((sum, item) => sum + Number(item.cost_per_day), 0);
 
     return totalCostPerDay;
@@ -114,7 +113,7 @@ export default function ViewItinerary() {
                 <div className="icon-wrapper">₹</div>
                 <div>
                   <h3>Total Itinerary Cost</h3>
-                  <p>(excl. flights)</p>
+                  <p></p>
                 </div>
               </div>
               <div className="cost-right">

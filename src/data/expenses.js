@@ -1,4 +1,4 @@
-export const expenses = [
+const rawExpenses = [
     {
       "destination_id": 1,
       "destination_name": "Kyoto Temple Gardens",
@@ -419,4 +419,6 @@ export const expenses = [
       "cost_per_day": "1500",
       "currency": "INR"
     }
-  ]
+  ];
+
+export const expenses = rawExpenses.filter((e) => e.category !== "flights");

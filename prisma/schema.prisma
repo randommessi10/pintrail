@@ -4,18 +4,16 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
+  url      = "mysql://root:root@localhost:3306/pintrail"
 }
 
 model destinations {
   id                     Int                      @id @default(autoincrement())
   name                   String                   @db.VarChar(255)
-  description            String?
-  image                  String?
+  description            String?                  @db.Text
+  image                  String?                  @db.VarChar(255)
   category               String?                  @db.VarChar(100)
-  latitude               Float?
-  longitude              Float?
   destination_pricing    destination_pricing[]
   itinerary_destinations itinerary_destinations[]
   saved_destinations     saved_destinations[]
@@ -25,32 +23,36 @@ model itineraries {
   id                     Int                      @id @default(autoincrement())
   name                   String                   @db.VarChar(255)
   userid                 Int
-  users                  users                    @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users                  users                    @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "itineraries_ibfk_1")
   itinerary_destinations itinerary_destinations[]
+
+  @@index([userid], map: "userid")
 }
 
 model itinerary_destinations {
   itineraryid   Int
   destinationid Int
-  destinations  destinations @relation(fields: [destinationid], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  itineraries   itineraries  @relation(fields: [itineraryid], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  itineraries   itineraries  @relation(fields: [itineraryid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "itinerary_destinations_ibfk_1")
+  destinations  destinations @relation(fields: [destinationid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "itinerary_destinations_ibfk_2")
 
   @@id([itineraryid, destinationid])
+  @@index([destinationid], map: "destinationid")
 }
 
 model saved_destinations {
   userid        Int
   destinationid Int
-  destinations  destinations @relation(fields: [destinationid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_destination")
   users         users        @relation(fields: [userid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_user")
+  destinations  destinations @relation(fields: [destinationid], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_destination")
 
-  @@unique([userid, destinationid], map: "saved_destinations_userid_destinationid_unique")
+  @@id([userid, destinationid])
+  @@index([destinationid], map: "destinationid")
 }
 
 model users {
   id                 Int                  @id @default(autoincrement())
   name               String               @db.VarChar(255)
-  email              String               @unique @db.VarChar(255)
+  email              String               @unique(map: "email") @db.VarChar(255)
   password           String               @db.VarChar(255)
   hashed             String?              @db.VarChar(255)
   itineraries        itineraries[]
@@ -61,8 +63,10 @@ model users {
 model destination_pricing {
   id             Int           @id @default(autoincrement())
   destination_id Int?
-  category       String?
+  category       String?       @db.VarChar(255)
   cost_per_day   Decimal       @db.Decimal(10, 2)
-  currency       String?       @default("INR")
-  destinations   destinations? @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  currency       String?       @default("INR") @db.VarChar(10)
+  destinations   destinations? @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "destination_pricing_ibfk_1")
+
+  @@index([destination_id], map: "destination_id")
 }

@@ -184,3 +184,112 @@ select {
 .tip p:last-child {
   margin-bottom: 0 !important;
 }
+
+/* Price Modal */
+.pm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.pm-modal {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 1rem 1rem 1.25rem;
+  position: relative;
+}
+
+.pm-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.pm-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #111;
+  font-family: "Playfair Display", serif;
+}
+
+.pm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+}
+
+.pm-row-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pm-icon {
+  width: 18px;
+  height: 18px;
+  color: #4b003d;
+}
+
+.pm-row-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pm-row-right input[type="number"] {
+  width: 120px;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.pm-row-right select {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.pm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.pm-btn-primary {
+  background-color: #4b003d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.pm-btn-secondary {
+  background-color: #e5e7eb;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
